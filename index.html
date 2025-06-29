@@ -1,529 +1,288 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Revolución Silenciosa: Gen Z y Gen Alpha en Marketing de Tennis</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .title-font { font-family: 'Playfair Display', serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .quote-highlight { 
-            border-left: 4px solid #667eea; 
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-        }
-        .data-card { 
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        .gen-z-color { color: #8B5CF6; }
-        .gen-alpha-color { color: #06B6D4; }
-        .chart-container { height: 400px; }
-        /* Ajuste para header fijo */
-        html { 
-            scroll-behavior: smooth; 
-            scroll-padding-top: 100px; /* ajusta al alto del header */
-        }
-        @media print {
-            .page-break { page-break-before: avoid; }
-            body { font-size: 12px; }
-        }
-        /* Header fijo */
-        #main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-        }
-        .content-wrapper {
-            margin-top: 110px;
-        }
-        .back-menu {
-            display: inline-block;
-            margin: 24px 0 0 0;
-            background: #667eea;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 9999px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(102,126,234,0.09);
-            transition: background 0.2s;
-        }
-        .back-menu:hover {
-            background: #5a67d8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Gen Z vs Gen Alpha - Insights, Estrategias y Oportunidades</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tailwind CSS CDN for fast prototyping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .section-block {
+      scroll-margin-top: 86px;
+    }
+    /* Gradient underline for headings */
+    .gradient-underline {
+      background: linear-gradient(90deg, #f472b6 0%, #818cf8 100%);
+      height: 4px;
+      border-radius: 2px;
+      margin: 0.25rem 0 1.5rem 0;
+      width: 80px;
+    }
+    .toc-highlight {
+      background: linear-gradient(90deg, #c7d2fe 0%, #fbcfe8 100%);
+      border-radius: 6px;
+      padding-left: 0.5rem;
+    }
+    /* Animated hover for TOC */
+    .toc-link:hover {
+      background: linear-gradient(90deg, #fbcfe8 0%, #c7d2fe 100%);
+      border-radius: 6px;
+      padding-left: 0.5rem;
+      transition: all 0.2s;
+    }
+    /* Card style for visual blocks */
+    .visual-card {
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      border-radius: 1rem;
+      box-shadow: 0 6px 24px 0 rgba(100, 72, 186, 0.10);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .gradient-bg {
+      background: linear-gradient(120deg, #c7d2fe 0%, #fbcfe8 100%);
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-
-    <!-- Header fijo -->
-    <header id="main-header" class="gradient-bg text-white shadow-md">
-        <div class="container mx-auto px-6 py-6">
-            <div class="text-center">
-                <h1 class="title-font text-3xl md:text-5xl font-bold mb-2 leading-tight">
-                    La Revolución Silenciosa
-                </h1>
-                <h2 class="text-lg md:text-2xl font-light mb-3 opacity-90">
-                    Por Qué Gen Z y Gen Alpha Están Redefiniendo Todas las Reglas del Marketing de Tennis
-                    <span class="block text-base mt-1 font-medium">(Y Tu Marca Puede Quedarse Atrás)</span>
-                </h2>
-                <div class="flex justify-center items-center space-x-6 text-xs opacity-80">
-                    <div><i class="fas fa-calendar-alt mr-2"></i>Reporte Estratégico 2024</div>
-                    <div><i class="fas fa-map-marker-alt mr-2"></i>Enfoque Colombia</div>
-                    <div><i class="fas fa-shoe-prints mr-2"></i>Caso: Tennis</div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="content-wrapper">
-
-    <!-- Resumen Ejecutivo -->
-    <section class="container mx-auto px-6 py-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
-            <h3 class="title-font text-3xl font-bold mb-6 text-gray-800">
-                <i class="fas fa-eye text-blue-600 mr-3"></i>Resumen Ejecutivo
-            </h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <p class="text-lg leading-relaxed text-gray-700 mb-4">
-                        <strong>Gen Z</strong> (12.7 millones en Colombia, 25% población) y <strong>Gen Alpha</strong> están redefiniendo completamente las reglas del marketing de tennis. Mientras Gen Z busca <em>autonomía, autenticidad y comunidades de nicho</em>, Gen Alpha es moldeada por valores parentales millennials enfocados en <em>educación, sostenibilidad y compasión</em>.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-700">
-                        Este reporte revela insights críticos basados en datos exclusivos del mercado colombiano, con aplicación específica al mundo de los tennis, ofreciendo estrategias accionables para marcas deportivas que buscan conectar genuinamente con estas generaciones transformadoras.
-                    </p>
-                </div>
-                <div class="data-card rounded-lg p-6">
-                    <h4 class="font-bold text-xl mb-4 text-gray-800">Datos Clave</h4>
-                    <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="gen-z-color font-semibold">Gen Z Colombia:</span>
-                            <span class="font-bold">12.7M (25%)</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Confianza en marcas:</span>
-                            <span class="text-red-600 font-bold">Solo 40%</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Prefiere comunidad:</span>
-                            <span class="text-green-600 font-bold">84%</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="gen-alpha-color font-semibold">Alpha - Productos educativos:</span>
-                            <span class="font-bold">66%</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Sostenibles:</span>
-                            <span class="text-green-600 font-bold">43%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Índice -->
-    <section id="indice" class="container mx-auto px-6 py-8">
-        <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
-            <h3 class="title-font text-3xl font-bold mb-6 text-gray-800">
-                <i class="fas fa-list text-blue-600 mr-3"></i>Índice de Contenidos
-            </h3>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <ol class="space-y-2 text-lg">
-                        <li><a href="#seccion1" class="text-blue-600 hover:text-blue-800">1. Análisis Generacional Completo</a></li>
-                        <li><a href="#seccion2" class="text-blue-600 hover:text-blue-800">2. Comportamiento de Consumo</a></li>
-                        <li><a href="#seccion3" class="text-blue-600 hover:text-blue-800">3. Relación con Marcas</a></li>
-                        <li><a href="#seccion4" class="text-blue-600 hover:text-blue-800">4. Cultura Digital y Entretenimiento</a></li>
-                    </ol>
-                </div>
-                <div>
-                    <ol start="5" class="space-y-2 text-lg">
-                        <li><a href="#seccion5" class="text-blue-600 hover:text-blue-800">5. Identidad y Comunidad</a></li>
-                        <li><a href="#seccion6" class="text-blue-600 hover:text-blue-800">6. Tecnología y Medios</a></li>
-                        <li><a href="#seccion7" class="text-blue-600 hover:text-blue-800">7. Estilo de Vida Deportivo</a></li>
-                        <li><a href="#seccion8" class="text-blue-600 hover:text-blue-800">8. Estrategias y Recomendaciones</a></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 1 -->
-    <section id="seccion1" class="container mx-auto px-6 py-12">
-        <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 mb-8">
-            <h3 class="text-2xl font-bold mb-4 text-purple-800">
-                <i class="fas fa-bullhorn mr-2"></i>Storytelling de Marca
-            </h3>
-            <div class="space-y-4">
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h4 class="font-bold text-purple-700 mb-2">🎬 "Unforced Error: Mi Camino"</h4>
-                    <p class="text-sm text-gray-700">Serie documental usuarios colombianos auténticos de tennis</p>
-                </div>
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h4 class="font-bold text-purple-700 mb-2">🧠 Tennis & Mindfulness</h4>
-                    <p class="text-sm text-gray-700">Bienestar mental, desconexión como autocuidado</p>
-                </div>
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h4 class="font-bold text-purple-700 mb-2">🌍 "La Tribu del Tennis"</h4>
-                    <p class="text-sm text-gray-700">Comunidad y pertenencia en clubes barriales de tennis</p>
-                </div>
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h4 class="font-bold text-purple-700 mb-2">🎨 Colaboraciones Urbanas</h4>
-                    <p class="text-sm text-gray-700">Artistas colombianos en colecciones cápsula de tennis</p>
-                </div>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Matriz de Estrategias -->
-    <section id="seccion2" class="overflow-x-auto mb-8 container mx-auto px-6 py-12">
-        <h4 class="text-xl font-bold mb-4">Matriz de Estrategias por Generación</h4>
-        <table class="w-full border-collapse bg-gray-50 rounded-lg overflow-hidden shadow">
-            <thead class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-                <tr>
-                    <th class="p-4 text-left">Estrategia</th>
-                    <th class="p-4 text-left">Gen Z Enfoque</th>
-                    <th class="p-4 text-left">Gen Alpha Approach</th>
-                    <th class="p-4 text-left">KPI Clave</th>
-                </tr>
-            </thead>
-            <tbody class="text-sm">
-                <tr class="border-b border-gray-200">
-                    <td class="p-4 font-semibold">Comunidades</td>
-                    <td class="p-4">Discord/WhatsApp nichos tennis, embajadores Gen Z</td>
-                    <td class="p-4">Comunidades familiares, valores compartidos</td>
-                    <td class="p-4">Engagement rate, tiempo plataforma</td>
-                </tr>
-                <tr class="border-b border-gray-200 bg-white">
-                    <td class="p-4 font-semibold">Experiencias</td>
-                    <td class="p-4">Pop-ups VR, simuladores, content creators locales</td>
-                    <td class="p-4">Experiencias educativas familiares</td>
-                    <td class="p-4">NPS, conversión experiencia-compra</td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <td class="p-4 font-semibold">Contenido</td>
-                    <td class="p-4">TikTok educativo, unboxing honesto, desafíos virales</td>
-                    <td class="p-4">Contenido co-consumido con padres</td>
-                    <td class="p-4">Shares, saves, tiempo visualización</td>
-                </tr>
-                <tr class="border-b border-gray-200 bg-white">
-                    <td class="p-4 font-semibold">Productos</td>
-                    <td class="p-4">Tech avanzada, personalización, sostenibilidad</td>
-                    <td class="p-4">Educativo, sostenible, compartible familiarmente</td>
-                    <td class="p-4">Repetición compra, recomendación</td>
-                </tr>
-                <tr>
-                    <td class="p-4 font-semibold">Pricing</td>
-                    <td class="p-4">Valor justificado, frugalidad consciente</td>
-                    <td class="p-4">Inversión en desarrollo de hijos</td>
-                    <td class="p-4">Price-to-value perception</td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Cronograma Estratégico -->
-    <section id="seccion3" class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-6 mb-8 container mx-auto px-6 py-12">
-        <h4 class="text-xl font-bold mb-4">
-            <i class="fas fa-calendar-alt mr-2"></i>Cronograma de Implementación (18 meses)
-        </h4>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg p-4 border-l-4 border-green-500">
-                <h5 class="font-bold text-green-700 mb-2">Fase 1: Fundación (0-6 meses)</h5>
-                <ul class="text-sm space-y-1 text-gray-700">
-                    <li>• Investigación de mercado profunda</li>
-                    <li>• Desarrollo de comunidades digitales</li>
-                    <li>• Creación de contenido base</li>
-                    <li>• Primeros prototipos sostenibles de tennis</li>
-                    <li>• Partnership con influencers locales</li>
-                </ul>
-            </div>
-            <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
-                <h5 class="font-bold text-blue-700 mb-2">Fase 2: Experiencias (6-12 meses)</h5>
-                <ul class="text-sm space-y-1 text-gray-700">
-                    <li>• Launch de pop-up stores</li>
-                    <li>• Serie documental producida</li>
-                    <li>• Programa embajadores activo</li>
-                    <li>• Tech products beta testing</li>
-                    <li>• Colaboraciones artísticas con tennis</li>
-                </ul>
-            </div>
-            <div class="bg-white rounded-lg p-4 border-l-4 border-purple-500">
-                <h5 class="font-bold text-purple-700 mb-2">Fase 3: Escalamiento (12-18 meses)</h5>
-                <ul class="text-sm space-y-1 text-gray-700">
-                    <li>• Full product line launch</li>
-                    <li>• Expansión a otras ciudades</li>
-                    <li>• Métricas y optimización</li>
-                    <li>• Programas de fidelización</li>
-                    <li>• Evaluación ROI y pivot</li>
-                </ul>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- KPIs Clave -->
-    <section id="seccion4" class="data-card rounded-lg p-6 mb-8 container mx-auto px-6 py-12">
-        <h4 class="text-xl font-bold mb-4">
-            <i class="fas fa-chart-line mr-2"></i>KPIs de Éxito: Dashboard Estratégico
-        </h4>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="text-center p-4 bg-green-50 rounded-lg">
-                <i class="fas fa-users text-2xl text-green-600 mb-2"></i>
-                <h5 class="font-bold text-green-800">Comunidad</h5>
-                <p class="text-sm text-green-700">Miembros activos, engagement rate</p>
-            </div>
-            <div class="text-center p-4 bg-blue-50 rounded-lg">
-                <i class="fas fa-heart text-2xl text-blue-600 mb-2"></i>
-                <h5 class="font-bold text-blue-800">Lealtad</h5>
-                <p class="text-sm text-blue-700">NPS, repetición compra</p>
-            </div>
-            <div class="text-center p-4 bg-purple-50 rounded-lg">
-                <i class="fas fa-share-alt text-2xl text-purple-600 mb-2"></i>
-                <h5 class="font-bold text-purple-800">Advocacy</h5>
-                <p class="text-sm text-purple-700">Shares, UGC, recomendaciones</p>
-            </div>
-            <div class="text-center p-4 bg-orange-50 rounded-lg">
-                <i class="fas fa-dollar-sign text-2xl text-orange-600 mb-2"></i>
-                <h5 class="font-bold text-orange-800">Rentabilidad</h5>
-                <p class="text-sm text-orange-700">LTV, CAC, ROI campaigns</p>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Consideraciones Éticas -->
-    <section id="seccion5" class="bg-red-50 border border-red-200 rounded-lg p-6 mb-8 container mx-auto px-6 py-12">
-        <h4 class="text-xl font-bold mb-4 text-red-800">
-            <i class="fas fa-exclamation-triangle mr-2"></i>Consideraciones Éticas y Desafíos
-        </h4>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div>
-                <h5 class="font-bold text-red-700 mb-2">Privacidad y Datos</h5>
-                <p class="text-sm text-red-600 mb-4">73% de Gen Z valora privacidad en comunidades. Asegurar transparencia total en uso de datos de usuarios de tennis y personales.</p>
-                
-                <h5 class="font-bold text-red-700 mb-2">Salud Mental</h5>
-                <p class="text-sm text-red-600">Presión por comparación y rendimiento puede afectar bienestar. Promover uso saludable de tennis vs. competencia tóxica.</p>
-            </div>
-            <div>
-                <h5 class="font-bold text-red-700 mb-2">Accesibilidad</h5>
-                <p class="text-sm text-red-600 mb-4">Innovaciones tecnológicas no deben crear brechas. Desarrollar líneas accesibles para democratizar el acceso a tennis.</p>
-                
-                <h5 class="font-bold text-red-700 mb-2">Autenticidad</h5>
-                <p class="text-sm text-red-600">83% detecta intentos forzados. Mantener genuinidad en todas las comunicaciones y partnerships relacionados con tennis.</p>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Cultura Digital y Entretenimiento -->
-    <section id="seccion6" class="container mx-auto px-6 py-12">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="chart-container mb-8">
-                <canvas id="plataformasChart"></canvas>
-            </div>
-            <div class="chart-container mb-8">
-                <canvas id="journeyChart"></canvas>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Estilo de Vida Deportivo -->
-    <section id="seccion7" class="container mx-auto px-6 py-12">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="chart-container mb-8">
-                <canvas id="demografiaChart"></canvas>
-            </div>
-            <div class="chart-container mb-8">
-                <canvas id="motivacionesChart"></canvas>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Estrategias y Recomendaciones -->
-    <section id="seccion8" class="container mx-auto px-6 py-12">
-        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-lg text-white p-8">
-            <div class="text-center mb-8">
-                <h2 class="title-font text-4xl font-bold mb-4">El Momento es Ahora</h2>
-                <p class="text-xl opacity-90">La revolución generacional ya comenzó. Las marcas que actúen hoy definirán el mercado de tennis del mañana.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="text-center">
-                    <i class="fas fa-clock text-4xl mb-4 opacity-80"></i>
-                    <h3 class="text-xl font-bold mb-2">Urgencia Competitiva</h3>
-                    <p class="opacity-80">Gen Z ya representa 25% del mercado colombiano. Gen Alpha está formando preferencias ahora.</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-target text-4xl mb-4 opacity-80"></i>
-                    <h3 class="text-xl font-bold mb-2">Oportunidad Única</h3>
-                    <p class="opacity-80">Ventana de 18 meses para establecer liderazgo en marketing de tennis generacional.</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-trophy text-4xl mb-4 opacity-80"></i>
-                    <h3 class="text-xl font-bold mb-2">Ventaja Competitiva</h3>
-                    <p class="opacity-80">Marcas que implementen estas estrategias tendrán 5 años de ventaja sobre competencia.</p>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <h3 class="text-2xl font-bold mb-4">Pregunta Final para Reflexión</h3>
-                <p class="text-lg italic mb-6 opacity-90">
-                    "Si tu marca de tennis desapareciera mañana, ¿la extrañarían Gen Z y Gen Alpha? 
-                    ¿O ni siquiera notarían su ausencia?"
-                </p>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
-                    <p class="text-sm">
-                        La respuesta determinará si tu marca será líder o historia en la nueva era del marketing de tennis.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <a href="#indice" class="back-menu"><i class="fas fa-arrow-up mr-2"></i>Volver al menú</a>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-400 mb-2">Reporte Estratégico • Marketing de Tennis Generacional • 2024</p>
-            <p class="text-gray-500 text-sm">Basado en investigación exclusiva del mercado colombiano con aplicación global</p>
-        </div>
-    </footer>
+<body class="bg-gradient-to-br from-blue-50 via-white to-fuchsia-100 text-gray-900 leading-relaxed">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/90 shadow-lg py-4 px-2 md:px-10 flex flex-col md:flex-row items-center justify-between">
+    <div class="flex items-center gap-4">
+      <span class="text-2xl font-black text-fuchsia-700 tracking-wide">Gen Z vs Gen Alpha</span>
+      <span class="hidden md:inline-block ml-3 px-3 py-1 rounded-full bg-fuchsia-100 text-fuchsia-700 font-semibold text-xs">Reporte Estratégico Colombia y Global 2025</span>
     </div>
+    <nav class="mt-3 md:mt-0 space-x-4">
+      <a href="#indice" class="text-blue-700 hover:text-fuchsia-600 font-bold transition">Índice</a>
+      <a href="#anexos" class="text-blue-700 hover:text-fuchsia-600 font-bold transition">Anexos</a>
+    </nav>
+  </header>
 
-    <script>
-        // Gráfico Demografia
-        const demografiaCtx = document.getElementById('demografiaChart').getContext('2d');
-        new Chart(demografiaCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Gen Z Colombia', 'Gen Alpha Colombia', 'Otras Generaciones'],
-                datasets: [{
-                    data: [25, 15, 60],
-                    backgroundColor: ['#8B5CF6', '#06B6D4', '#E5E7EB'],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' },
-                    title: { display: true, text: 'Distribución Generacional Colombia 2024' }
-                }
-            }
-        });
+  <!-- Índice de contenidos -->
+  <section id="indice" class="max-w-5xl mx-auto pt-8 pb-4 section-block">
+    <h1 class="text-3xl font-bold text-indigo-700">Índice de Contenidos</h1>
+    <div class="gradient-underline"></div>
+    <ol class="space-y-1 text-lg pl-4">
+      <li>
+        <a href="#cat-clave" class="toc-link font-semibold text-fuchsia-700">1. Clasificación por Categorías Clave y Síntesis de Hallazgos</a>
+        <ul class="ml-6 space-y-1 text-base">
+          <li><a href="#valores-creencias" class="toc-link">1.1 Valores y Creencias</a></li>
+          <li><a href="#habitos-consumo" class="toc-link">1.2 Hábitos de Consumo</a></li>
+          <li><a href="#relacion-marcas" class="toc-link">1.3 Relación con Marcas</a></li>
+          <li><a href="#cultura-entretenimiento" class="toc-link">1.4 Cultura y Entretenimiento</a></li>
+          <li><a href="#identidad-comunidad" class="toc-link">1.5 Identidad y Comunidad</a></li>
+          <li><a href="#tecnologia-medios" class="toc-link">1.6 Tecnología y Medios</a></li>
+          <li><a href="#lifestyle" class="toc-link">1.7 Estilo de Vida (Lifestyle)</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#visualizaciones" class="toc-link font-semibold text-fuchsia-700">2. Visualizaciones Sugeridas</a>
+        <ul class="ml-6 space-y-1 text-base">
+          <li><a href="#consumer-journey" class="toc-link">2.1 Consumer Journey: Gen Z vs Gen Alpha</a></li>
+          <li><a href="#demographic-pie" class="toc-link">2.2 Demographic Pie Chart: Colombia vs Global</a></li>
+          <li><a href="#trust-comparison" class="toc-link">2.3 Trust Comparison: Niveles de Confianza</a></li>
+          <li><a href="#platform-usage" class="toc-link">2.4 Platform Usage Heatmap</a></li>
+          <li><a href="#sports-engagement" class="toc-link">2.5 Sports Engagement</a></li>
+          <li><a href="#roi-projections" class="toc-link">2.6 ROI Projections</a></li>
+          <li><a href="#piramide-confianza" class="toc-link">2.7 Pirámide de Confianza</a></li>
+          <li><a href="#ecosistema-comunidades" class="toc-link">2.8 Ecosistema de Comunidades</a></li>
+          <li><a href="#mapa-valores" class="toc-link">2.9 Mapa de Valores</a></li>
+          <li><a href="#demographic-pie2" class="toc-link">2.10 Demographic Pie Chart (detalle)</a></li>
+        </ul>
+      </li>
+      <li><a href="#contexto-colombia" class="toc-link font-semibold text-fuchsia-700">3. Contexto Colombiano</a></li>
+      <li><a href="#aplicacion-tenis" class="toc-link font-semibold text-fuchsia-700">4. Aplicación al Tenis</a></li>
+      <li><a href="#perfil-consumidor-tenis" class="toc-link font-semibold text-fuchsia-700">5. Perfil Detallado del Consumidor de Tenis</a></li>
+      <li><a href="#impacto-ia" class="toc-link font-semibold text-fuchsia-700">6. Análisis del Impacto de la IA</a></li>
+      <li><a href="#tiempo-pantalla" class="toc-link font-semibold text-fuchsia-700">7. Consideraciones sobre el "Tiempo de Pantalla"</a></li>
+      <li><a href="#modelo-lealtad" class="toc-link font-semibold text-fuchsia-700">8. Modelo de Lealtad Adaptado al Tenis</a></li>
+      <li><a href="#alianzas-patrocinios" class="toc-link font-semibold text-fuchsia-700">9. Recomendaciones de Alianzas Estratégicas y Patrocinios</a></li>
+      <li><a href="#mercado-colombiano" class="toc-link font-semibold text-fuchsia-700">10. Consideraciones sobre el Mercado Colombiano</a></li>
+      <li><span class="text-gray-400 italic">11. [Eliminado]</span></li>
+      <li><a href="#kpi" class="toc-link font-semibold text-fuchsia-700">12. Métricas Clave de Éxito (KPIs)</a></li>
+      <li><a href="#etica-desafios" class="toc-link font-semibold text-fuchsia-700">13. Consideraciones Éticas y Desafíos</a></li>
+      <li>
+        <a href="#anexos" class="toc-link font-semibold text-indigo-700">Anexos: Hallazgos e Insights Detallados por Categoría</a>
+        <ul class="ml-6 space-y-1 text-base">
+          <li><a href="#anexo-1.1" class="toc-link">1.1 Valores y Creencias</a></li>
+          <li><a href="#anexo-1.2" class="toc-link">1.2 Hábitos de Consumo</a></li>
+          <li><a href="#anexo-1.3" class="toc-link">1.3 Relación con Marcas</a></li>
+          <li><a href="#anexo-1.4" class="toc-link">1.4 Cultura y Entretenimiento</a></li>
+          <li><a href="#anexo-1.5" class="toc-link">1.5 Identidad y Comunidad</a></li>
+          <li><a href="#anexo-1.6" class="toc-link">1.6 Tecnología y Medios</a></li>
+          <li><a href="#anexo-1.7" class="toc-link">1.7 Estilo de Vida (Lifestyle)</a></li>
+          <li><a href="#anexo-1.8" class="toc-link">1.8 Running y Training</a></li>
+        </ul>
+      </li>
+    </ol>
+  </section>
 
-        // Gráfico Journey
-        const journeyCtx = document.getElementById('journeyChart').getContext('2d');
-        new Chart(journeyCtx, {
-            type: 'radar',
-            data: {
-                labels: ['Descubrimiento', 'Investigación', 'Consideración', 'Compra', 'Lealtad', 'Advocacy'],
-                datasets: [{
-                    label: 'Gen Z',
-                    data: [85, 95, 75, 65, 70, 80],
-                    borderColor: '#8B5CF6',
-                    backgroundColor: 'rgba(139, 92, 246, 0.2)',
-                    borderWidth: 2
-                }, {
-                    label: 'Gen Alpha',
-                    data: [70, 60, 85, 80, 85, 75],
-                    borderColor: '#06B6D4',
-                    backgroundColor: 'rgba(6, 182, 212, 0.2)',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: { display: true, text: 'Journey de Compra Comparativo' }
-                },
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
-            }
-        });
+  <!-- Sección 1: Clasificación por Categorías Clave -->
+  <section id="cat-clave" class="max-w-5xl mx-auto py-6 section-block">
+    <h2 class="text-2xl font-bold text-fuchsia-700 flex items-center gap-2">
+      <i class="fas fa-layer-group"></i> 1. Clasificación por Categorías Clave y Síntesis de Hallazgos
+    </h2>
+    <div class="gradient-underline"></div>
+    <p class="mb-6">La siguiente estructura presenta la información confrontada entre Generación Z y Generación Alpha, comparando valores, comportamientos y tensiones clave en cada aspecto.</p>
+    
+    <!-- Subsecciones 1.1 a 1.7 con links rápidos -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <a href="#valores-creencias" class="bg-fuchsia-200 hover:bg-fuchsia-300 text-fuchsia-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.1 Valores y Creencias</a>
+      <a href="#habitos-consumo" class="bg-cyan-200 hover:bg-cyan-300 text-cyan-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.2 Hábitos de Consumo</a>
+      <a href="#relacion-marcas" class="bg-blue-200 hover:bg-blue-300 text-blue-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.3 Relación con Marcas</a>
+      <a href="#cultura-entretenimiento" class="bg-indigo-200 hover:bg-indigo-300 text-indigo-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.4 Cultura y Entretenimiento</a>
+      <a href="#identidad-comunidad" class="bg-purple-200 hover:bg-purple-300 text-purple-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.5 Identidad y Comunidad</a>
+      <a href="#tecnologia-medios" class="bg-pink-200 hover:bg-pink-300 text-pink-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.6 Tecnología y Medios</a>
+      <a href="#lifestyle" class="bg-yellow-200 hover:bg-yellow-300 text-yellow-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.7 Estilo de Vida</a>
+    </div>
+  </section>
 
-        // Gráfico Plataformas
-        const plataformasCtx = document.getElementById('plataformasChart').getContext('2d');
-        new Chart(plataformasCtx, {
-            type: 'line',
-            data: {
-                labels: ['TikTok', 'Instagram', 'YouTube', 'Discord', 'WhatsApp', 'Twitch'],
-                datasets: [{
-                    label: 'Gen Z Uso Diario (h)',
-                    data: [2.5, 1.8, 1.2, 0.8, 1.5, 1.0],
-                    borderColor: '#8B5CF6',
-                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }, {
-                    label: 'Gen Alpha Exposición (h)',
-                    data: [1.5, 1.0, 2.0, 0.3, 0.8, 0.5],
-                    borderColor: '#06B6D4',
-                    backgroundColor: 'rgba(6, 182, 212, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: { display: true, text: 'Uso de Plataformas Digitales' }
-                },
-                scales: {
-                    y: { beginAtZero: true, max: 3 }
-                }
-            }
-        });
+  <!-- 1.1 Valores y Creencias -->
+  <section id="valores-creencias" class="max-w-5xl mx-auto py-6 section-block">
+    <h3 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-balance-scale"></i> 1.1 Valores y Creencias
+    </h3>
+    <div class="gradient-underline"></div>
+    <!-- Tabla colorida de valores y creencias -->
+    <!-- ... Incluir aquí la tabla colorida como en ejemplos anteriores ... -->
+    <!-- Ver sección de anexos para la tabla completa -->
+    <div class="text-right mt-2">
+      <a href="#anexo-1.1" class="text-indigo-600 font-semibold hover:underline"><i class="fas fa-table"></i> Ver tabla completa en Anexos</a>
+    </div>
+  </section>
 
-        // Gráfico Motivaciones
-        const motivacionesCtx = document.getElementById('motivacionesChart').getContext('2d');
-        new Chart(motivacionesCtx, {
-            type: 'polarArea',
-            data: {
-                labels: ['Rendimiento', 'Salud', 'Social', 'Diversión', 'Competencia', 'Estética'],
-                datasets: [{
-                    data: [85, 70, 75, 60, 90, 65],
-                    backgroundColor: [
-                        'rgba(139, 92, 246, 0.7)',
-                        'rgba(6, 182, 212, 0.7)',
-                        'rgba(34, 197, 94, 0.7)',
-                        'rgba(251, 191, 36, 0.7)',
-                        'rgba(239, 68, 68, 0.7)',
-                        'rgba(168, 85, 247, 0.7)'
-                    ],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: { display: true, text: 'Motivaciones Deportivas Gen Z' },
-                    legend: { position: 'right' }
-                }
-            }
-        });
-    </script>
+  <!-- 1.2 Hábitos de Consumo -->
+  <section id="habitos-consumo" class="max-w-5xl mx-auto py-6 section-block">
+    <h3 class="text-xl font-bold text-cyan-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo
+    </h3>
+    <div class="gradient-underline"></div>
+    <!-- Tabla colorida de hábitos de consumo, como la última aprobada -->
+    <div class="overflow-x-auto my-8 rounded-2xl shadow-2xl border-4 border-purple-300 bg-gradient-to-br from-blue-200 via-fuchsia-100 to-cyan-200">
+      <table class="min-w-full bg-transparent">
+        <caption class="text-xl font-extrabold py-4 text-white bg-gradient-to-r from-fuchsia-500 to-indigo-600 rounded-t-2xl shadow-inner">
+          <span class="inline-flex items-center gap-2">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/><circle cx="12" cy="12" r="5" fill="#f472b6"/></svg>
+            Tabla 1.2. Hábitos de Consumo
+          </span>
+        </caption>
+        <thead>
+          <tr>
+            <th class="py-4 px-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-left text-white font-bold text-lg border-b-4 border-fuchsia-400 rounded-tl-2xl">Aspecto</th>
+            <th class="py-4 px-4 bg-gradient-to-r from-fuchsia-400 to-pink-600 text-left text-white font-bold text-lg border-b-4 border-cyan-400">Gen Z<br><span class="text-xs font-normal text-gray-100">(1997-2012)</span></th>
+            <th class="py-4 px-4 bg-gradient-to-r from-cyan-400 to-teal-500 text-left text-white font-bold text-lg border-b-4 border-fuchsia-400">Gen Alpha<br><span class="text-xs font-normal text-gray-100">(2010s-2020s)</span></th>
+            <th class="py-4 px-4 bg-gradient-to-r from-purple-400 to-indigo-600 text-left text-white font-bold text-lg border-b-4 border-cyan-400 rounded-tr-2xl">Comparativas & Tensiones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-gradient-to-r from-cyan-50 to-fuchsia-50 hover:from-fuchsia-100 hover:to-cyan-100 transition">
+            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
+              <span class="text-fuchsia-500"><i class="fas fa-piggy-bank"></i></span> Frugalidad y Gasto Consciente
+            </td>
+            <td class="py-4 px-4 align-top">💸 70% alteró hábitos post-pandemia, 80% prefiere gastar sabiamente, 77% ahorra cada vez que recibe dinero.</td>
+            <td class="py-4 px-4 align-top">👶🏻 Aprenden el valor del ahorro y el consumo consciente desde pequeños, guiados por sus padres.</td>
+            <td class="py-4 px-4 align-top">Ambas generaciones muestran frugalidad, pero Gen Alpha lo vive incluso antes gracias a la crianza.</td>
+          </tr>
+          <tr class="bg-gradient-to-r from-blue-50 to-cyan-100 hover:from-fuchsia-100 hover:to-blue-100 transition">
+            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
+              <span class="text-cyan-600"><i class="fas fa-store"></i></span> Retail Físico con Experiencias
+            </td>
+            <td class="py-4 px-4 align-top">🏪 78% cree que las tiendas físicas siempre tendrán un propósito. Buscan experiencias inspiradoras y entretenidas.</td>
+            <td class="py-4 px-4 align-top">👨‍👩‍👧‍👦 Prefieren retail físico alineado a valores y sostenibilidad, por influencia de sus padres.</td>
+            <td class="py-4 px-4 align-top">Z busca entretenimiento y "selfies"; Alpha, coherencia ética y ambiental.</td>
+          </tr>
+          <tr class="bg-gradient-to-r from-fuchsia-50 to-cyan-50 hover:from-cyan-100 hover:to-fuchsia-100 transition">
+            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
+              <span class="text-blue-600"><i class="fas fa-search"></i></span> Investigación y Desconfianza de Marca
+            </td>
+            <td class="py-4 px-4 align-top">🔍 Proceso de compra no lineal, solo 40% confía en afirmaciones de marcas; usan TikTok para investigar.</td>
+            <td class="py-4 px-4 align-top">📲 Padres y comunidades parentales influyen en la decisión de compra, buscan productos educativos y sostenibles.</td>
+            <td class="py-4 px-4 align-top">Z confía en pares/redes; Alpha, en criterios parentales y comunidad.</td>
+          </tr>
+          <tr class="bg-gradient-to-r from-cyan-50 to-fuchsia-100 hover:from-fuchsia-100 hover:to-cyan-50 transition">
+            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
+              <span class="text-yellow-500"><i class="fas fa-bolt"></i></span> Inmediatez y Conveniencia
+            </td>
+            <td class="py-4 px-4 align-top">⚡ 75% de adolescentes quiere productos convenientes y de acceso inmediato.</td>
+            <td class="py-4 px-4 align-top">⏳ Dependen de la iniciativa y tiempos de decisión de sus padres.</td>
+            <td class="py-4 px-4 align-top">Z demanda inmediatez; Alpha aún depende de la gestión parental.</td>
+          </tr>
+          <tr class="bg-gradient-to-r from-blue-50 to-fuchsia-50 hover:from-cyan-100 hover:to-fuchsia-100 transition">
+            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
+              <span class="text-green-500"><i class="fas fa-leaf"></i></span> Consumo Ético y Sostenible
+            </td>
+            <td class="py-4 px-4 align-top">🌱 Tendencia creciente pero menos marcada que en Alpha.</td>
+            <td class="py-4 px-4 align-top">🌍 Ya buscan marcas educativas (66%), sostenibles (43%) y locales (26%).</td>
+            <td class="py-4 px-4 align-top">Alpha muestra tendencia ética más marcada desde edades tempranas.</td>
+          </tr>
+          <tr class="bg-gradient-to-r from-fuchsia-50 to-blue-50 hover:from-blue-100 hover:to-fuchsia-100 transition">
+            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
+              <span class="text-indigo-500"><i class="fas fa-heart"></i></span> Experiencias Alineadas a Valores
+            </td>
+            <td class="py-4 px-4 align-top">—</td>
+            <td class="py-4 px-4 align-top">💖 Padres proyectan valores en experiencias de consumo.</td>
+            <td class="py-4 px-4 align-top">Alpha vive experiencias "curadas" por padres, Z las busca por sí mismo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-right mt-2">
+      <a href="#anexo-1.2" class="text-indigo-600 font-semibold hover:underline"><i class="fas fa-table"></i> Ver tabla completa en Anexos</a>
+    </div>
+  </section>
+
+  <!-- ... Repite este patrón para los demás apartados ... -->
+
+  <!-- Bloque Visualizaciones Sugeridas -->
+  <section id="visualizaciones" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-2xl font-bold text-indigo-700 flex items-center gap-2">
+      <i class="fas fa-chart-pie"></i> 2. Visualizaciones Sugeridas
+    </h2>
+    <div class="gradient-underline"></div>
+    <p class="mb-4">A continuación se plantean visualizaciones recomendadas para comparar datos clave entre Gen Z y Gen Alpha. <span class="font-semibold text-fuchsia-700">Puedes implementar las gráficas con Altair, Matplotlib, D3.js o Chart.js.</span></p>
+    <div class="visual-card shadow-xl">
+      <h3 id="consumer-journey" class="text-lg font-bold text-fuchsia-700 mb-2 flex items-center gap-2"><i class="fas fa-route"></i> 2.1 Consumer Journey: Gen Z vs Gen Alpha</h3>
+      <p><strong>Tipo:</strong> Diagrama de flujo animado/interactivo, línea de tiempo.<br>
+      <strong>Propósito:</strong> Ilustrar diferencias en motivaciones, etapas y fuentes de inspiración/investigación.</p>
+      <ul class="list-disc ml-8 mt-2 text-sm">
+        <li><span class="font-bold text-blue-700">Gen Z:</span> 62% se inspira online, 71% abierto a nuevas marcas, 70% decide rápido, investigación profunda en TikTok.</li>
+        <li><span class="font-bold text-cyan-700">Gen Alpha:</span> Influencia parental y contenido educativo; consumo compartido, recomendaciones parentales.</li>
+      </ul>
+      <p class="mt-2 text-xs text-gray-600">Sugerencia: Usa sliders o "play" para animar el paso por etapas.</p>
+    </div>
+    <!-- ... Continua con visualizaciones 2.2 a 2.10, siguiendo este formato ... -->
+  </section>
+
+  <!-- ... Agrega aquí secciones para cada punto del índice, usando bloques, tablas y tarjetas ... -->
+
+  <!-- Anexos -->
+  <section id="anexos" class="max-w-5xl mx-auto py-10 section-block">
+    <h2 class="text-2xl font-bold text-indigo-700 flex items-center gap-2"><i class="fas fa-folder-open"></i> Anexos: Hallazgos e Insights Detallados</h2>
+    <div class="gradient-underline"></div>
+    <p class="mb-4">Tablas comparativas completas confrontando Generación Z y Generación Alpha para cada aspecto clave.</p>
+    <!-- Incluye aquí todas las tablas coloridas de los Anexos 1.1 a 1.8, usando el formato colorido aprobado -->
+    <div id="anexo-1.1" class="my-10">
+      <h3 class="text-lg font-bold text-fuchsia-700 mb-2 flex items-center gap-2"><i class="fas fa-balance-scale"></i> 1.1 Valores y Creencias</h3>
+      <!-- Tabla colorida aquí (ver ejemplos anteriores) -->
+      <!-- ... -->
+    </div>
+    <div id="anexo-1.2" class="my-10">
+      <h3 class="text-lg font-bold text-cyan-700 mb-2 flex items-center gap-2"><i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo</h3>
+      <!-- Tabla colorida aquí (ver ejemplo arriba) -->
+      <!-- ... -->
+    </div>
+    <!-- Repite para 1.3 a 1.8 -->
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-white/80 mt-12 border-t">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-sm text-gray-500">© 2025 Reporte Gen Z vs Gen Alpha | Colombia y Global. Desarrollado por Jorge Uribe Campos.</p>
+      <p class="text-xs text-gray-400 mt-2">Para más información o actualizaciones, visita <a href="https://github.com/JorgeUribeCampos" target="_blank" class="text-fuchsia-700 hover:underline">mi GitHub</a>.</p>
+    </div>
+  </footer>
 </body>
 </html>
