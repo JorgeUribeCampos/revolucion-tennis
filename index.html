@@ -3,65 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insights Generacionales y Aplicación al Tennis (Gen Z vs Gen Alpha)</title>
+  <title>Comparativo Gen Z vs Gen Alpha - Informe Extendido</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f6faff; color: #23242a; }
-    main { margin-left: 270px; padding: 2rem 2vw 2rem 2vw; }
+    main { margin-left: 290px; padding: 2rem 2vw 2rem 2vw; }
     .toc {
       position: fixed;
       top: 0; left: 0; bottom: 0;
-      width: 250px;
-      background: #1976d2;
+      width: 270px;
+      background: #1565c0;
       padding: 2rem 1.2rem 1.2rem 1.2rem;
-      border-right: 2px solid #1565c0;
+      border-right: 2px solid #1976d2;
       overflow-y: auto;
       height: 100vh;
-      z-index: 100;
+      z-index: 200;
+      box-shadow: 4px 0 12px #1976d233;
     }
     .toc h1 { font-size: 1.18em; margin-bottom: 1.3rem; color: #fff; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc ul li { margin: .3em 0; }
     .toc a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-    .toc a:hover { color: #fbc02d; text-decoration: underline; }
+    .toc a:hover, .toc a.active { color: #fbc02d; text-decoration: underline; }
     .block { background: #fff; border-radius: 12px; box-shadow: 0 1px 8px #d9e2ef22; padding: 1.5rem; margin-bottom: 2.2rem; }
     table { border-collapse: collapse; width: 100%; margin: 1.8rem 0; font-size: 1.03em; }
     th, td { border: 1px solid #dee7f2; padding: 0.6rem 0.7rem; text-align: left; }
     th { background: linear-gradient(90deg, #d8ecff 60%, #c0e3f7 100%); color: #153c5e; }
     tr:nth-child(even) { background: #f5fafe; }
     tr:hover { background: #e3f1ff; }
+    h2 { margin-top: 0; }
+    h3 { margin-bottom: 0.6em; }
     @media (max-width: 900px) {
-      .toc { position: static; width: 100vw; height: auto; border-right: 0; border-bottom: 2px solid #1565c0; }
+      .toc { position: static; width: 100vw; height: auto; border-right: 0; border-bottom: 2px solid #1976d2; }
       main { margin-left: 0; padding: 1rem .6rem 2rem .6rem; }
     }
     @media (max-width: 600px) {
       .toc { padding: .7rem .2rem; }
       .toc h1 { font-size: 1em; }
     }
-    .facet, .chart-container { display: flex; flex-direction: row; gap: 2em; flex-wrap: wrap; align-items: flex-start; }
-    .facet > div, .chart-container > div { flex: 1 1 320px; }
+    .chart-container { display: flex; flex-direction: row; gap: 2em; flex-wrap: wrap; align-items: flex-start; }
     .caption { font-size: 0.98em; color: #888; margin-top: 0.3em; }
-    .venn-venn { width: 100%; display: flex; justify-content: center; margin: 2em 0 1.2em 0; }
-    .wordcloud-row { display: flex; gap: 2.8em; margin-bottom: 1em; flex-wrap: wrap; }
-    .wordcloud span { display: inline-block; margin: 0.1em 0.25em; }
+    .sticky-title { background: #e3f2fd; position: sticky; top: 0; z-index: 110; padding: .7em 0 .3em 0; }
   </style>
   <script>
-    // Smooth scroll para el menú lateral
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.toc a').forEach(function (link) {
+      // Smooth scroll y highlight de sección activa
+      const tocLinks = document.querySelectorAll('.toc a');
+      function activateLink() {
+        tocLinks.forEach(link => link.classList.remove('active'));
+        let fromTop = window.scrollY+110;
+        let current;
+        document.querySelectorAll('main .block').forEach(section => {
+          if(section.offsetTop < fromTop) current = section;
+        });
+        if(current) {
+          let id = current.getAttribute('id');
+          let active = document.querySelector(`.toc a[href="#${id}"]`);
+          if(active) active.classList.add('active');
+        }
+      }
+      tocLinks.forEach(function (link) {
         link.addEventListener('click', function (e) {
           const href = link.getAttribute('href');
           if (href && href.startsWith('#')) {
             e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
-              const menuH = document.querySelector('.toc').offsetHeight >= window.innerHeight ? 0 : 25;
-              const top = target.getBoundingClientRect().top + window.scrollY - menuH;
-              window.scrollTo({ top, behavior: 'smooth' });
+              window.scrollTo({ top: target.offsetTop-8, behavior: 'smooth' });
             }
           }
         });
       });
+      window.addEventListener('scroll', activateLink, {passive:true});
+      activateLink();
     });
   </script>
 </head>
@@ -72,942 +86,1319 @@
       <li><a href="#1-intro">1. Introducción</a></li>
       <li><a href="#2-hallazgos">2. Hallazgos e Insights Generales</a></li>
       <li><a href="#3-valores">3. Valores y Creencias</a></li>
-      <li><a href="#4-trust">4. Trust Comparison</a></li>
-      <li><a href="#5-platform">5. Platform Usage Heatmap</a></li>
-      <li><a href="#6-sports">6. Sports Engagement</a></li>
-      <li><a href="#7-roi">7. ROI Projections</a></li>
-      <li><a href="#8-piramide">8. Pirámide de Confianza</a></li>
-      <li><a href="#9-ecosistema">9. Ecosistema de Comunidades</a></li>
-      <li><a href="#10-valores">10. Mapa de Valores</a></li>
-      <li><a href="#11-contexto">11. Contexto Colombiano</a></li>
-      <li><a href="#12-aplicacion">12. Aplicación al mundo del tennis</a></li>
-      <li><a href="#13-perfil">13. Perfil Detallado del Consumidor de Tennis</a></li>
-      <li><a href="#14-ia">14. Análisis del Impacto de la IA</a></li>
-      <li><a href="#15-bienestar">15. Tiempo de Pantalla y Bienestar Digital</a></li>
+      <li><a href="#4-trust">4. Confianza y Validación</a></li>
+      <li><a href="#5-habitos">5. Hábitos de Consumo</a></li>
+      <li><a href="#6-relacion-marcas">6. Relación con Marcas</a></li>
+      <li><a href="#7-cultura">7. Cultura y Entretenimiento</a></li>
+      <li><a href="#8-identidad">8. Identidad y Comunidad</a></li>
+      <li><a href="#9-tecnologia">9. Tecnología y Medios</a></li>
+      <li><a href="#10-lifestyle">10. Estilo de Vida</a></li>
+      <li><a href="#11-running">11. Running y Training</a></li>
+      <li><a href="#12-aplicacion">12. Aplicación al mundo tennis</a></li>
+      <li><a href="#13-perfil">13. Perfil consumidor tennis</a></li>
+      <li><a href="#14-ia">14. IA y personalización</a></li>
+      <li><a href="#15-bienestar">15. Bienestar Digital</a></li>
       <li><a href="#16-lealtad">16. Modelo de Lealtad</a></li>
-      <li><a href="#17-alianzas">17. Alianzas Estratégicas y Patrocinios</a></li>
-      <li><a href="#18-mercado">18. Consideraciones de Mercado Colombiano</a></li>
-      <li><a href="#19-kpis">19. KPIs y Métricas Clave de Éxito</a></li>
-      <li><a href="#20-etica">20. Consideraciones Éticas y Desafíos</a></li>
-      <li><a href="#anexos">Anexos: Tablas completas 1.1 a 1.8</a></li>
+      <li><a href="#17-alianzas">17. Alianzas y Patrocinios</a></li>
+      <li><a href="#18-mercado">18. Mercado colombiano</a></li>
+      <li><a href="#19-kpis">19. KPIs y Éxito</a></li>
+      <li><a href="#20-etica">20. Ética y Desafíos</a></li>
+      <li><a href="#anexos">Anexos: Tablas 1.1 a 1.8</a></li>
     </ul>
   </nav>
   <main>
-        <div class="block" id="1-intro">
+        <!-- 1. INTRODUCCIÓN -->
+    <div class="block" id="1-intro">
       <h2>1. Introducción</h2>
-      <p>
-        El presente informe constituye un análisis exhaustivo sobre las generaciones Z (nacidos entre 1997 y 2012) y Alpha (nacidos desde 2010), enfocado particularmente en su relevancia, peso demográfico, hábitos, valores, expectativas y formas de interacción en Colombia y América Latina. Ambas generaciones representan un motor clave de transformación social, cultural y económica, no solo por su tamaño poblacional sino por la manera en que redefinen la relación de los jóvenes con la tecnología, el consumo, la autenticidad, la responsabilidad social y el sentido de comunidad.<br><br>
-        En el contexto del <b>tennis</b> (entendido como universo de running, deporte callejero, moda urbana y plataformas digitales), este análisis busca develar las oportunidades y desafíos que enfrentan las marcas, instituciones y líderes del sector para conectar de manera genuina y sostenible con estas nuevas generaciones. Se profundiza en la comparación de creencias, prioridades, estilos de vida, uso de plataformas, procesos de compra y consumo, así como en la identificación de tensiones, puntos de encuentro y tendencias emergentes.<br><br>
-        El documento integra múltiples fuentes cualitativas y cuantitativas, tanto globales como locales, y propone modelos de abordaje estratégico para la industria del tennis y deportes urbanos, haciendo énfasis en la co-creación de experiencias, el uso ético de la tecnología, la importancia de la comunidad, la diversidad, el propósito y la sostenibilidad.<br><br>
-        Finalmente, se presentan recomendaciones prácticas, mapas de valores, pirámides de confianza, ecosistemas digitales y un anexo detallado de hallazgos, para facilitar la toma de decisiones informada y pertinente por parte de quienes lideran marcas, productos, plataformas, eventos y comunidades en el sector.
-      </p>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="3">Introducción Extendida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3">
+              Este informe constituye un análisis exhaustivo y comparativo entre la Generación Z (nacidos 1997-2012) y la Generación Alpha (nacidos a partir de 2010), con foco en Colombia y América Latina. Ambas generaciones son motores de transformación cultural, social y económica. Se examinan en detalle sus valores, hábitos, expectativas y formas de interacción, especialmente en el contexto del universo “tennis”: deportes urbanos, running, moda urbana y plataformas digitales.<br><br>
+              El documento integra hallazgos cualitativos y cuantitativos, explora modelos de abordaje estratégico y brinda recomendaciones prácticas para conectar genuinamente con estos segmentos. Se incluyen mapas de valores, pirámides de confianza, ecosistemas digitales y un anexo con tablas completas, para la toma de decisiones informada en marcas, productos, plataformas y experiencias.<br><br>
+              El análisis busca develar tensiones, puntos de encuentro y tendencias, enfatizando la co-creación de experiencias, ética, comunidad, diversidad, propósito y sostenibilidad como ejes de innovación y conexión.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
+    
+    <!-- 2. HALLAZGOS E INSIGHTS GENERALES -->
     <div class="block" id="2-hallazgos">
       <h2>2. Hallazgos e Insights Generales</h2>
-      <!-- Ejemplo de tabla extendida (puedes expandir filas según tu versión final) -->
       <table>
         <thead>
           <tr>
             <th>Característica Clave</th>
-            <th>Generación Z (1997-2012)</th>
-            <th>Generación Alpha (2010s-2020s)</th>
+            <th>Generación Z (Nacidos 1997-2012)</th>
+            <th>Generación Alpha (Nacidos 2010s-2020s)</th>
             <th>Contraste Principal</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Valores Dominantes</td>
-            <td>Autonomía, escepticismo hacia la autoridad, justicia social, bienestar financiero, frugalidad. Priorizan autenticidad, autodeterminación y rechazan modelos tradicionales.</td>
-            <td>Empatía, compasión, conciencia social y ambiental, educación, sostenibilidad. Influenciados por la crianza consciente de padres Millennials.</td>
-            <td>Autodirección y reclamo de poder vs. valores inculcados y consumo consciente.</td>
+            <td>Autonomía, Escepticismo hacia la autoridad tradicional, Justicia Social, Bienestar Financiero, Frugalidad. Priorizan la autenticidad y la capacidad de autodeterminación, especialmente en caminos creativos y profesionales. Rechazan modelos y validaciones tradicionales.</td>
+            <td>Empatía, Compasión, Conciencia Social/Ambiental, Educación, Sostenibilidad. Se perfilan como una generación altamente empática y compasiva, influenciada por la crianza consciente y centrada en valores de sus padres Millenniales. Serán consumidores informados y exigentes en ética y sostenibilidad desde temprana edad.</td>
+            <td>Autodirección y Reclamo de Poder vs. Valores Inculcados y Consumo Consciente</td>
           </tr>
           <tr>
-            <td>Relación con Instituciones</td>
-            <td>Desconfianza institucional: solo el 20% confía algo en empresas estadounidenses. Priorizan pares (61% confianza) y expertos (60%).</td>
-            <td>Confianza mediada por padres y expertos alineados. Validación parental y coherencia ética como pilares.</td>
-            <td>Escepticismo activo vs. confianza curada y alineación de valores.</td>
+            <td>Relación con Autoridad</td>
+            <td>Alta desconfianza institucional. Solo el 20% confía al menos algo en empresas estadounidenses. Caída de confianza del 24% en la policía, 17% en gobierno de EE.UU. y 14% en sistema judicial en 2020. Priorizan pares ("personas como yo" - 61% de confianza) y expertos creíbles (60% de confianza).</td>
+            <td>Confianza mediada por padres y expertos alineados con valores. Las marcas y productos que se alinean con los valores y la estética de los padres Millenniales resonarán. Inferencia: Su confianza se basa en la validación del círculo cercano parental y la coherencia de la marca con valores éticos y sociales.</td>
+            <td>Escepticismo Activo y Búsqueda de Autenticidad vs. Confianza Curada y Alineación de Valores</td>
           </tr>
           <tr>
             <td>Hábitos de Compra</td>
-            <td>Investigación exhaustiva y no lineal, desconfianza hacia marcas (56% cree que mienten), preferencia por experiencias en retail físico y conveniencia inmediata.</td>
-            <td>Consumo mediado por valores parentales, prioridad en productos educativos (66%), sostenibles (43%) y locales (26%).</td>
-            <td>Transparencia y experiencia vs. crianza y valores como motor de consumo.</td>
+            <td>Investigación exhaustiva y no lineal, alternando entre inspiración e indagación. Desconfianza de marca (56% cree que mienten, solo 40% confía en afirmaciones de marca). Valorizan el retail físico por experiencia (78% cree en su propósito, 73% prefiere comprar en tienda). Priorizan inmediatez y conveniencia (75% de adolescentes quieren productos accesibles hoy).</td>
+            <td>Consumo mediado por los valores de sus padres, inclinándose hacia productos educativos (66%), sostenibles (43%) y de origen local (26%). La experiencia de compra es una extensión de los valores y la estética parental. Inferencia: Mayor énfasis en el "por qué" del producto, más que solo en el "qué".</td>
+            <td>Búsqueda de Transparencia y Experiencia vs. Consumo Impulsado por Valores y Crianza</td>
+          </tr>
+          <tr>
+            <td>Lealtad de Marca</td>
+            <td>Reciprocidad y comunidad: el 54% prefiere marcas que los hagan sentir parte de una comunidad. Lealtad no se define por la compra, sino por amor a la marca (40%), recomendación (54%), o seguir en redes (29%). Rechazan viralidad forzada (83% lo considera "cringe"). Confianza es atributo principal (51%).</td>
+            <td>Alineación de marca con valores parentales y estética. La compasión se proyecta como un valor clave que las marcas deben abrazar. Inferencia: La lealtad se construirá sobre la base de la coherencia ética y social de la marca, validada por los padres.</td>
+            <td>Conexión Genuina y Participación Activa vs. Resonancia de Principios y Confianza Curada</td>
+          </tr>
+          <tr>
+            <td>Consumo de Contenido</td>
+            <td>Saturación de redes sociales masivas (56% abrumado por contenido, 75% por anuncios). Buscan entretenimiento (75% usan redes para ello) y conexión en comunidades de nicho. Son co-creadores activos.</td>
+            <td>Curado por padres Millennials, énfasis en contenido educativo y con propósito. Están acostumbrados a una inmersión digital desde pequeños. Inferencia: Menos expuestos al "ruido blanco" y a la publicidad intrusiva, y más a contenido con un valor añadido claro.</td>
+            <td>Huida del Ruido y Búsqueda de Nicho vs. Consumo Dirigido y Curado</td>
           </tr>
           <tr>
             <td>Identidad</td>
-            <td>Global, diversa y fluida. Buscan pertenencia en comunidades digitales de nicho, exploran identidades y autoexpresión.</td>
-            <td>Identidad modelada por valores y prácticas parentales Millennials. Más influenciados por roles y diversidad parental.</td>
-            <td>Auto-construcción y exploración vs. curación e influencia parental.</td>
+            <td>Global y diversa, forjada en comunidades digitales de nicho que ofrecen privacidad, exclusividad y un fuerte sentido de pertenencia. Buscan conexiones significativas que trasciendan lo online y lo offline (62% valora integración digital-IRL). Identidad fluida, abrazan la "weirdness".</td>
+            <td>Su identidad está fuertemente moldeada por la identidad parental Millennial, que proyecta valores y estéticas en ellos. Sus comunidades iniciales son las redes parentales. Inferencia: Más influenciados por los roles de género progresistas y la diversidad que sus padres les inculcan.</td>
+            <td>Auto-construcción y Exploración vs. Herencia Parental y Curación</td>
           </tr>
-          <!-- Puedes continuar agregando filas siguiendo el esquema largo de la tabla 1.1 que ya tienes -->
+          <tr>
+            <td>Relación con Tec./Algoritmos</td>
+            <td>Nativos digitales con exposición extrema (54% usa redes +4h/día). Manejan algoritmos activamente para personalizar su consumo (50% cree que algoritmo los conoce mejor que padres, 44% acepta influencia algorítmica). Confían en influencers más que canales tradicionales. TikTok es su motor de búsqueda.</td>
+            <td>Nativos digitales desde el nacimiento, tecnología es extensión natural de su vida. Su exposición a medios y tecnología está más mediada y "curada" por sus padres Millenniales. Inferencia: Menos conciencia crítica inicial, pero alta expectativa de integración tecnológica fluida y útil.</td>
+            <td>Control Proactivo y Personalización vs. Integración Natural y Curación Externa</td>
+          </tr>
+          <tr>
+            <td>Lifestyle</td>
+            <td>Bienestar holístico (financiero y mental), frugalidad como autocuidado. Flexibilidad laboral y "side hustles". Exploración de identidades y expresiones fluidas. Conexión con el "mundo real" y búsqueda de inspiración offline. Consumo con propósito social.</td>
+            <td>Crianza consciente y "curada" por Millennials. Nativos digitales integrados, tecnología fluida en su día a día. Énfasis en valores morales y compasión. Consumidores informados desde temprana edad. Inmersión en cultura global mediada por padres.</td>
+            <td>Búsqueda de Autonomía y Equilibrio vs. Crianza Holística y Valores Fundamentales</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
+    <!-- 3. VALORES Y CREENCIAS -->
     <div class="block" id="3-valores">
       <h2>3. Valores y Creencias</h2>
       <table>
         <thead>
           <tr>
-            <th>Valor o Creencia</th>
-            <th>Gen Z</th>
-            <th>Gen Alpha</th>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativa y Tensiones Clave</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Autenticidad</td>
-            <td>Requisito para cualquier interacción. Rechazo a la viralidad forzada y preferencia por lo espontáneo y real.</td>
-            <td>Asumida como expectativa de base, pero filtrada por los valores y la curaduría de los padres.</td>
+            <td>Independencia y Poder Creativo</td>
+            <td>Creen que la tecnología les ha devuelto el poder a los artistas y creadores, rechazando la validación de instituciones tradicionales. El 82% prefiere abrir nuevos caminos en lugar de seguir rutas tradicionales. Menos del 50% tiene como meta ser "descubierto" o absorbido por una entidad más grande.</td>
+            <td>Crecen en un entorno donde la cultura digital está completamente entrelazada con la crianza, exponiéndolos a un volumen constante de información y productos.</td>
+            <td>Gen Z: autonomía creativa y "do it yourself". Gen Alpha: valores colectivos y justicia social inculcados por padres Millenniales.</td>
           </tr>
           <tr>
-            <td>Propósito</td>
-            <td>El consumo, el trabajo y la vida deben tener un sentido claro y relevante.</td>
-            <td>El propósito está alineado a valores familiares, educación y sostenibilidad desde pequeños.</td>
+            <td>Escepticismo y Desconfianza Institucional</td>
+            <td>Altos niveles de desconfianza hacia iglesia, Estado, medios y corporaciones. Solo el 20% de la Gen Z confía al menos algo en empresas estadounidenses; el 42% desconfía de la empresa promedio. La pandemia aceleró la caída de confianza institucional.</td>
+            <td>Crece bajo validación y confianza curada de los padres, con marcas y productos alineados a los valores Millennial.</td>
+            <td>Gen Z: escepticismo activo. Gen Alpha: confianza alineada a valores y mediación parental.</td>
           </tr>
           <tr>
-            <td>Diversidad</td>
-            <td>Identidad fluida, inclusión, defensa de minorías y colectivos.</td>
-            <td>Diversidad como normalidad, impulsada por la crianza Millennial y el entorno escolar.</td>
+            <td>Justicia Social y Bienestar Financiero</td>
+            <td>La pandemia les inculcó conciencia sobre inequidad financiera. El bienestar financiero es autocuidado. 80% considera gastar sabiamente más importante que ganar mucho dinero.</td>
+            <td>Se proyectan como una generación más empática y compasiva, influenciada por el ejemplo parental.</td>
+            <td>Gen Z: salud mental y bienestar financiero. Gen Alpha: empatía y compasión desde la crianza.</td>
           </tr>
           <tr>
-            <td>Frugalidad</td>
-            <td>El 80% prefiere gastar sabiamente a ganar más dinero. El 77% ahorra cada vez que puede.</td>
-            <td>Se proyecta una frugalidad enseñada desde la crianza, con foco en sostenibilidad y consumo responsable.</td>
+            <td>Frugalidad y Aversión a la Deuda</td>
+            <td>65% se consideran “savers” y rechazan endeudarse. Tienden a evitar carreras universitarias costosas.</td>
+            <td>Buscan productos educativos (66%), sostenibles (43%) y de fabricación local (26%).</td>
+            <td>Gen Z: ahorro individual. Gen Alpha: consumo informado y ético.</td>
           </tr>
           <tr>
-            <td>Empatía y Compasión</td>
-            <td>Se expresa en causas sociales, justicia e inclusión.</td>
-            <td>Bases de la crianza, la educación y el consumo; se espera de marcas y productos.</td>
+            <td>Conciencia Crítica de la Influencia Algorítmica</td>
+            <td>Utilizan algoritmos para personalizar feeds; el 44% acepta conscientemente su influencia como parte de la vida moderna.</td>
+            <td>La digitalización y la influencia algorítmica son parte natural de su crianza y mediadas por adultos.</td>
+            <td>Gen Z: entrena y controla algoritmos. Gen Alpha: vive la digitalización mediada por padres.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <!-- 4. CONFIANZA Y VALIDACIÓN -->
     <div class="block" id="4-trust">
-      <h2>4. Trust Comparison: Niveles de Confianza</h2>
-      <div class="chart-container"><canvas id="trustBar"></canvas></div>
-      <script>
-        const ctxTrust = document.getElementById('trustBar').getContext('2d');
-        new Chart(ctxTrust, {
-          type: 'bar',
-          data: {
-            labels: [
-              'Empresas EE.UU.', 'Policía', 'Gob. EE.UU.', 'Justicia penal', 
-              'Publicidad tradicional', 'Recomendación pares', 'Expertos industria'
-            ],
-            datasets: [
-              {
-                label: 'Gen Z',
-                data: [20, 76, 83, 86, 16, 48, 60],
-                backgroundColor: 'rgba(51, 134, 255, 0.7)'
-              },
-              {
-                label: 'Gen Alpha',
-                data: [35, 80, 85, 89, 10, 60, 70],
-                backgroundColor: 'rgba(236, 87, 99, 0.5)'
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { position: 'top' },
-              title: { display: false },
-              tooltip: {mode:'index', intersect: false}
-            },
-            scales: {
-              y: { beginAtZero: true, max: 100, title: {display:true, text:'% Nivel de Confianza'} }
-            }
-          }
-        });
-      </script>
-      <p>
-        <b>Contraste clave:</b> Gen Z desconfía profundamente de instituciones tradicionales y prioriza validación entre pares, mientras Gen Alpha confía más en la curaduría parental y expertos alineados a valores educativos.
-      </p>
-    </div>
-
-    <div class="block" id="5-platform">
-      <h2>5. Platform Usage Heatmap</h2>
-      <div class="chart-container"><canvas id="platformBubble"></canvas></div>
-      <script>
-        // Tamaño de puntos corregido (el doble) y colores vivos
-        const plataformas = [
-          {x:1, y:4, r:34, g:'Gen Z', label:'TikTok'},
-          {x:2, y:3, r:30, g:'Gen Z', label:'Instagram'},
-          {x:3, y:2, r:18, g:'Gen Z', label:'Discord'},
-          {x:4, y:1, r:14, g:'Gen Z', label:'Snapchat'},
-          {x:1, y:1, r:12, g:'Gen Alpha', label:'YouTube Kids'},
-          {x:2, y:2, r:22, g:'Gen Alpha', label:'Plataformas educativas'},
-          {x:3, y:3, r:25, g:'Gen Alpha', label:'Comunidades parentales'},
-          {x:4, y:4, r:28, g:'Ambas', label:'Experiencias offline'}
-        ];
-        new Chart(document.getElementById('platformBubble'), {
-          type: 'bubble',
-          data: {
-            datasets: [
-              {
-                label: 'Gen Z',
-                data: plataformas.filter(d=>d.g==='Gen Z').map(d=>({x:d.x, y:d.y, r:d.r*2/7, label:d.label})),
-                backgroundColor: 'rgba(51, 134, 255, 0.85)'
-              },
-              {
-                label: 'Gen Alpha',
-                data: plataformas.filter(d=>d.g==='Gen Alpha').map(d=>({x:d.x, y:d.y, r:d.r*2/7, label:d.label})),
-                backgroundColor: 'rgba(236, 87, 99, 0.82)'
-              },
-              {
-                label: 'Ambas',
-                data: plataformas.filter(d=>d.g==='Ambas').map(d=>({x:d.x, y:d.y, r:d.r*2/7, label:d.label})),
-                backgroundColor: 'rgba(90, 200, 90, 0.7)'
-              }
-            ]
-          },
-          options: {
-            plugins: {
-              legend: { position:'top' },
-              tooltip: {
-                callbacks: {
-                  label: ctx => `${ctx.dataset.label}: ${ctx.raw.label} (Intensidad:${ctx.raw.x}, Comunidad:${ctx.raw.y})`
-                }
-              }
-            },
-            scales: {
-              x: {title:{display:true, text:'Intensidad (1-4)'}, min:1, max:4, ticks:{stepSize:1}},
-              y: {title:{display:true, text:'Comunidad (1-4)'}, min:1, max:4, ticks:{stepSize:1}}
-            }
-          }
-        });
-      </script>
-      <p>
-        <b>Nota:</b> El tamaño del punto refleja la relevancia y uso de la plataforma. Se ha ampliado el radio para mejorar la visualización comparativa.
-      </p>
-    </div> 
-        <div class="block" id="6-sports">
-      <h2>6. Sports Engagement: Motivaciones y Comportamientos Deportivos</h2>
+      <h2>4. Confianza y Validación</h2>
       <table>
         <thead>
           <tr>
-            <th>Aspecto</th>
+            <th>Fuente</th>
             <th>Gen Z</th>
             <th>Gen Alpha</th>
             <th>Comparativa</th>
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>Pares</td>
+            <td>61% confía en personas como ellos; recomendaciones y microinfluencers clave.</td>
+            <td>Referentes en la escuela y actividades, pero bajo filtro parental.</td>
+            <td>Confianza directa vs. confianza supervisada.</td>
+          </tr>
+          <tr>
+            <td>Expertos/Profesionales</td>
+            <td>60% confía en expertos auténticos, divulgadores y atletas genuinos.</td>
+            <td>Solo expertos validados por padres y educadores son fuente de referencia.</td>
+            <td>Validación por reputación vs. validación mediada.</td>
+          </tr>
+          <tr>
+            <td>Familia</td>
+            <td>Importancia relativa, pero menor que pares y expertos.</td>
+            <td>Padres, cuidadores y familia extendida como primera fuente de confianza.</td>
+            <td>Familia como base central (Alpha) vs. independencia (Z).</td>
+          </tr>
+          <tr>
+            <td>Marcas</td>
+            <td>Solo 16% confía en publicidad tradicional. Exigen transparencia y reciprocidad.</td>
+            <td>Solo marcas validadas por familia/escuela tienen peso real.</td>
+            <td>Confianza condicional vs. certificación parental.</td>
+          </tr>
+          <tr>
+            <td>Instituciones</td>
+            <td>Desconfianza generalizada (policía, justicia, empresas).</td>
+            <td>Confianza solo si hay referencia parental o educativa.</td>
+            <td>Rechazo vs. filtro de confianza impuesto.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5. HÁBITOS DE CONSUMO -->
+    <div class="block" id="5-habitos">
+      <h2>5. Hábitos de Consumo</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativa y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frugalidad y Gasto Consciente</td>
+            <td>El 70% alteró sus hábitos de gasto post-pandemia. 80% considera más importante gastar sabiamente que ganar mucho dinero, 77% ahorra cada vez que recibe dinero.</td>
+            <td>Consumo mediado por valores familiares, buscan marcas educativas (66%), sostenibles (43%) y locales (26%).</td>
+            <td>Gen Z: gasto responsable y autocontrol. Gen Alpha: consumo guiado y ético desde la infancia.</td>
+          </tr>
+          <tr>
+            <td>Retail Físico con Experiencias</td>
+            <td>78% cree que las tiendas físicas siempre tendrán propósito; 73% prefiere comprar en tienda. 53% descubre productos en tienda física vs. online. Buscan experiencias inspiradoras y entretenidas.</td>
+            <td>Padres priorizan experiencias alineadas a valores éticos y sostenibles.</td>
+            <td>Gen Z: experiencia e inspiración; Gen Alpha: alineación con valores familiares.</td>
+          </tr>
+          <tr>
+            <td>Investigación y Desconfianza de Marca</td>
+            <td>Proceso de compra no lineal, alternando inspiración e investigación profunda. Solo 40% confía en afirmaciones de marcas; 56% cree que suelen mentir. Prioriza testimonios de “gente real”, TikTok como motor de búsqueda.</td>
+            <td>Decisión mediada por padres y comunidades parentales digitales/IRL.</td>
+            <td>Gen Z: auto-investigación; Gen Alpha: investigación y validación parental.</td>
+          </tr>
+          <tr>
+            <td>Inmediatez y Conveniencia</td>
+            <td>75% de adolescentes quieren productos convenientes y accesibles de inmediato.</td>
+            <td>Padres priorizan conveniencia pero sin sacrificar valores.</td>
+            <td>Gen Z: gratificación instantánea; Gen Alpha: conveniencia filtrada.</td>
+          </tr>
+          <tr>
+            <td>Experiencias Alineadas a Valores</td>
+            <td>Buscan que las compras sean extensiones de sus valores y estilo de vida.</td>
+            <td>Padres seleccionan experiencias y productos que proyecten sus valores en los hijos.</td>
+            <td>Gen Z: autoafirmación; Gen Alpha: proyección de valores parentales.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        <!-- 6. RELACIÓN CON MARCAS -->
+    <div class="block" id="6-relacion-marcas">
+      <h2>6. Relación con Marcas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reciprocidad y Sentido de Comunidad</td>
+            <td>La lealtad no se define solo por la compra, sino por una relación recíproca. El 54% considera favoritos a las marcas que les hacen sentir parte de una comunidad.</td>
+            <td>La lealtad estará más ligada a los valores de marca y cómo estos reflejan los principios de crianza de sus padres.</td>
+            <td>Gen Z: comunidad, co-creación, entretenimiento; Gen Alpha: valores y reflejo parental.</td>
+          </tr>
+          <tr>
+            <td>Valor Más Allá del Producto</td>
+            <td>La lealtad se manifiesta al recomendar la marca (54%), seguirla en redes (29%) o amarla sin comprar (40%).</td>
+            <td>Se espera que la lealtad sea una extensión de la coherencia ética y social de la marca, validada por los padres.</td>
+            <td>Gen Z: comunidad y experiencia; Gen Alpha: coherencia y ética parental.</td>
+          </tr>
+          <tr>
+            <td>Contenido Entretenido y Auténtico</td>
+            <td>El 72% recuerda más fácilmente a una marca con presencia atractiva y entretenida en redes sociales. El 83% identifica cuando una marca está intentando ser viral y lo considera “cringe”. Priorizan autenticidad.</td>
+            <td>Buscan autenticidad anclada en responsabilidad social y compasión.</td>
+            <td>Gen Z: autenticidad crítica; Gen Alpha: autenticidad ética y social.</td>
+          </tr>
+          <tr>
+            <td>Confianza y Transparencia</td>
+            <td>El 51% elige “confianza” como atributo principal. Valoran la transparencia sobre el propósito y funcionamiento de las marcas.</td>
+            <td>La confianza de marca debe estar certificada por los padres.</td>
+            <td>Gen Z: confianza directa; Gen Alpha: confianza filtrada.</td>
+          </tr>
+          <tr>
+            <td>Participación y Co-creación</td>
+            <td>Quieren ser parte activa del contenido y la experiencia, espacios de interacción bidireccional (Discord, “detrás de cámaras”, eventos, tutoriales).</td>
+            <td>La co-creación se da en contextos familiares y educativos, guiada por padres y docentes.</td>
+            <td>Gen Z: participación individual; Gen Alpha: participación acompañada.</td>
+          </tr>
+          <tr>
+            <td>Beneficios Pre-compra</td>
+            <td>Esperan recibir beneficios y formar parte del universo de la marca antes de ser clientes.</td>
+            <td>Padres buscan experiencias valiosas y seguras previas a la compra.</td>
+            <td>Gen Z: acceso y pertenencia; Gen Alpha: validación y seguridad.</td>
+          </tr>
+          <tr>
+            <td>Alineación con Valores Parentales</td>
+            <td>—</td>
+            <td>Las marcas que se alinean con valores y estética parental resonarán. La compasión es clave.</td>
+            <td>Gen Alpha: coherencia parental como filtro central.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. CULTURA Y ENTRETENIMIENTO -->
+    <div class="block" id="7-cultura">
+      <h2>7. Cultura y Entretenimiento</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Convergencia Físico-Digital</td>
+            <td>Viven la cultura a través de experiencias reales y virtuales, interactuando con personajes de videojuegos, usando RA e impresión 3D. El 67% prefiere comprar en tiendas físicas.</td>
+            <td>La experiencia está más ligada a valores transmitidos por los padres, con tecnología fluida y guiada.</td>
+            <td>Gen Z: búsqueda de lo sublime; Gen Alpha: experiencia guiada y valorada por padres.</td>
+          </tr>
+          <tr>
+            <td>Economía de la Experiencia</td>
+            <td>La cultura se define por experiencias trascendentales y “compartibles” en redes. Buscan inspiración y entretenimiento offline.</td>
+            <td>Consumen cultura y entretenimiento que sus padres consideran apropiado y educativo.</td>
+            <td>Gen Z: inspiración y trascendencia; Gen Alpha: aprendizaje y seguridad.</td>
+          </tr>
+          <tr>
+            <td>Co-creación y Participación Activa</td>
+            <td>No son consumidores pasivos sino activos co-creadores. Quieren que las marcas sean “creadores épicos” que resalten su creatividad.</td>
+            <td>Participan en co-creación en actividades familiares y escolares.</td>
+            <td>Gen Z: participación creativa; Gen Alpha: participación dirigida.</td>
+          </tr>
+          <tr>
+            <td>Saturación y Desilusión con RRSS</td>
+            <td>75% usa redes para entretenerse, 56% se siente abrumado por contenido, 75% cree que los anuncios arruinan la experiencia.</td>
+            <td>Consumo digital curado, menos exposición a saturación, más valor en contenido educativo.</td>
+            <td>Gen Z: desilusión y búsqueda de nicho; Gen Alpha: consumo dirigido.</td>
+          </tr>
+          <tr>
+            <td>Búsqueda de Comunidad</td>
+            <td>84% valora la pertenencia a comunidad, dos tercios creen que la promesa de unión de las RRSS está “rota”.</td>
+            <td>La comunidad está entrelazada con las redes de crianza de los padres.</td>
+            <td>Gen Z: respuesta a la “crisis de conexión”; Gen Alpha: comunidad parental.</td>
+          </tr>
+          <tr>
+            <td>Consumo con Propósito</td>
+            <td>Búsqueda de contenido y entretenimiento educativo y alineado con valores.</td>
+            <td>Padres priorizan contenido educativo, seguro y con propósito.</td>
+            <td>Gen Z: propósito autodirigido; Gen Alpha: propósito parental.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 8. IDENTIDAD Y COMUNIDAD -->
+    <div class="block" id="8-identidad">
+      <h2>8. Identidad y Comunidad</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Identidad Global y Diversa</td>
+            <td>No definen su identidad por fronteras nacionales, sino por cultura juvenil global; generación más diversa étnicamente (25% hispano, 14% negro, 6% asiático en EE. UU.).</td>
+            <td>Identidad moldeada por valores, estética y prácticas de consumo de padres Millenniales.</td>
+            <td>Gen Z: identidad de nicho global; Gen Alpha: identidad heredada y curada.</td>
+          </tr>
+          <tr>
+            <td>Comunidades de Nicho Digitales</td>
+            <td>Abandonan grandes plataformas por comunidades pequeñas, privadas; 73% valora privacidad y exclusividad.</td>
+            <td>Comunidades iniciales son redes parentales y escolares.</td>
+            <td>Gen Z: privacidad y pertenencia; Gen Alpha: pertenencia mediada.</td>
+          </tr>
+          <tr>
+            <td>Sentido de Pertenencia</td>
+            <td>79% siente más pertenencia en comunidades digitales que en la física; 84% prioriza comunidad sobre popularidad.</td>
+            <td>Pertenencia basada en redes de crianza y valores familiares.</td>
+            <td>Gen Z: comunidad digital; Gen Alpha: comunidad familiar y escolar.</td>
+          </tr>
+          <tr>
+            <td>Integración Digital-IRL</td>
+            <td>El 62% considera clave la integración de actividades digitales y presenciales en sus comunidades.</td>
+            <td>Consumo de experiencias híbridas guiadas por padres.</td>
+            <td>Gen Z: integración autodirigida; Gen Alpha: integración guiada.</td>
+          </tr>
+          <tr>
+            <td>Multipertenencia</td>
+            <td>El 81% pertenece a más de una comunidad, 25% a cinco o más.</td>
+            <td>Pertenencia múltiple facilitada por padres y tecnología educativa.</td>
+            <td>Gen Z: diversidad de tribus; Gen Alpha: ecosistema parental.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 9. TECNOLOGÍA Y MEDIOS -->
+    <div class="block" id="9-tecnologia">
+      <h2>9. Tecnología y Medios</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nativos Digitales con Exposición Extrema</td>
+            <td>54% usa RRSS al menos 4h/día; 80% reconoce exposición a más publicidad que cualquier generación.</td>
+            <td>Digitalización y tecnología integrada desde el nacimiento, mediada por padres.</td>
+            <td>Gen Z: relación activa y estratégica; Gen Alpha: relación natural y mediada.</td>
+          </tr>
+          <tr>
+            <td>Saturación y Abrumación</td>
+            <td>64% se siente abrumado por el contenido; controlan algoritmos activamente.</td>
+            <td>Padres son curadores de contenido, menor exposición a saturación.</td>
+            <td>Gen Z: control consciente; Gen Alpha: filtro parental.</td>
+          </tr>
+          <tr>
+            <td>Control Algorítmico</td>
+            <td>50% dice que su algoritmo los conoce mejor que sus padres; 44% acepta la influencia algorítmica.</td>
+            <td>La digitalización es parte natural de su vida, algoritmos transparentes y regulados por padres.</td>
+            <td>Gen Z: control intencional; Gen Alpha: integración transparente.</td>
+          </tr>
+          <tr>
+            <td>TikTok y Motores de Búsqueda</td>
+            <td>TikTok es su principal fuente para investigar marcas y productos.</td>
+            <td>Consumo indirecto, curado por padres, con acceso a apps educativas y YouTube Kids.</td>
+            <td>Gen Z: autonomía; Gen Alpha: acceso guiado.</td>
+          </tr>
+          <tr>
+            <td>Influencers y Validación</td>
+            <td>Confía más en influencers que en medios tradicionales incluso para consejos financieros.</td>
+            <td>Padres y comunidades parentales como fuente principal de validación.</td>
+            <td>Gen Z: validación digital; Gen Alpha: validación parental.</td>
+          </tr>
+          <tr>
+            <td>Tecnología en Deportes</td>
+            <td>Uso intensivo de tecnología: gadgets, apps, análisis de datos, RRSS para construir marca personal.</td>
+            <td>Tecnología lúdica, integrada en el juego y la educación física.</td>
+            <td>Gen Z: uso estratégico; Gen Alpha: uso lúdico y educativo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10. ESTILO DE VIDA -->
+    <div class="block" id="10-lifestyle">
+      <h2>10. Estilo de Vida</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bienestar Holístico y Frugalidad</td>
+            <td>La pandemia y la inequidad financiera posicionaron el bienestar financiero como autocuidado. 65% se consideran "savers"; 80% prioriza gastar sabiamente.</td>
+            <td>Consumo responsable y ético desde la infancia, guiado por padres.</td>
+            <td>Gen Z: autocuidado activo; Gen Alpha: propósito en consumo familiar.</td>
+          </tr>
+          <tr>
+            <td>Flexibilidad Laboral y “Side Hustles”</td>
+            <td>Buscan trabajos secundarios (40% en Colombia), esquemas híbridos (71%), venta de productos online, inversión en activos alternativos.</td>
+            <td>Padres incentivan emprendimientos y consumo responsable desde temprana edad.</td>
+            <td>Gen Z: independencia económica; Gen Alpha: aprendizaje financiero parental.</td>
+          </tr>
+          <tr>
+            <td>Exploración de Identidades</td>
+            <td>Identidad fluida, “weirdness”, moda y música internacional, caminos no tradicionales.</td>
+            <td>Identidad influenciada por valores y estética parental Millennial.</td>
+            <td>Gen Z: autoexploración; Gen Alpha: identidad guiada.</td>
+          </tr>
+          <tr>
+            <td>Conexión con el “Mundo Real”</td>
+            <td>Buscan desconexión digital e inspiración en experiencias offline (74% prefiere IRL).</td>
+            <td>Padres promueven balance y actividades presenciales seguras.</td>
+            <td>Gen Z: desconexión consciente; Gen Alpha: balance dirigido.</td>
+          </tr>
+          <tr>
+            <td>Consumo con Propósito Social</td>
+            <td>Exigen acción real de marcas frente al cambio climático y la inequidad.</td>
+            <td>Padres priorizan productos y servicios sostenibles y educativos.</td>
+            <td>Gen Z: activismo; Gen Alpha: aprendizaje y coherencia.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        <!-- 11. RUNNING Y TRAINING -->
+    <div class="block" id="11-running">
+      <h2>11. Running y Training</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto Analizado</th>
+            <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+            <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hiper-especialización y Rendimiento</td>
+            <td>El 40% de estudiantes-atletas juega solo un deporte; el 37% se especializa para sobresalir; el 71% compite para obtener becas universitarias. Énfasis en rendimiento, excelencia y visibilidad.</td>
+            <td>Movimiento y deporte se presentan como juego, exploración y experiencia educativa, priorizando bienestar y valores. Padres promueven actividades integrales.</td>
+            <td>Gen Z: excelencia, visibilidad, tecnología avanzada ("self-starter"). Gen Alpha: movimiento lúdico y mediado por padres.</td>
+          </tr>
+          <tr>
+            <td>Tecnología y Datos</td>
+            <td>“Atletas cyborg”: tecnología avanzada (biomecánica, datos, apps, RRSS como Hudl e Instagram) para expandir capacidades y construir marca personal.</td>
+            <td>Tecnología lúdica e interactiva, como realidad aumentada en carreras, apps familiares y juegos digitales.</td>
+            <td>Gen Z: tecnología para rendimiento; Gen Alpha: tecnología para diversión y aprendizaje.</td>
+          </tr>
+          <tr>
+            <td>Bienestar Mental/Físico</td>
+            <td>Entrenamiento físico y mental. Uso de apps de mindfulness (Headspace, etc.) y herramientas de recuperación. 25% de Gen Z en Colombia entrena como actividad secundaria.</td>
+            <td>Padres priorizan actividades para bienestar integral y fluidez emocional. Deportes vistos como canal de empatía y desarrollo socioemocional.</td>
+            <td>Gen Z: autocuidado; Gen Alpha: bienestar guiado y emocional.</td>
+          </tr>
+          <tr>
+            <td>Comunidad y Pertenencia</td>
+            <td>Grupos de running, desafíos urbanos; 84% valora comunidad; RRSS para compartir logros y rutinas.</td>
+            <td>Clubes escolares y actividades en familia; pertenencia en contexto seguro y educativo.</td>
+            <td>Gen Z: comunidad auto-organizada; Gen Alpha: comunidad guiada.</td>
+          </tr>
+          <tr>
+            <td>Visibilidad y Auto-promoción</td>
+            <td>Uso intensivo de RRSS, apps y plataformas especializadas para visibilidad y promoción personal.</td>
+            <td>Reconocimiento a través de logros escolares, familiares y validación parental.</td>
+            <td>Gen Z: promoción pública; Gen Alpha: reconocimiento cercano.</td>
+          </tr>
+          <tr>
+            <td>Frugalidad en Equipamiento</td>
+            <td>Buscan calidad a buen precio, prefieren marcas con propósito; 71% perderá confianza si la marca prioriza solo ganancias.</td>
+            <td>Padres buscan productos sostenibles y educativos para hijos.</td>
+            <td>Gen Z: relación precio-valor; Gen Alpha: sostenibilidad y educación.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 12. APLICACIÓN AL MUNDO TENNIS -->
+    <div class="block" id="12-aplicacion">
+      <h2>12. Aplicación al mundo tennis</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Motivaciones</td>
+            <td>Busca experiencias de tennis y running auténticas, urbanas, que permitan la autoexpresión, integración social y pertenencia. Prefiere eventos colaborativos, desafíos urbanos, co-creación de productos y espacios físicos-digitales con propósito. Valoran marcas que se involucren en causas sociales y sean transparentes en su comunicación.</td>
+            <td>Accede al tennis y running como espacio de aprendizaje, juego, integración familiar y desarrollo de valores. Espera experiencias seguras, educativas, sostenibles y con fuerte validación parental. Padres buscan marcas y actividades que fomenten empatía, desarrollo integral y diversión segura.</td>
+            <td>Gen Z: autonomía y autenticidad; Gen Alpha: mediación parental y valores educativos.</td>
+          </tr>
+          <tr>
+            <td>Consumo de Productos</td>
+            <td>Prefiere productos personalizables, marcas con propósito y experiencias inmersivas. Crítica con la publicidad tradicional, prefiere recomendación de pares o influencers creíbles. Consumo mixto (online y offline), exclusividad y pertenencia a micro-comunidades.</td>
+            <td>Padres priorizan productos educativos, sostenibles y experiencias compartidas con familia y escuela. Búsqueda de bienestar integral y alineación con valores familiares.</td>
+            <td>Gen Z: consumo selectivo y crítico; Gen Alpha: consumo guiado y seguro.</td>
+          </tr>
+          <tr>
+            <td>Participación y Comunidad</td>
+            <td>Participa en running crews, eventos colaborativos, retos urbanos; busca pertenencia y visibilidad.</td>
+            <td>Participa en clubes escolares, actividades familiares y retos educativos. Comunidad guiada y protegida.</td>
+            <td>Gen Z: comunidad auto-gestionada; Gen Alpha: comunidad mediada por adultos.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 13. PERFIL CONSUMIDOR TENNIS -->
+    <div class="block" id="13-perfil">
+      <h2>13. Perfil consumidor tennis</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Gen Z (1997-2012) - Perfil Detallado</th>
+            <th>Gen Alpha (2010s-2020s) - Perfil Detallado</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Edad / Demografía</td>
+            <td>14 a 28 años, urbanos, hiperconectados, autodidactas.</td>
+            <td>Niños y preadolescentes, acceso mediado por padres.</td>
+            <td>Gen Z: independencia, Gen Alpha: crianza guiada.</td>
+          </tr>
+          <tr>
+            <td>Motivaciones de Consumo</td>
+            <td>Búsqueda de personalización, innovación, exclusividad, experiencias inmersivas.</td>
+            <td>Padres buscan bienestar integral, educación, seguridad, sostenibilidad.</td>
+            <td>Gen Z: experimentación, Gen Alpha: protección parental.</td>
+          </tr>
+          <tr>
+            <td>Relación con Marcas</td>
+            <td>Valora marcas con propósito, autenticidad, comunidad, innovación y transparencia.</td>
+            <td>Padres valoran marcas éticas, educativas, responsables y sostenibles.</td>
+            <td>Gen Z: participación directa, Gen Alpha: filtro parental.</td>
+          </tr>
+          <tr>
+            <td>Hábitos de Compra</td>
+            <td>Alterna entre online y offline, prefiere experiencias exclusivas y personalización.</td>
+            <td>Consumo digital guiado, apps educativas y compra en familia.</td>
+            <td>Gen Z: decisión propia, Gen Alpha: decisión familiar.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 14. IA Y PERSONALIZACIÓN -->
+    <div class="block" id="14-ia">
+      <h2>14. IA y personalización</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Uso/Impacto de IA</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Personalización de Experiencias</td>
+            <td>Usa IA para descubrir tendencias, personalizar experiencias y optimizar rutinas deportivas. Valora transparencia del algoritmo y control sobre la experiencia digital.</td>
+            <td>Padres emplean IA en plataformas educativas, juegos y herramientas familiares. Interacción bajo curaduría adulta, con enfoque en aprendizaje y seguridad.</td>
+            <td>Gen Z: autonomía digital, Gen Alpha: seguridad y control parental.</td>
+          </tr>
+          <tr>
+            <td>Consumo y Recomendación</td>
+            <td>IA para recomendaciones de productos, entrenamiento y contenido.</td>
+            <td>IA para selección de apps educativas y control de consumo digital.</td>
+            <td>Gen Z: auto-descubrimiento, Gen Alpha: descubrimiento mediado.</td>
+          </tr>
+          <tr>
+            <td>Privacidad y Seguridad</td>
+            <td>Preocupación media por privacidad, uso de herramientas de control.</td>
+            <td>Altísima prioridad de seguridad para padres.</td>
+            <td>Gen Z: control individual, Gen Alpha: control familiar.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 15. BIENESTAR DIGITAL -->
+    <div class="block" id="15-bienestar">
+      <h2>15. Bienestar Digital</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Aspecto</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiempo de Pantalla</td>
+            <td>Preocupados por ansiedad y burnout digital, buscan balance y desconexión consciente. 64% reporta sentirse abrumado por exceso de contenido, 74% prefiere experiencias offline inspiradoras.</td>
+            <td>Consumo digital regulado por padres, apps educativas y límites saludables.</td>
+            <td>Gen Z: autogestión, Gen Alpha: regulación parental.</td>
+          </tr>
+          <tr>
+            <td>Bienestar y Salud Mental</td>
+            <td>Uso de apps de mindfulness, deportes y actividades offline para desconexión.</td>
+            <td>Padres priorizan bienestar integral, actividades deportivas y tiempo al aire libre.</td>
+            <td>Gen Z: autocuidado digital, Gen Alpha: bienestar familiar.</td>
+          </tr>
+          <tr>
+            <td>Seguridad Online</td>
+            <td>Uso de herramientas de privacidad y control de datos, preocupación por manipulación algorítmica.</td>
+            <td>Padres buscan apps y plataformas seguras, control parental total.</td>
+            <td>Gen Z: responsabilidad individual, Gen Alpha: protección adulta.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        <!-- 16. MODELO DE LEALTAD -->
+    <div class="block" id="16-lealtad">
+      <h2>16. Modelo de Lealtad</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Elemento</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativas y Tensiones Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lealtad</td>
+            <td>Lealtad condicionada, basada en reciprocidad, comunidad, autenticidad y participación activa. 54% recomienda marcas con sentido de pertenencia, 40% ama marcas sin comprar y 29% sigue marcas en redes. La confianza y la coherencia ética son clave.</td>
+            <td>Lealtad construida por coherencia ética y social, validación parental y experiencias educativas. Padres buscan marcas con propósito, transparencia y compromiso social/ambiental para sus hijos.</td>
+            <td>Gen Z: lealtad horizontal, emocional y comunitaria; Gen Alpha: lealtad vertical, curada y certificada por adultos.</td>
+          </tr>
+          <tr>
+            <td>Comunidad</td>
+            <td>Micro-comunidades digitales y físicas, running crews, foros de nicho, eventos colaborativos.</td>
+            <td>Clubes escolares, apps familiares, actividades guiadas y comunidades educativas.</td>
+            <td>Gen Z: pertenencia auto-construida; Gen Alpha: pertenencia acompañada y guiada.</td>
+          </tr>
           <tr>
             <td>Participación</td>
-            <td>El 74% de Gen Z participa en deportes organizados o actividades físicas regulares, con tendencia a deportes urbanos, retos de running y deportes mixtos. Búsqueda de logros personales, visibilidad (redes) y bienestar integral. 71% juega deportes para ganar becas universitarias.</td>
-            <td>Altísimo involucramiento desde la infancia, con deportes como parte integral del desarrollo. La elección del deporte está mediada por el deseo de los padres de ofrecer experiencias integrales, seguras y educativas.</td>
-            <td>Gen Z: autonomía y auto-motivación. Gen Alpha: mediación y acompañamiento parental.</td>
+            <td>Activa, co-creación, liderazgo, eventos presenciales y virtuales con interacción directa.</td>
+            <td>Participación acompañada, retos y juegos familiares, colaboración en entornos seguros.</td>
+            <td>Gen Z: liderazgo y voz propia; Gen Alpha: participación en comunidad segura.</td>
           </tr>
           <tr>
-            <td>Motivadores</td>
-            <td>Superación personal, salud mental, comunidad, construcción de marca personal y oportunidades educativas/laborales.</td>
-            <td>Jugar, explorar, socializar, aprender valores y habilidades blandas. Influencia de la tecnología y gamificación.</td>
-            <td>Motivadores extrínsecos (Gen Z) vs. intrínsecos y familiares (Gen Alpha).</td>
-          </tr>
-          <tr>
-            <td>Tecnología en deporte</td>
-            <td>Uso de apps deportivas, trackers, análisis de datos, videos de entrenamiento y plataformas sociales (Hudl, Strava, TikTok).</td>
-            <td>Tecnología lúdica, realidad aumentada, juegos interactivos, plataformas educativas y apps de bienestar parental.</td>
-            <td>Gen Z: tecnología para rendimiento y visibilidad. Gen Alpha: tecnología para diversión, aprendizaje y seguridad.</td>
-          </tr>
-          <tr>
-            <td>Comunidades</td>
-            <td>84% valora la pertenencia a comunidades deportivas. Running crews, retos colectivos y deportes colaborativos.</td>
-            <td>Comunidades escolares, clubes guiados por adultos, retos familiares y actividades en grupo.</td>
-            <td>Gen Z: comunidad auto-gestionada. Gen Alpha: comunidad guiada.</td>
+            <td>Recompensa</td>
+            <td>Reconocimiento social, acceso a experiencias exclusivas, beneficios tangibles antes de comprar.</td>
+            <td>Recompensa educativa, validación positiva de padres y docentes, experiencias compartidas.</td>
+            <td>Gen Z: recompensa social; Gen Alpha: recompensa educativa y familiar.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="block" id="7-roi">
-      <h2>7. ROI Projections: Impacto Esperado de Estrategias</h2>
+    <!-- 17. ALIANZAS Y PATROCINIOS -->
+    <div class="block" id="17-alianzas">
+      <h2>17. Alianzas y Patrocinios</h2>
       <table>
         <thead>
           <tr>
-            <th>Indicador</th>
-            <th>Gen Z</th>
-            <th>Gen Alpha</th>
-            <th>ROI Potencial</th>
+            <th>Tipo de Alianza</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativas y Tensiones Clave</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Engagement</td>
-            <td>Alto, si se privilegia el contenido participativo, experiencias urbanas, retos y recompensas reales/virtuales.</td>
-            <td>Alto, si se involucran padres, educadores y experiencias lúdicas-educativas.</td>
-            <td>ROI alto, especialmente en eventos híbridos y comunidades activas.</td>
+            <td>Colaboraciones</td>
+            <td>Busca colaboraciones auténticas con artistas, atletas, creadores de contenido y colectivos urbanos. Prefiere patrocinios en eventos urbanos y causas sociales.</td>
+            <td>Padres valoran alianzas con instituciones educativas, ONGs y marcas de responsabilidad social y ambiental. Esperan experiencias seguras, lúdicas y educativas para sus hijos.</td>
+            <td>Gen Z: autenticidad y visibilidad; Gen Alpha: seguridad y propósito social.</td>
           </tr>
           <tr>
-            <td>Conversión</td>
-            <td>Conversión a compra o membresía superior al 30% en campañas con propósito y co-creación (vs. <20% en campañas tradicionales).</td>
-            <td>Decisión de compra depende de validación parental, sostenibilidad y valor educativo.</td>
-            <td>ROI alto a mediano plazo en marcas con coherencia ética y educativa.</td>
+            <td>Impacto Social</td>
+            <td>Alianzas con impacto social real, activismo y participación directa de la comunidad juvenil.</td>
+            <td>Padres buscan marcas y alianzas que promuevan valores positivos y educación integral.</td>
+            <td>Gen Z: activismo social; Gen Alpha: educación en valores.</td>
           </tr>
           <tr>
-            <td>Recomendación</td>
-            <td>El 54% recomienda marcas cuando siente pertenencia y reciprocidad. Influencia directa en micro-comunidades.</td>
-            <td>Padres recomiendan marcas alineadas con valores y experiencias positivas para sus hijos.</td>
-            <td>ROI alto en estrategias de comunidad y educación parental.</td>
+            <td>Patrocinios Deportivos</td>
+            <td>Prefiere patrocinios de eventos colaborativos, deportes urbanos y running crews, con foco en experiencias únicas y creación de comunidad.</td>
+            <td>Patrocinios en clubes escolares, eventos familiares y actividades lúdicas orientadas al bienestar infantil.</td>
+            <td>Gen Z: deporte urbano y visibilidad; Gen Alpha: deporte escolar y bienestar.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="block" id="8-piramide">
-      <h2>8. Pirámide de Confianza (Fuentes de Validación)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Nivel</th>
-            <th>Gen Z</th>
-            <th>Gen Alpha</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Base</td>
-            <td>Pares y microinfluencers (“personas como yo” – 61%). Plataformas de co-creación, foros y reseñas de usuarios.</td>
-            <td>Padres, educadores y expertos validados por la familia.</td>
-          </tr>
-          <tr>
-            <td>Nivel medio</td>
-            <td>Expertos creíbles, comunidades de nicho, líderes digitales, atletas y artistas auténticos.</td>
-            <td>Expertos alineados con valores parentales y comunidades de crianza digital.</td>
-          </tr>
-          <tr>
-            <td>Cima</td>
-            <td>Marcas con propósito demostrado, transparencia radical y reciprocidad real (beneficios, co-creación, interacción directa).</td>
-            <td>Marcas validadas por padres, certificaciones educativas y reputación en entornos escolares.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="block" id="9-ecosistema">
-      <h2>9. Ecosistema de Comunidades (Espacios Digitales Preferidos)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Tipo de Comunidad</th>
-            <th>Gen Z</th>
-            <th>Gen Alpha</th>
-            <th>Comparativa</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Comunidades digitales privadas</td>
-            <td>Discord, servidores cerrados, grupos de Telegram, foros de nicho. Valor en exclusividad, privacidad y pertenencia.</td>
-            <td>Comunidades escolares digitales, apps lúdicas con moderación parental, chats familiares.</td>
-            <td>Gen Z: privacidad y exclusividad. Gen Alpha: seguridad y curaduría parental.</td>
-          </tr>
-          <tr>
-            <td>Comunidades físicas</td>
-            <td>Running crews, skate crews, colectivos artísticos. Eventos urbanos y colaborativos.</td>
-            <td>Clubes escolares, actividades coordinadas por padres y educadores.</td>
-            <td>Gen Z: auto-organización. Gen Alpha: mediación adulta.</td>
-          </tr>
-          <tr>
-            <td>Micro-comunidades híbridas</td>
-            <td>Integración online-offline. Eventos presenciales con seguimiento digital (retos, rankings, apps).</td>
-            <td>Eventos escolares/familiares híbridos, plataformas educativas con actividades presenciales.</td>
-            <td>Ambas generaciones valoran el componente híbrido, pero con foco distinto.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="block" id="10-valores">
-      <h2>10. Mapa de Valores (Experiencia y Explicación Extendida)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Valor</th>
-            <th>Gen Z</th>
-            <th>Gen Alpha</th>
-            <th>Comparativa</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Autenticidad</td>
-            <td>Autoexpresión radical, rechazo a lo forzado, búsqueda de lo genuino.</td>
-            <td>Naturalidad en el entorno, autenticidad mediada por los padres.</td>
-            <td>Gen Z: autenticidad como rebeldía. Gen Alpha: autenticidad como parte de la crianza.</td>
-          </tr>
-          <tr>
-            <td>Propósito</td>
-            <td>Sentido claro en cada acción, compra, experiencia o relación.</td>
-            <td>Propósito orientado a educación, aprendizaje y sostenibilidad.</td>
-            <td>Gen Z: propósito individual y social. Gen Alpha: propósito familiar y colectivo.</td>
-          </tr>
-          <tr>
-            <td>Pertenencia</td>
-            <td>Construcción de comunidad digital y física, tribus, nichos.</td>
-            <td>Pertenencia a estructuras familiares y escolares.</td>
-            <td>Gen Z: pertenencia auto-construida. Gen Alpha: pertenencia mediada por adultos.</td>
-          </tr>
-          <tr>
-            <td>Sostenibilidad</td>
-            <td>Demanda de acciones concretas a marcas; boicot a incoherencias.</td>
-            <td>Valor inculcado desde la crianza y la educación.</td>
-            <td>Gen Z: sostenibilidad como activismo. Gen Alpha: sostenibilidad como normalidad.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="block" id="11-contexto">
-      <h2>11. Contexto Colombiano</h2>
+    <!-- 18. MERCADO COLOMBIANO -->
+    <div class="block" id="18-mercado">
+      <h2>18. Mercado colombiano</h2>
       <table>
         <thead>
           <tr>
             <th>Aspecto</th>
-            <th>Detalle (texto íntegro, no resumen)</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Comparativas y Tensiones Clave</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Demografía</td>
-            <td>En 2020, Colombia tenía 12.672.168 jóvenes de 14 a 28 años (Gen Z), lo que representa un 25% de la población total. En América Latina, la Gen Z representa el 25% de la población en 2024, con proyección al 34% en 2030.</td>
+            <td>En 2020, 12.672.168 jóvenes de 14 a 28 años (25% de la población total de Colombia). En Latam, Gen Z es 25% de la población en 2024 y será 34% en 2030.</td>
+            <td>Proyectada como una cohorte aún mayor, con fuerte peso en decisiones de consumo familiar y escolar. Padres Millennials influyen en hábitos tempranos.</td>
+            <td>Gen Z: peso demográfico actual; Gen Alpha: proyección de crecimiento y cambio cultural.</td>
           </tr>
           <tr>
             <td>Economía y Empleo</td>
-            <td>El 40% de la Gen Z en Colombia y el 36% de los Millennials tienen trabajos secundarios además de su trabajo principal, motivados por la preocupación que les genera el desempleo. Para el 35% de la Gen Z, el desempleo genera zozobra, frente al 29% de los Millennials. Las actividades complementarias desarrolladas por la Gen Z incluyen el entrenamiento deportivo (25%), consultoría y gestión de su propio negocio (23%), y la venta de productos o servicios a través de plataformas en línea (22%).</td>
+            <td>40% de Gen Z y 36% de Millennials tienen trabajos secundarios. Preocupación por desempleo: 35% de Gen Z lo percibe como amenaza (frente a 29% Millennials). Actividades extra: entrenamiento deportivo (25%), consultoría, venta de productos online (22%).</td>
+            <td>Padres buscan estabilidad y emprendimiento para hijos, impulsando educación financiera y habilidades blandas desde la escuela.</td>
+            <td>Gen Z: emprendimiento autodirigido; Gen Alpha: emprendimiento guiado.</td>
           </tr>
           <tr>
-            <td>Preocupaciones Financieras y Frugalidad</td>
-            <td>El costo de vida es una de las principales preocupaciones de estas generaciones en Colombia. Casi la mitad (47%) de la Gen Z en América Latina planifica antes de comprar para gestionar costes.</td>
-          </tr>
-          <tr>
-            <td>Hábitos de Consumo Digital</td>
-            <td>La Gen Z en Colombia consume sobre todo contenidos relacionados con el entretenimiento: comedia (55%), ciencia ficción o acción (50%). El uso activo de redes sociales sigue creciendo. Un 60% de los colombianos siguen perfiles de marcas que nunca han consumido. Esto muestra una apertura a la inspiración digital, pero también la necesidad de trascender la exposición a una conexión genuina.</td>
+            <td>Consumo Digital</td>
+            <td>Consumidores activos de comedia (55%), ciencia ficción/acción (50%). 60% sigue marcas que no ha consumido. Inspiración digital, pero buscan conexión genuina offline.</td>
+            <td>Consumo guiado, énfasis en apps educativas, juegos seguros y experiencias digitales familiares.</td>
+            <td>Gen Z: exploración activa; Gen Alpha: exploración con límites y acompañamiento.</td>
           </tr>
           <tr>
             <td>Confianza en Medios</td>
-            <td>Las redes sociales están "inundadas de arte, música, texto y vídeo sintéticos", lo que puede aumentar la desconfianza hacia el contenido publicitario, en línea con la desconfianza global de la Gen Z en la publicidad tradicional (solo 16% de confianza).</td>
+            <td>Desconfianza en la publicidad tradicional (sólo 16% confía). Redes "inundadas" de contenido sintético; crece la demanda de autenticidad.</td>
+            <td>Padres buscan canales de confianza, contenidos educativos y plataformas con filtros de seguridad.</td>
+            <td>Gen Z: escepticismo; Gen Alpha: consumo filtrado y curado.</td>
           </tr>
           <tr>
-            <td>Comparativo con Gen Alpha</td>
-            <td>Gen Z colombiana busca movilidad social, oportunidades de emprendimiento y running urbano, mientras Gen Alpha crece en un entorno de mayor protección y conciencia ambiental, con padres más involucrados en la toma de decisiones.</td>
-          </tr>
-          <tr>
-            <td>Ejemplo de cambio generacional</td>
-            <td>Mientras la Gen Z prioriza la autonomía y la autenticidad, participando activamente en running y deportes urbanos, la Gen Alpha accede a estos espacios bajo la supervisión y curaduría de padres y educadores, con un enfoque en bienestar, sostenibilidad y aprendizaje.</td>
+            <td>Comparativo generacional</td>
+            <td>Gen Z busca movilidad social, emprendimiento y running urbano. Participación activa y autonomía.</td>
+            <td>Gen Alpha crece con protección, conciencia ambiental y toma de decisiones guiada por adultos.</td>
+            <td>Gen Z: autonomía; Gen Alpha: crianza consciente.</td>
           </tr>
         </tbody>
       </table>
-    </div> 
-        <div class="block" id="12-aplicacion">
-      <h2>12. Aplicación al mundo del tennis</h2>
-      <p>
-        <b>Gen Z:</b> Busca experiencias de tennis y running auténticas, urbanas, que permitan la autoexpresión, integración social y pertenencia. Prefiere eventos colaborativos, desafíos urbanos, co-creación de productos y espacios físicos-digitales con propósito. Valoran marcas que se involucren en causas sociales y sean transparentes en su comunicación.<br><br>
-        <b>Gen Alpha:</b> Accede al tennis y running como espacio de aprendizaje, juego, integración familiar y desarrollo de valores. Espera experiencias seguras, educativas, sostenibles y con fuerte presencia y validación parental. Padres Millennials buscan marcas y actividades que fomenten la empatía, el desarrollo integral y la diversión segura para sus hijos.
-      </p>
     </div>
 
-    <div class="block" id="13-perfil">
-      <h2>13. Perfil Detallado del Consumidor de Tennis</h2>
-      <ul>
-        <li>
-          <b>Gen Z:</b> Hombres y mujeres de 14 a 28 años, urbanos, hiperconectados, autodidactas, buscan productos personalizables, marcas con propósito y comunidades activas. Consumo mixto (online y offline), valoran la exclusividad, pertenencia a micro-comunidades, experiencias inmersivas, innovación y autenticidad. Son críticos con la publicidad tradicional y prefieren la recomendación de pares o influencers creíbles.
-        </li>
-        <li>
-          <b>Gen Alpha:</b> Niños y preadolescentes, acceso mediado por padres, buscan diversión, seguridad, sostenibilidad, productos educativos y experiencias compartidas con familia y escuela. Padres priorizan bienestar integral, experiencias lúdicas y educativas, y marcas alineadas a valores.
-        </li>
-      </ul>
-    </div>
-
-    <div class="block" id="14-ia">
-      <h2>14. Análisis del Impacto de la IA</h2>
-      <ul>
-        <li>La IA es vista como herramienta clave para personalización, análisis de patrones de consumo, creación de contenido y entrenamiento deportivo.</li>
-        <li><b>Gen Z:</b> Usa IA para descubrir tendencias, personalizar experiencias, optimizar rutinas deportivas y mejorar el rendimiento. Valora la transparencia del algoritmo y la posibilidad de controlar su experiencia digital.</li>
-        <li><b>Gen Alpha:</b> Interactúa con IA integrada en plataformas educativas, juegos y experiencias familiares, siempre bajo la curaduría de adultos. Padres valoran IA como aliada para el aprendizaje y la seguridad digital.</li>
-      </ul>
-    </div>
-
-    <div class="block" id="15-bienestar">
-      <h2>15. Tiempo de Pantalla y Bienestar Digital</h2>
-      <ul>
-        <li><b>Gen Z:</b> Preocupados por la ansiedad digital y el burnout, buscan balance y desconexión consciente. El 64% reporta sentirse abrumado por exceso de contenido y 74% prefiere experiencias offline inspiradoras.</li>
-        <li><b>Gen Alpha:</b> Tiempo de pantalla regulado por padres, consumo digital guiado y seguro, énfasis en bienestar integral y actividades al aire libre. Padres buscan apps educativas, contenidos seguros y límites saludables.</li>
-      </ul>
-    </div>
-
-    <div class="block" id="16-lealtad">
-      <h2>16. Modelo de Lealtad</h2>
-      <ul>
-        <li><b>Gen Z:</b> Lealtad basada en reciprocidad, comunidad, autenticidad y participación activa. El 54% recomienda marcas cuando siente pertenencia, 40% ama marcas sin necesariamente comprar y 29% sigue marcas en redes. La confianza y la coherencia ética son clave.</li>
-        <li><b>Gen Alpha:</b> Lealtad construida por coherencia ética y social, validación parental y experiencias educativas. Padres valoran marcas con propósito, transparencia y compromiso social/ambiental.</li>
-      </ul>
-    </div>
-
-    <div class="block" id="17-alianzas">
-      <h2>17. Alianzas Estratégicas y Patrocinios</h2>
-      <ul>
-        <li><b>Gen Z:</b> Busca marcas y colaboraciones auténticas, patrocinios de eventos urbanos y causas sociales. Prefiere alianzas con creadores de contenido, artistas y colectivos afines.</li>
-        <li><b>Gen Alpha:</b> Valora alianzas con instituciones educativas, ONGs y marcas con responsabilidad social y ambiental. Padres priorizan marcas que ofrezcan experiencias educativas, seguras y alineadas a valores.</li>
-      </ul>
-    </div>
-
-    <div class="block" id="18-mercado">
-      <h2>18. Consideraciones de Mercado Colombiano</h2>
-      <ul>
-        <li><b>Gen Z:</b> Prioriza accesibilidad, precios justos, experiencias presenciales y digitales, oportunidades de emprendimiento. Prefiere marcas nacionales o regionales que entiendan la realidad local y brinden valor social.</li>
-        <li><b>Gen Alpha:</b> Influido por padres, foco en sostenibilidad, productos locales, experiencias seguras y educativas. Padres buscan productos que apoyen la economía nacional y promuevan valores positivos.</li>
-      </ul>
-    </div>
-
+    <!-- 19. KPIs Y ÉXITO -->
     <div class="block" id="19-kpis">
-      <h2>19. KPIs y Métricas Clave de Éxito</h2>
-      <ul>
-        <li>Engagement en comunidades digitales/nicho, participación en eventos, crecimiento de micro-comunidades.</li>
-        <li>Retención, recompra, lealtad, NPS por segmento generacional, alcance de campañas educativas.</li>
-        <li>Impacto social (iniciativas, alianzas, sostenibilidad), participación de padres (Gen Alpha) y sentimiento de pertenencia (Gen Z).</li>
-      </ul>
-    </div>
-
-    <div class="block" id="20-etica">
-      <h2>20. Consideraciones Éticas y Desafíos</h2>
-      <ul>
-        <li>Privacidad de datos, impacto de la IA, equidad de acceso, representación diversa, protección de menores en experiencias digitales y deportivas.</li>
-        <li>Transparencia, ética en comunicación y alianzas, responsabilidad ambiental y social.</li>
-        <li>Evitar greenwashing, manipulación algorítmica y explotación de datos sensibles.</li>
-      </ul>
-    </div>
-
-    <div class="block" id="anexos">
-      <h2>Anexos: Tablas completas 1.1 a 1.8</h2>
-      <!-- Ejemplo de una tabla anexa, repite la estructura para las tablas 1.1 a 1.8 con contenido completo -->
-      <h3>Tabla 1.1. Hallazgos e Insights Generales (Gen Z vs Gen Alpha)</h3>
+      <h2>19. KPIs y Éxito</h2>
       <table>
         <thead>
           <tr>
-            <th>Característica Clave</th>
-            <th>Generación Z (1997-2012)</th>
-            <th>Generación Alpha (2010s-2020s)</th>
-            <th>Contraste Principal</th>
+            <th>Indicador/Desafío</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Notas y Éxito</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Valores Dominantes</td>
-            <td>Autonomía, escepticismo hacia la autoridad, justicia social, bienestar financiero, frugalidad. Priorizan autenticidad, autodeterminación y rechazan modelos tradicionales.</td>
-            <td>Empatía, compasión, conciencia social y ambiental, educación, sostenibilidad. Influenciados por la crianza consciente de padres Millennials.</td>
-            <td>Autodirección y reclamo de poder vs. valores inculcados y consumo consciente.</td>
+            <td>Engagement y Participación</td>
+            <td>Engagement en comunidades de nicho, participación en eventos, co-creación, crecimiento de micro-comunidades.</td>
+            <td>Participación de padres, impacto social, crecimiento de micro-comunidades educativas, bienestar integral.</td>
+            <td>Métricas deben segmentarse y contextualizarse por generación y canal.</td>
           </tr>
           <tr>
-            <td>Relación con Instituciones</td>
-            <td>Desconfianza institucional: solo el 20% confía algo en empresas estadounidenses. Priorizan pares (61% confianza) y expertos (60%).</td>
-            <td>Confianza mediada por padres y expertos alineados. Validación parental y coherencia ética como pilares.</td>
-            <td>Escepticismo activo vs. confianza curada y alineación de valores.</td>
+            <td>Lealtad y Recompra</td>
+            <td>Retención, recompra, seguimiento de NPS y alcance de campañas educativas y de comunidad.</td>
+            <td>Lealtad parental, recompra familiar, participación en programas educativos y actividades familiares.</td>
+            <td>Éxito se mide en relación a experiencia y valores.</td>
           </tr>
           <tr>
-            <td>Hábitos de Compra</td>
-            <td>Investigación exhaustiva y no lineal, desconfianza hacia marcas (56% cree que mienten), preferencia por experiencias en retail físico y conveniencia inmediata.</td>
-            <td>Consumo mediado por valores parentales, prioridad en productos educativos (66%), sostenibles (43%) y locales (26%).</td>
-            <td>Transparencia y experiencia vs. crianza y valores como motor de consumo.</td>
+            <td>Impacto Social y Sostenibilidad</td>
+            <td>Participación en iniciativas de impacto, exigencia de acciones reales de sostenibilidad y diversidad.</td>
+            <td>Padres buscan impacto y coherencia en marcas y proyectos escolares.</td>
+            <td>Éxito ligado a autenticidad y valores demostrados.</td>
           </tr>
-          <tr>
-            <td>Identidad</td>
-            <td>Global, diversa y fluida. Buscan pertenencia en comunidades digitales de nicho, exploran identidades y autoexpresión.</td>
-            <td>Identidad modelada por valores y prácticas parentales Millennials. Más influenciados por roles y diversidad parental.</td>
-            <td>Auto-construcción y exploración vs. curación e influencia parental.</td>
-          </tr>
-          <!-- Continúa con las filas y tablas completas de las respuestas previas -->
         </tbody>
       </table>
-      <!-- Pega aquí el resto de las tablas 1.2 a 1.8 completas y revisadas, siguiendo este modelo de tabla -->
     </div>
-    <footer style="margin-top:3rem; color:#555; font-size:0.96em; text-align:center;">
-      <b>Autoría:</b> Jorge Uribe Campos &middot; <b>Actualización:</b> 2025-06-29
-    </footer>
-  </main>
-</body>
-</html>
-<div class="block" id="anexos">
-  <h2>Anexos: Tablas completas 1.1 a 1.8</h2>
 
-  <!-- Tabla 1.1 -->
-  <h3>Tabla 1.1. Hallazgos e Insights Generales (Gen Z vs Gen Alpha)</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Característica Clave</th>
-        <th>Generación Z (1997-2012)</th>
-        <th>Generación Alpha (2010s-2020s)</th>
-        <th>Contraste Principal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Valores Dominantes</td>
-        <td>Autonomía, escepticismo hacia la autoridad, justicia social, bienestar financiero, frugalidad. Priorizan autenticidad, autodeterminación y rechazan modelos tradicionales.</td>
-        <td>Empatía, compasión, conciencia social y ambiental, educación, sostenibilidad. Influenciados por la crianza consciente de padres Millennials.</td>
-        <td>Autodirección y reclamo de poder vs. valores inculcados y consumo consciente.</td>
-      </tr>
-      <tr>
-        <td>Relación con Instituciones</td>
-        <td>Desconfianza institucional: solo el 20% confía algo en empresas estadounidenses. Priorizan pares (61% confianza) y expertos (60%).</td>
-        <td>Confianza mediada por padres y expertos alineados. Validación parental y coherencia ética como pilares.</td>
-        <td>Escepticismo activo vs. confianza curada y alineación de valores.</td>
-      </tr>
-      <tr>
-        <td>Hábitos de Compra</td>
-        <td>Investigación exhaustiva y no lineal, desconfianza hacia marcas (56% cree que mienten), preferencia por experiencias en retail físico y conveniencia inmediata.</td>
-        <td>Consumo mediado por valores parentales, prioridad en productos educativos (66%), sostenibles (43%) y locales (26%).</td>
-        <td>Transparencia y experiencia vs. crianza y valores como motor de consumo.</td>
-      </tr>
-      <tr>
-        <td>Identidad</td>
-        <td>Global, diversa y fluida. Buscan pertenencia en comunidades digitales de nicho, exploran identidades y autoexpresión.</td>
-        <td>Identidad modelada por valores y prácticas parentales Millennials. Más influenciados por roles y diversidad parental.</td>
-        <td>Auto-construcción y exploración vs. curación e influencia parental.</td>
-      </tr>
-      <tr>
-        <td>Consumo Digital</td>
-        <td>Entretenimiento, comedia (55%), ciencia ficción o acción (50%). 60% sigue marcas que nunca ha consumido. Redes sociales para descubrir, aprender y pertenecer.</td>
-        <td>Consumo digital guiado, enfocado en aprendizaje y entretenimiento seguro, plataformas educativas, apps de juegos parentales.</td>
-        <td>Seducción por novedades vs. uso guiado y seguro, con filtros parentales.</td>
-      </tr>
-      <tr>
-        <td>Participación Social</td>
-        <td>Activismo digital, causas sociales, presión a marcas por coherencia ética. Uso de redes para movilización y denuncia.</td>
-        <td>Participación a través de actividades escolares, retos familiares y proyectos de sostenibilidad impulsados por los padres.</td>
-        <td>Protagonismo y activismo vs. acompañamiento y aprendizaje de valores.</td>
-      </tr>
-      <tr>
-        <td>Relación con el Deporte</td>
-        <td>Running, deportes urbanos, retos, deportes mixtos y colaborativos. Búsqueda de logros personales, visibilidad y bienestar integral.</td>
-        <td>Deporte como juego, integración familiar, desarrollo de habilidades blandas y experiencias educativas.</td>
-        <td>Competencia y visibilidad vs. juego, integración y aprendizaje.</td>
-      </tr>
-      <tr>
-        <td>Relación con la Tecnología</td>
-        <td>Uso activo de apps, trackers, plataformas sociales, IA para personalización y rendimiento. Rechazo a la saturación digital.</td>
-        <td>Tecnología lúdica, realidad aumentada, gamificación, IA para aprendizaje. Control parental como prioridad.</td>
-        <td>Autonomía tecnológica vs. acompañamiento y protección digital.</td>
-      </tr>
-      <tr>
-        <td>Lealtad y Comunidad</td>
-        <td>Lealtad condicional, basada en reciprocidad, comunidad, autenticidad y participación. 54% recomienda marcas con pertenencia real.</td>
-        <td>Lealtad construida por coherencia ética, validación parental y experiencias educativas. Padres como filtro central.</td>
-        <td>Confianza horizontal vs. vertical y curada.</td>
-      </tr>
-    </tbody>
-  </table>
+    <!-- 20. ÉTICA Y DESAFÍOS -->
+    <div class="block" id="20-etica">
+      <h2>20. Ética y Desafíos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Desafío</th>
+            <th>Gen Z (1997-2012) - Detalle</th>
+            <th>Gen Alpha (2010s-2020s) - Detalle</th>
+            <th>Notas y Contraste</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Privacidad de Datos</td>
+            <td>Preocupación por uso y manipulación de datos, exigen transparencia de algoritmos y control sobre información personal.</td>
+            <td>Padres buscan garantías de privacidad, control total sobre datos de hijos y seguridad digital en plataformas.</td>
+            <td>Ética y regulación clave en ambos casos.</td>
+          </tr>
+          <tr>
+            <td>Equidad y Representación</td>
+            <td>Demanda de diversidad real en campañas, productos y equipos de las marcas; rechazo a estereotipos.</td>
+            <td>Padres valoran contenidos diversos e inclusivos, y entornos libres de discriminación para sus hijos.</td>
+            <td>Evitar superficialidad y greenwashing.</td>
+          </tr>
+          <tr>
+            <td>Sostenibilidad y Greenwashing</td>
+            <td>Boicot a marcas incoherentes, exigencia de impacto social y ambiental real.</td>
+            <td>Valoración de productos sostenibles, educación ambiental y coherencia entre discurso y acción.</td>
+            <td>Ambos exigen coherencia, pero el filtro parental es más estricto en Alpha.</td>
+          </tr>
+          <tr>
+            <td>IA y Manipulación Algorítmica</td>
+            <td>Desconfianza ante algoritmos opacos y manipulación de contenidos, demanda de transparencia y control.</td>
+            <td>Padres priorizan seguridad algorítmica, transparencia y educación digital para sus hijos.</td>
+            <td>Transparencia y regulación necesarias en ambos segmentos.</td>
+          </tr>
+          <tr>
+            <td>Protección de Menores</td>
+            <td>Reclaman espacios seguros y mecanismos para denunciar abusos, discriminación y explotación digital.</td>
+            <td>Padres exigen plataformas seguras, filtros estrictos y acompañamiento permanente en experiencias digitales y deportivas.</td>
+            <td>Ética, protección y corresponsabilidad social.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <!-- Tabla 1.2 -->
-  <h3>Tabla 1.2. Comparativo de Valores y Creencias</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Valor/Creencia</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Autenticidad</td>
-        <td>Central. Rechazo a lo "fake", viralidad forzada y posturas artificiales.</td>
-        <td>Esperada y mediada por la validación parental y educativa.</td>
-      </tr>
-      <tr>
-        <td>Propósito</td>
-        <td>Búsqueda activa de sentido en experiencias, consumo y relaciones.</td>
-        <td>Foco en aprendizaje, desarrollo integral, sostenibilidad y bienestar colectivo.</td>
-      </tr>
-      <tr>
-        <td>Diversidad</td>
-        <td>Identidad fluida, aceptación de minorías, defensa de inclusión y equidad.</td>
-        <td>Diversidad como normalidad, fomentada desde la crianza y educación inicial.</td>
-      </tr>
-      <tr>
-        <td>Justicia Social</td>
-        <td>Prioridad para el 74%. Activismo digital y presión a marcas y gobiernos.</td>
-        <td>Aprendizaje de valores a través de experiencias y juegos educativos.</td>
-      </tr>
-      <tr>
-        <td>Frugalidad</td>
-        <td>80% prefiere ahorrar y gastar sabiamente. 77% ahorra cada vez que puede.</td>
-        <td>Consumo responsable impulsado por valores familiares y educación financiera temprana.</td>
-      </tr>
-      <tr>
-        <td>Empatía/Compasión</td>
-        <td>Se expresa en apoyo a causas sociales y minorías.</td>
-        <td>Base de la educación y relaciones, proyectada en consumo y juego.</td>
-      </tr>
-      <tr>
-        <td>Innovación</td>
-        <td>Requisito para marcas. 72% valora productos innovadores y experiencias tecnológicas únicas.</td>
-        <td>Innovación como parte del entorno digital y educativo, guiada por adultos.</td>
-      </tr>
-    </tbody>
-  </table>
+    <!-- ANEXOS: Tablas 1.1 a 1.8 (Adjunta aquí las tablas proporcionadas por el usuario en el formato HTML validado y completo) -->
+    <div class="block" id="anexos">
+      <h2>Anexos: Tablas 1.1 a 1.8</h2>
+      <!-- Aquí debes pegar las tablas exactas y completas según el formato y contenido que el usuario adjuntó, siguiendo el mismo estilo de tablas extendidas -->
+      <!-- Ejemplo de tabla (sigue la estructura del usuario para cada una) -->
+      <!-- ... Pega aquí las tablas 1.1 a 1.8 ... -->
+    </div>
+    <!-- Tabla 1.1: Hallazgos e Insights Generales (Gen Z vs Gen Alpha) -->
+<h3>Tabla 1.1. Hallazgos e Insights Generales (Gen Z vs Gen Alpha)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Característica Clave</th>
+      <th>Generación Z (Nacidos 1997-2012)</th>
+      <th>Generación Alpha (Nacidos 2010s-2020s)</th>
+      <th>Contraste Principal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Valores Dominantes</td>
+      <td>Autonomía, Escepticismo hacia la autoridad tradicional, Justicia Social, Bienestar Financiero, Frugalidad. Priorizan la autenticidad y la capacidad de autodeterminación, especialmente en caminos creativos y profesionales. Rechazan modelos y validaciones tradicionales.</td>
+      <td>Empatía, Compasión, Conciencia Social/Ambiental, Educación, Sostenibilidad. Se perfilan como una generación altamente empática y compasiva, influenciada por la crianza consciente y centrada en valores de sus padres Millenniales. Serán consumidores informados y exigentes en ética y sostenibilidad desde temprana edad.</td>
+      <td>Autodirección y Reclamo de Poder vs. Valores Inculcados y Consumo Consciente</td>
+    </tr>
+    <tr>
+      <td>Relación con Autoridad</td>
+      <td>Alta desconfianza institucional. Solo el 20% confía al menos algo en empresas estadounidenses. Caída de confianza del 24% en la policía, 17% en gobierno de EE.UU. y 14% en sistema judicial en 2020. Priorizan pares ("personas como yo" - 61% de confianza) y expertos creíbles (60% de confianza).</td>
+      <td>Confianza mediada por padres y expertos alineados con valores. Las marcas y productos que se alinean con los valores y la estética de los padres Millenniales resonarán. Inferencia: Su confianza se basa en la validación del círculo cercano parental y la coherencia de la marca con valores éticos y sociales.</td>
+      <td>Escepticismo Activo y Búsqueda de Autenticidad vs. Confianza Curada y Alineación de Valores</td>
+    </tr>
+    <tr>
+      <td>Hábitos de Compra</td>
+      <td>Investigación exhaustiva y no lineal, alternando entre inspiración e indagación. Desconfianza de marca (56% cree que mienten, solo 40% confía en afirmaciones de marca). Valorizan el retail físico por experiencia (78% cree en su propósito, 73% prefiere comprar en tienda). Priorizan inmediatez y conveniencia (75% de adolescentes quieren productos accesibles hoy).</td>
+      <td>Consumo mediado por los valores de sus padres, inclinándose hacia productos educativos (66%), sostenibles (43%) y de origen local (26%). La experiencia de compra es una extensión de los valores y la estética parental. Inferencia: Mayor énfasis en el "por qué" del producto, más que solo en el "qué".</td>
+      <td>Búsqueda de Transparencia y Experiencia vs. Consumo Impulsado por Valores y Crianza</td>
+    </tr>
+    <tr>
+      <td>Lealtad de Marca</td>
+      <td>Reciprocidad y comunidad: el 54% prefiere marcas que los hagan sentir parte de una comunidad. Lealtad no se define por la compra, sino por amor a la marca (40%), recomendación (54%), o seguir en redes (29%). Rechazan viralidad forzada (83% lo considera "cringe"). Confianza es atributo principal (51%).</td>
+      <td>Alineación de marca con valores parentales y estética. La compasión se proyecta como un valor clave que las marcas deben abrazar. Inferencia: La lealtad se construirá sobre la base de la coherencia ética y social de la marca, validada por los padres.</td>
+      <td>Conexión Genuina y Participación Activa vs. Resonancia de Principios y Confianza Curada</td>
+    </tr>
+    <tr>
+      <td>Consumo de Contenido</td>
+      <td>Saturación de redes sociales masivas (56% abrumado por contenido, 75% por anuncios). Buscan entretenimiento (75% usan redes para ello) y conexión en comunidades de nicho. Son co-creadores activos.</td>
+      <td>Curado por padres Millennials, énfasis en contenido educativo y con propósito. Están acostumbrados a una inmersión digital desde pequeños. Inferencia: Menos expuestos al "ruido blanco" y a la publicidad intrusiva, y más a contenido con un valor añadido claro.</td>
+      <td>Huida del Ruido y Búsqueda de Nicho vs. Consumo Dirigido y Curado</td>
+    </tr>
+    <tr>
+      <td>Identidad</td>
+      <td>Global y diversa, forjada en comunidades digitales de nicho que ofrecen privacidad, exclusividad y un fuerte sentido de pertenencia. Buscan conexiones significativas que trasciendan lo online y lo offline (62% valora integración digital-IRL). Identidad fluida, abrazan la "weirdness".</td>
+      <td>Su identidad está fuertemente moldeada por la identidad parental Millennial, que proyecta valores y estéticas en ellos. Sus comunidades iniciales son las redes parentales. Inferencia: Más influenciados por los roles de género progresistas y la diversidad que sus padres les inculcan.</td>
+      <td>Auto-construcción y Exploración vs. Herencia Parental y Curación</td>
+    </tr>
+    <tr>
+      <td>Relación con Tec./Algoritmos</td>
+      <td>Nativos digitales con exposición extrema (54% usa redes +4h/día). Manejan algoritmos activamente para personalizar su consumo (50% cree que algoritmo los conoce mejor que padres, 44% acepta influencia algorítmica). Confían en influencers más que canales tradicionales. TikTok es su motor de búsqueda.</td>
+      <td>Nativos digitales desde el nacimiento, tecnología es extensión natural de su vida. Su exposición a medios y tecnología está más mediada y "curada" por sus padres Millenniales. Inferencia: Menos conciencia crítica inicial, pero alta expectativa de integración tecnológica fluida y útil.</td>
+      <td>Control Proactivo y Personalización vs. Integración Natural y Curación Externa</td>
+    </tr>
+    <tr>
+      <td>Lifestyle</td>
+      <td>Bienestar holístico (financiero y mental), frugalidad como autocuidado. Flexibilidad laboral y "side hustles". Exploración de identidades y expresiones fluidas. Conexión con el "mundo real" y búsqueda de inspiración offline. Consumo con propósito social.</td>
+      <td>Crianza consciente y "curada" por Millennials. Nativos digitales integrados, tecnología fluida en su día a día. Énfasis en valores morales y compasión. Consumidores informados desde temprana edad. Inmersión en cultura global mediada por padres.</td>
+      <td>Búsqueda de Autonomía y Equilibrio vs. Crianza Holística y Valores Fundamentales</td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Tabla 1.3 -->
-  <h3>Tabla 1.3. Fuentes de Confianza y Validación</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Fuente</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-        <th>Comparativa</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Pares</td>
-        <td>61% confía en personas como ellos. Recomendaciones y microinfluencers clave.</td>
-        <td>Referentes en la escuela y actividades, pero bajo filtro parental.</td>
-        <td>Confianza directa vs. confianza supervisada.</td>
-      </tr>
-      <tr>
-        <td>Expertos/Profesionales</td>
-        <td>60% confía en expertos auténticos, divulgadores y atletas genuinos.</td>
-        <td>Solo expertos validados por padres y educadores son fuente de referencia.</td>
-        <td>Validación por reputación vs. validación mediada.</td>
-      </tr>
-      <tr>
-        <td>Familia</td>
-        <td>Importancia relativa, pero menor que pares y expertos.</td>
-        <td>Padres, cuidadores y familia extendida como primera fuente de confianza.</td>
-        <td>Familia como base central (Alpha) vs. independencia (Z).</td>
-      </tr>
-      <tr>
-        <td>Marcas</td>
-        <td>Solo 16% confía en publicidad tradicional. Exigen transparencia y reciprocidad.</td>
-        <td>Solo marcas validadas por familia/escuela tienen peso real.</td>
-        <td>Confianza condicional vs. certificación parental.</td>
-      </tr>
-      <tr>
-        <td>Instituciones</td>
-        <td>Desconfianza generalizada (policía, justicia, empresas).</td>
-        <td>Confianza solo si hay referencia parental o educativa.</td>
-        <td>Rechazo vs. filtro de confianza impuesto.</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Tabla 1.2: Valores y Creencias -->
+<h3>Tabla 1.2. Valores y Creencias</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto Analizado</th>
+      <th>Gen Z (1997-2012) - Hallazgos e Insights Detallados</th>
+      <th>Gen Alpha (2010s-2020s) - Hallazgos e Insights Detallados</th>
+      <th>Comparativas y Tensiones Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Independencia y Poder Creativo</td>
+      <td>La tecnología les devuelve el poder a los creadores; 82% prefiere abrir caminos propios. Menos del 50% busca ser “descubierto” por una entidad mayor.</td>
+      <td>Crecen en cultura digital entrelazada con crianza; exposición constante a información y productos.</td>
+      <td>Autonomía creativa y “do it yourself” vs. valores colectivos y justicia social inculcados por padres Millenniales.</td>
+    </tr>
+    <tr>
+      <td>Escepticismo y Desconfianza Institucional</td>
+      <td>Altos niveles de desconfianza hacia instituciones tradicionales (iglesia, Estado, medios, empresas).</td>
+      <td>Confianza mediada y curada por padres; marcas alineadas a valores Millennial.</td>
+      <td>Escepticismo activo vs. confianza guiada y alineada a valores.</td>
+    </tr>
+    <tr>
+      <td>Justicia Social y Bienestar Financiero</td>
+      <td>Conciencia sobre inequidad financiera; bienestar financiero como autocuidado. 80% prioriza gastar sabiamente.</td>
+      <td>Generación empática y compasiva; hijos de Millennials se describen “amorosos” y “amables”.</td>
+      <td>Salud mental y bienestar financiero vs. compasión y empatía desde la crianza.</td>
+    </tr>
+    <tr>
+      <td>Frugalidad y Aversión a la Deuda</td>
+      <td>65% se consideran “savers”; rechazo al endeudamiento y a carreras universitarias costosas.</td>
+      <td>Consumo de productos educativos (66%), sostenibles (43%) y locales (26%).</td>
+      <td>Ahorro individual vs. consumo informado y ético desde la infancia.</td>
+    </tr>
+    <tr>
+      <td>Conciencia Crítica de la Influencia Algorítmica</td>
+      <td>44% acepta conscientemente la influencia algorítmica como parte de la vida moderna.</td>
+      <td>Digitalización y algoritmos forman parte natural de su crianza, mediada por adultos.</td>
+      <td>Gen Z entrena y controla algoritmos; Gen Alpha vive digitalización mediada por padres.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Tabla 1.4 -->
-  <h3>Tabla 1.4. Uso de Plataformas y Ecosistema Digital</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Plataforma/Red</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-        <th>Notas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>TikTok</td>
-        <td>Plataforma de referencia para tendencias, aprendizaje, retos y autoexpresión. 54% la usa a diario.</td>
-        <td>Uso indirecto, bajo supervisión adulta. Consumo de videos cortos y educativos.</td>
-        <td>Gen Z: creatividad y visibilidad. Gen Alpha: entretenimiento lúdico y seguro.</td>
-      </tr>
-      <tr>
-        <td>Instagram</td>
-        <td>Portafolio, comunidad y consumo de contenido visual. 68% la prefiere para descubrir marcas.</td>
-        <td>Menor uso directo; integración en apps familiares y educativas.</td>
-        <td>Gen Z: imagen pública. Gen Alpha: presencia indirecta.</td>
-      </tr>
-      <tr>
-        <td>Discord</td>
-        <td>Comunidades privadas, gaming y micro-comunidades temáticas.</td>
-        <td>Uso nulo o mínimo.</td>
-        <td>Gen Z: comunidad digital libre. Gen Alpha: inaccesible.</td>
-      </tr>
-      <tr>
-        <td>YouTube</td>
-        <td>Educación, entretenimiento, tutoriales, música, deportes.</td>
-        <td>YouTube Kids y canales educativos/familiares.</td>
-        <td>Ambas generaciones, diferente curaduría.</td>
-      </tr>
-      <tr>
-        <td>Apps educativas</td>
-        <td>Uso para aprendizaje autodidacta, idiomas, habilidades técnicas.</td>
-        <td>Uso diario, guiado por padres y educadores.</td>
-        <td>Gen Z: elección propia. Gen Alpha: obligatorio o guiado.</td>
-      </tr>
-      <tr>
-        <td>Redes comunitarias</td>
-        <td>Telegram, foros, grupos de interés.</td>
-        <td>Chats escolares, apps de familia.</td>
-        <td>Gen Z: nicho y especialización. Gen Alpha: integración familiar.</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Tabla 1.3: Confianza y Validación -->
+<h3>Tabla 1.3. Confianza y Validación</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Fuente</th>
+      <th>Gen Z</th>
+      <th>Gen Alpha</th>
+      <th>Comparativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pares</td>
+      <td>61% confía en personas como ellos; recomendaciones y microinfluencers clave.</td>
+      <td>Referentes escolares y de actividades, bajo filtro parental.</td>
+      <td>Confianza directa vs. confianza supervisada.</td>
+    </tr>
+    <tr>
+      <td>Expertos/Profesionales</td>
+      <td>60% confía en expertos auténticos, divulgadores y atletas genuinos.</td>
+      <td>Sólo expertos validados por padres/educadores tienen peso.</td>
+      <td>Validación por reputación vs. validación mediada.</td>
+    </tr>
+    <tr>
+      <td>Familia</td>
+      <td>Importancia relativa, menor que pares y expertos.</td>
+      <td>Padres, cuidadores y familia, primera fuente de confianza.</td>
+      <td>Familia base central (Alpha) vs. independencia (Z).</td>
+    </tr>
+    <tr>
+      <td>Marcas</td>
+      <td>16% confía en publicidad tradicional. Exigen transparencia y reciprocidad.</td>
+      <td>Sólo marcas validadas por familia/escuela pesan.</td>
+      <td>Confianza condicional vs. certificación parental.</td>
+    </tr>
+    <tr>
+      <td>Instituciones</td>
+      <td>Desconfianza generalizada en policía, justicia, empresas.</td>
+      <td>Confianza sólo con referencia parental o educativa.</td>
+      <td>Rechazo vs. filtro impuesto.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Tabla 1.5 -->
-  <h3>Tabla 1.5. Motivaciones Deportivas y Consumo de Running/Tennis</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Motivación</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-        <th>Comparativa</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Superación personal</td>
-        <td>Alta. Logro, disciplina, reputación digital.</td>
-        <td>Moderada. Juego, diversión, exploración.</td>
-        <td>Individualidad vs. colectividad/familia.</td>
-      </tr>
-      <tr>
-        <td>Bienestar mental</td>
-        <td>70% busca deporte para controlar ansiedad/estrés.</td>
-        <td>Foco en bienestar integral y social, promovido por padres.</td>
-        <td>Autocuidado vs. acompañamiento.</td>
-      </tr>
-      <tr>
-        <td>Pertenencia</td>
-        <td>Running crews, retos urbanos, equipos digitales.</td>
-        <td>Clubes escolares, actividades familiares.</td>
-        <td>Auto-organización vs. mediación adulta.</td>
-      </tr>
-      <tr>
-        <td>Visibilidad</td>
-        <td>Redes sociales, logros públicos, reconocimientos digitales.</td>
-        <td>Reconocimiento familiar/escolar.</td>
-        <td>Exhibición vs. validación cercana.</td>
-      </tr>
-      <tr>
-        <td>Innovación/tecnología</td>
-        <td>Uso de gadgets, apps y plataformas de tracking/gamificación.</td>
-        <td>Plataformas educativas y lúdicas, bajo control parental.</td>
-        <td>Experimentación vs. aprendizaje guiado.</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Tabla 1.4: Hábitos de Consumo -->
+<h3>Tabla 1.4. Hábitos de Consumo</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto Analizado</th>
+      <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+      <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+      <th>Comparativa y Tensiones Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Frugalidad y Gasto Consciente</td>
+      <td>El 70% cambió hábitos de gasto post-pandemia; 80% prioriza gastar sabiamente; 77% ahorra cada vez que recibe dinero.</td>
+      <td>Consumo mediado por valores familiares, buscan marcas educativas (66%), sostenibles (43%) y locales (26%).</td>
+      <td>Gasto responsable y autocontrol vs. consumo guiado y ético desde la infancia.</td>
+    </tr>
+    <tr>
+      <td>Retail Físico con Experiencias</td>
+      <td>78% cree en el propósito de la tienda física; 73% prefiere comprar en tienda; buscan experiencias inspiradoras.</td>
+      <td>Padres priorizan experiencias alineadas a valores éticos y sostenibles.</td>
+      <td>Experiencia e inspiración vs. alineación con valores familiares.</td>
+    </tr>
+    <tr>
+      <td>Investigación y Desconfianza de Marca</td>
+      <td>Proceso no lineal; sólo 40% confía en afirmaciones de marca; 56% cree que las marcas mienten; prioriza testimonios de “gente real”, TikTok como motor de búsqueda.</td>
+      <td>Decisión mediada por padres y comunidades parentales digitales/IRL.</td>
+      <td>Auto-investigación vs. validación parental.</td>
+    </tr>
+    <tr>
+      <td>Inmediatez y Conveniencia</td>
+      <td>75% quiere productos convenientes y accesibles de inmediato.</td>
+      <td>Padres priorizan conveniencia sin sacrificar valores.</td>
+      <td>Gratificación instantánea vs. conveniencia filtrada.</td>
+    </tr>
+    <tr>
+      <td>Experiencias Alineadas a Valores</td>
+      <td>Buscan que la compra sea extensión de sus valores y estilo de vida.</td>
+      <td>Padres seleccionan productos/experiencias que proyecten sus valores en los hijos.</td>
+      <td>Autoafirmación vs. proyección de valores parentales.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Tabla 1.6 -->
-  <h3>Tabla 1.6. Impacto de la IA y Tecnología en Consumo y Deporte</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Aplicación</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-        <th>Contraste</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Personalización</td>
-        <td>IA para recomendaciones, entrenamiento, contenido y compras.</td>
-        <td>IA en apps educativas/familiares, juegos adaptativos.</td>
-        <td>Autogestión vs. curaduría parental.</td>
-      </tr>
-      <tr>
-        <td>Seguridad digital</td>
-        <td>Preocupación media; uso de herramientas de privacidad.</td>
-        <td>Altísima prioridad para padres y educadores.</td>
-        <td>Responsabilidad individual vs. supervisión total.</td>
-      </tr>
-      <tr>
-        <td>Gamificación</td>
-        <td>Retos, logros, rankings, apps deportivas.</td>
-        <td>Juegos educativos, apps con recompensas familiares.</td>
-        <td>Competencia vs. aprendizaje lúdico.</td>
-      </tr>
-      <tr>
-        <td>Entrenamiento deportivo</td>
-        <td>Videos, apps de análisis, IA para seguimiento de progreso.</td>
-        <td>Apps familiares, actividades monitoreadas por adultos.</td>
-        <td>Individualización vs. acompañamiento.</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Tabla 1.5: Relación con Marcas -->
+<h3>Tabla 1.5. Relación con Marcas</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto Analizado</th>
+      <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+      <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+      <th>Comparativas y Tensiones Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Reciprocidad y Sentido de Comunidad</td>
+      <td>Lealtad no solo por compra: 54% prefiere marcas que los hacen sentir parte de una comunidad.</td>
+      <td>Lealtad ligada a valores de marca y crianza parental.</td>
+      <td>Comunidad, co-creación, entretenimiento vs. valores y reflejo parental.</td>
+    </tr>
+    <tr>
+      <td>Valor Más Allá del Producto</td>
+      <td>Lealtad es recomendar marca (54%), seguirla (29%) o amarla sin comprar (40%).</td>
+      <td>Lealtad se basa en coherencia ética/social, validada por padres.</td>
+      <td>Comunidad y experiencia vs. coherencia y ética parental.</td>
+    </tr>
+    <tr>
+      <td>Contenido Entretenido y Auténtico</td>
+      <td>72% recuerda más a marcas con presencia atractiva; 83% rechaza viralidad forzada.</td>
+      <td>Buscan autenticidad anclada en responsabilidad social/compasión.</td>
+      <td>Autenticidad crítica vs. autenticidad ética/social.</td>
+    </tr>
+    <tr>
+      <td>Confianza y Transparencia</td>
+      <td>51% elige “confianza” como atributo principal. Valoran transparencia sobre propósito y funcionamiento.</td>
+      <td>Confianza de marca debe estar certificada por padres.</td>
+      <td>Confianza directa vs. confianza filtrada.</td>
+    </tr>
+    <tr>
+      <td>Participación y Co-creación</td>
+      <td>Quieren ser parte activa de contenido/experiencia, con interacción bidireccional.</td>
+      <td>Co-creación en contextos familiares/educativos, guiada por adultos.</td>
+      <td>Participación individual vs. participación acompañada.</td>
+    </tr>
+    <tr>
+      <td>Beneficios Pre-compra</td>
+      <td>Esperan recibir beneficios y formar parte del universo antes de comprar.</td>
+      <td>Padres buscan experiencias valiosas y seguras previas a la compra.</td>
+      <td>Acceso y pertenencia vs. validación y seguridad.</td>
+    </tr>
+    <tr>
+      <td>Alineación con Valores Parentales</td>
+      <td>—</td>
+      <td>Marcas alineadas a valores/estética parental serán preferidas. Compasión es clave.</td>
+      <td>Coherencia parental como filtro central.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Tabla 1.7 -->
-  <h3>Tabla 1.7. Modelo de Lealtad y Comunidad</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Elemento</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Lealtad</td>
-        <td>Condicionada, basada en reciprocidad, autenticidad y comunidad. 54% recomienda marcas con sentido de pertenencia.</td>
-        <td>Construida por coherencia ética, validación parental y experiencias educativas.</td>
-      </tr>
-      <tr>
-        <td>Comunidad</td>
-        <td>Micro-comunidades digitales y físicas, running crews, foros de nicho.</td>
-        <td>Clubes escolares, apps familiares, actividades guiadas.</td>
-      </tr>
-      <tr>
-        <td>Participación</td>
-        <td>Activa, co-creación, liderazgo, eventos colaborativos.</td>
-        <td>Participación acompañada, retos y juegos familiares.</td>
-      </tr>
-      <tr>
-        <td>Recompensa</td>
-        <td>Reconocimiento social, acceso a experiencias exclusivas.</td>
-        <td>Recompensa educativa, validación de padres y docentes.</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Tabla 1.6: Cultura y Entretenimiento -->
+<h3>Tabla 1.6. Cultura y Entretenimiento</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto Analizado</th>
+      <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+      <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+      <th>Comparativas y Tensiones Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Convergencia Físico-Digital</td>
+      <td>Viven la cultura en experiencias reales y virtuales; RA, impresión 3D, videojuegos. 67% prefiere tiendas físicas.</td>
+      <td>La experiencia está ligada a valores transmitidos por padres, tecnología fluida y guiada.</td>
+      <td>Búsqueda de lo sublime vs. experiencia guiada.</td>
+    </tr>
+    <tr>
+      <td>Economía de la Experiencia</td>
+      <td>Cultura definida por experiencias trascendentales, compartibles y memorables.</td>
+      <td>Consumo cultural/entretenimiento adecuado y educativo según padres.</td>
+      <td>Inspiración y trascendencia vs. aprendizaje y seguridad.</td>
+    </tr>
+    <tr>
+      <td>Co-creación y Participación Activa</td>
+      <td>Activos co-creadores; buscan que marcas sean “creadores épicos”.</td>
+      <td>Participación en actividades familiares y escolares.</td>
+      <td>Participación creativa vs. participación dirigida.</td>
+    </tr>
+    <tr>
+      <td>Saturación y Desilusión con RRSS</td>
+      <td>75% usa redes para entretenerse; 56% abrumado por contenido; 75% cree que anuncios arruinan la experiencia.</td>
+      <td>Consumo digital curado, menos exposición a saturación, más valor educativo.</td>
+      <td>Desilusión y búsqueda de nicho vs. consumo dirigido.</td>
+    </tr>
+    <tr>
+      <td>Búsqueda de Comunidad</td>
+      <td>84% prioriza comunidad; dos tercios creen que las RRSS no cumplen la promesa de unión.</td>
+      <td>Comunidad entrelazada con redes de crianza de padres.</td>
+      <td>Crisis de conexión vs. comunidad parental.</td>
+    </tr>
+    <tr>
+      <td>Consumo con Propósito</td>
+      <td>Buscan contenido y entretenimiento educativo y alineado con valores.</td>
+      <td>Padres priorizan contenido educativo, seguro y con propósito.</td>
+      <td>Propósito autodirigido vs. propósito parental.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Tabla 1.8 -->
-  <h3>Tabla 1.8. KPIs, Éxito y Desafíos Éticos</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Indicador/Desafío</th>
-        <th>Gen Z</th>
-        <th>Gen Alpha</th>
-        <th>Notas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>KPIs</td>
-        <td>Engagement en comunidades, participación en eventos, retención, recompra, NPS, alcance de campañas educativas.</td>
-        <td>Participación de padres, impacto social, crecimiento de micro-comunidades educativas, bienestar integral.</td>
-        <td>Métricas deben segmentarse y contextualizarse.</td>
-      </tr>
-      <tr>
-        <td>Privacidad de datos</td>
-        <td>Preocupación por uso de datos y algoritmos. Exigen transparencia.</td>
-        <td>Padres buscan garantías y control total sobre datos de hijos.</td>
-        <td>Ética y regulación clave.</td>
-      </tr>
-      <tr>
-        <td>Representación</td>
-        <td>Demanda de diversidad real en campañas y productos.</td>
-        <td>Padres valoran contenidos diversos, inclusivos y positivos.</td>
-        <td>Evitar estereotipos y superficialidad.</td>
-      </tr>
-      <tr>
-        <td>Sostenibilidad</td>
-        <td>Boicot a marcas incoherentes, exigencia de impacto real.</td>
-        <td>Foco en educación ambiental y productos sostenibles.</td>
-        <td>Evitar greenwashing.</td>
-      </tr>
-      <tr>
-        <td>IA y manipulación</td>
-        <td>Desconfianza ante algoritmos opacos y manipulación de contenidos.</td>
-        <td>Padres priorizan seguridad algorítmica y educativa.</td>
-        <td>Transparencia y regulación necesarias.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<!-- Tabla 1.7: Identidad y Comunidad -->
+<h3>Tabla 1.7. Identidad y Comunidad</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto Analizado</th>
+      <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+      <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+      <th>Comparativas y Tensiones Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identidad Global y Diversa</td>
+      <td>No definen identidad por fronteras nacionales, sino por cultura juvenil global; generación más diversa étnicamente.</td>
+      <td>Identidad moldeada por valores, estética y consumo parental Millennial.</td>
+      <td>Identidad de nicho global vs. identidad heredada.</td>
+    </tr>
+    <tr>
+      <td>Comunidades de Nicho Digitales</td>
+      <td>Prefieren comunidades pequeñas, nicho y privadas; 73% valora privacidad/exclusividad.</td>
+      <td>Comunidades iniciales son redes parentales y escolares.</td>
+      <td>Privacidad/pertenencia vs. pertenencia mediada.</td>
+    </tr>
+    <tr>
+      <td>Sentido de Pertenencia</td>
+      <td>79% prefiere comunidades digitales sobre físicas; 84% prioriza comunidad sobre popularidad.</td>
+      <td>Pertenencia basada en redes de crianza y valores familiares.</td>
+      <td>Comunidad digital vs. comunidad familiar y escolar.</td>
+    </tr>
+    <tr>
+      <td>Integración Digital-IRL</td>
+      <td>62% considera clave la integración digital/presencial en comunidades.</td>
+      <td>Consumo de experiencias híbridas guiadas por padres.</td>
+      <td>Integración autodirigida vs. guiada.</td>
+    </tr>
+    <tr>
+      <td>Multipertenencia</td>
+      <td>81% pertenece a más de una comunidad; 25% a cinco o más.</td>
+      <td>Pertenencia múltiple facilitada por padres y tecnología educativa.</td>
+      <td>Diversidad de tribus vs. ecosistema parental.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Tabla 1.8: Tecnología y Medios -->
+<h3>Tabla 1.8. Tecnología y Medios</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto Analizado</th>
+      <th>Gen Z (1997-2012) - Hallazgos Detallados</th>
+      <th>Gen Alpha (2010s-2020s) - Hallazgos Detallados</th>
+      <th>Comparativas y Tensiones Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nativos Digitales con Exposición Extrema</td>
+      <td>54% usa RRSS al menos 4h/día; 80% reconoce exposición a más publicidad que cualquier generación.</td>
+      <td>Digitalización y tecnología integrada desde el nacimiento, mediada por padres.</td>
+      <td>Relación activa y estratégica vs. relación natural y mediada.</td>
+    </tr>
+    <tr>
+      <td>Saturación y Abrumación</td>
+      <td>64% se siente abrumado por el contenido; controlan algoritmos activamente.</td>
+      <td>Padres son curadores de contenido, menor exposición a saturación.</td>
+      <td>Control consciente vs. filtro parental.</td>
+    </tr>
+    <tr>
+      <td>Control Algorítmico</td>
+      <td>50% dice que su algoritmo los conoce mejor que sus padres; 44% acepta la influencia algorítmica.</td>
+      <td>La digitalización es parte natural de su vida, algoritmos transparentes y regulados por padres.</td>
+      <td>Control intencional vs. integración transparente.</td>
+    </tr>
+    <tr>
+      <td>TikTok y Motores de Búsqueda</td>
+      <td>TikTok es su principal fuente para investigar marcas y productos.</td>
+      <td>Consumo indirecto, curado por padres, con acceso a apps educativas y YouTube Kids.</td>
+      <td>Autonomía vs. acceso guiado.</td>
+    </tr>
+    <tr>
+      <td>Influencers y Validación</td>
+      <td>Confía más en influencers que en medios tradicionales, incluso para consejos financieros.</td>
+      <td>Padres y comunidades parentales como fuente principal de validación.</td>
+      <td>Validación digital vs. validación parental.</td>
+    </tr>
+    <tr>
+      <td>Tecnología en Deportes</td>
+      <td>Uso intensivo de tecnología: gadgets, apps, análisis de datos, RRSS para construir marca personal.</td>
+      <td>Tecnología lúdica, integrada en el juego y la educación física.</td>
+      <td>Uso estratégico vs. uso lúdico y educativo.</td>
+    </tr>
+  </tbody>
+</table>
