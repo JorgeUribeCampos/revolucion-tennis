@@ -111,7 +111,6 @@
 
         table tbody tr:hover {
             background-color: #e0e0e0; /* Resaltado al pasar el mouse */
-            /* Considerar animación de resaltado si se desea */
         }
 
         table tbody tr:last-of-type {
@@ -139,16 +138,21 @@
             background-color: #f9f9f9; /* Fondo muy claro para destacar el gráfico */
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        .large-chart { /* Clase para gráficos que necesitan más espacio */
-            max-width: 800px;
-            min-height: 450px;
+        .large-chart { 
+            max-width: 1200px; 
+            min-height: 675px; 
         }
+        .pie-chart-container {
+            max-width: 1200px; 
+            min-height: 450px; 
+        }
+
 
         .insight-quote {
             font-style: italic;
             padding: 15px;
             margin: 20px 0;
-            border-left: 5px solid; /* Se definirá color específico abajo */
+            border-left: 5px solid; 
             background-color: #f8f9fa;
             color: #343a40;
             border-radius: 5px;
@@ -164,13 +168,12 @@
         .insight-quote-brown { border-left-color: #795548; }
         .insight-quote-grey { border-left-color: #6c757d; }
 
-        /* Estilos para el diagrama de Venn conceptual (2.9) */
         .venn-diagram {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            position: relative; /* Para posicionar el overlap */
+            position: relative; 
             min-height: 300px;
         }
         .venn-circle {
@@ -194,21 +197,21 @@
             margin-bottom: 2px;
         }
         .venn-genz {
-            background-color: rgba(255, 107, 107, 0.3); /* Rojo coral suave */
+            background-color: rgba(255, 107, 107, 0.3); 
             border: 2px solid #FF6B6B;
-            margin-right: -50px; /* Solapamiento */
+            margin-right: -50px; 
             z-index: 1;
         }
         .venn-genalpha {
-            background-color: rgba(78, 205, 196, 0.3); /* Turquesa suave */
+            background-color: rgba(78, 205, 196, 0.3); 
             border: 2px solid #4ECDC4;
-            margin-left: -50px; /* Solapamiento */
+            margin-left: -50px; 
             z-index: 1;
         }
         .venn-overlap {
-            width: 120px; /* Más pequeño para el área de solapamiento */
+            width: 120px; 
             height: 120px;
-            background-color: rgba(173, 216, 230, 0.5); /* Azul claro suave para overlap */
+            background-color: rgba(173, 216, 230, 0.5); 
             border: 2px solid #87CEEB;
             border-radius: 50%;
             display: flex;
@@ -217,8 +220,8 @@
             align-items: center;
             text-align: center;
             font-size: 0.8em;
-            z-index: 2; /* Asegurar que esté por encima de los círculos */
-            position: absolute; /* Posicionamiento absoluto para centrarlo bien */
+            z-index: 2; 
+            position: absolute; 
         }
          .venn-overlap strong {
             font-size: 1.1em;
@@ -244,7 +247,7 @@
 
         ul, ol {
             margin-bottom: 1em;
-            padding-left: 20px; /* Estándar para listas */
+            padding-left: 20px; 
         }
 
         li {
@@ -252,27 +255,25 @@
         }
 
         strong {
-            color: #222; /* Hacer el strong un poco más oscuro que el texto normal */
+            color: #222; 
         }
 
         em {
-            color: #007bff; /* Azul para énfasis */
-            font-style: normal; /* Quitar cursiva si se prefiere solo color */
+            color: #007bff; 
+            font-style: normal; 
         }
 
-        /* Clases para colores específicos de generaciones */
-        .genz-text { color: #FF6B6B !important; font-weight: bold; } /* Rojo coral para Gen Z */
-        .genalpha-text { color: #4ECDC4 !important; font-weight: bold; } /* Turquesa para Gen Alpha */
+        .genz-text { color: #FF6B6B !important; font-weight: bold; } 
+        .genalpha-text { color: #4ECDC4 !important; font-weight: bold; } 
 
-        /* Estilos para tablas comparativas de Gen Z vs Gen Alpha */
         .comparative-table th:nth-child(2), .comparative-table td:nth-child(2) {
-            background-color: rgba(255, 107, 107, 0.1); /* Fondo suave para Gen Z */
+            background-color: rgba(255, 107, 107, 0.1); 
         }
         .comparative-table th:nth-child(3), .comparative-table td:nth-child(3) {
-            background-color: rgba(78, 205, 196, 0.1); /* Fondo suave para Gen Alpha */
+            background-color: rgba(78, 205, 196, 0.1); 
         }
         .comparative-table .tension-comparative-row td {
-            background-color: #e9ecef; /* Un gris claro para la fila de tensión/comparativa */
+            background-color: #e9ecef; 
             font-style: italic;
             color: #343a40;
         }
@@ -285,25 +286,20 @@
             margin-bottom: 3px;
         }
 
-
-        /* Animación sutil para la carga de secciones o elementos si se desea */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         section {
-            animation: fadeIn 0.5s ease-out; /* Aplicar a secciones principales */
-            padding-bottom: 20px; /* Espacio al final de cada sección */
-            border-bottom: 1px dashed #ddd; /* Separador sutil entre secciones principales */
+            animation: fadeIn 0.5s ease-out; 
+            padding-bottom: 20px; 
+            border-bottom: 1px dashed #ddd; 
         }
         section:last-of-type{
             border-bottom: none;
         }
-
-
     </style>
-    <!-- Vega-Lite para gráficos interactivos -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -383,7 +379,6 @@
             <p>Este reporte analiza en profundidad a la Generación Z y la Generación Alpha, dos segmentos demográficos cruciales que están redefiniendo los paradigmas de consumo, interacción social y lealtad de marca. Basado en una revisión de múltiples artículos, este análisis busca ofrecer a un equipo de marketing senior de una marca deportiva global insights accionables, contextualizados para el mercado colombiano y aplicados específicamente a la categoria tennis. El objetivo es identificar oportunidades estratégicas para innovar en productos, desarrollar storytelling de marca relevante y optimizar canales de comunicación y experiencia.</p>
         </section>
 
-        <!-- El resto del contenido se agregará aquí progresivamente -->
         <section id="clasificacion-categorias">
             <h2>1. Clasificación por Categorías Clave y Síntesis de Hallazgos</h2>
             <section id="valores-creencias">
@@ -829,7 +824,7 @@
                     <li>Global: Gen Z representa el 25% de la población mundial.</li>
                 </ul>
                 <blockquote class="insight-quote insight-quote-green">"Visualiza la relevancia demográfica de estas generaciones para el mercado."</blockquote>
-                <div id="chart-demographic-pie" class="chart-container large-chart"></div>
+                <div id="chart-demographic-pie" class="chart-container pie-chart-container"></div>
             </section>
             <section id="viz-trust-comparison">
                 <h3>2.3. Trust Comparison: Niveles de Confianza (Gen Z vs Gen Alpha vs Instituciones)</h3>
@@ -962,7 +957,7 @@
                     <li>Global (2024): Gen Z: 25% de la población mundial.</li>
                 </ul>
                 <blockquote class="insight-quote insight-quote-green">"Reafirma la relevancia demográfica de estas generaciones para el mercado."</blockquote>
-                 <div id="chart-demographic-pie-2" class="chart-container large-chart"></div>
+                 <div id="chart-demographic-pie-2" class="chart-container pie-chart-container"></div>
             </section>
         </section>
         <section id="contexto-colombiano">
@@ -1176,7 +1171,7 @@
             </section>
             <section id="app-tenis-matriz">
                 <h3>4.4. Matriz de Oportunidades Categoria Tennis (Producto x Canal) y Audit de autenticidad de marca actual</h3>
-                <!-- <p><strong>Tipo de Gráfica:</strong> Matriz con ejes "Tipo de Producto/Experiencia" y "Canal/Plataforma", con celdas que indiquen la autenticidad percibida y el potencial de conexión para cada generación.</p> -->
+                
                 <p><strong>Contenido de la Matriz:</strong></p>
                 <ul>
                     <li><strong>Eje X (Canales):</strong> Comunidades de nicho (Discord/WhatsApp), Retail Físico (Concept Stores/Pop-ups), TikTok/Reels, YouTube, Instagram, Eventos IRL (Torneos, Clínicas).</li>
@@ -1184,8 +1179,7 @@
                     <li><strong>Celdas:</strong> Calificar (ej., de 1 a 5, con colores o iconos distintivos) la autenticidad actual percibida por Gen Z/Alpha para la marca en cada intersección y el potencial de conexión. Un "Audit de autenticidad" implica una evaluación interna honesta de cómo la marca es vista actualmente en cada uno de estos canales y con cada tipo de oferta, para identificar brechas y oportunidades específicas para cada generación. Por ejemplo, una marca puede tener productos de categoria tennis de alta calidad (producto), pero su presencia en TikTok es "cringe" para Gen Z (canal/autenticidad baja) mientras que es atractiva para Gen Alpha (influenciada por padres).</li>
                 </ul>
                  <div class="chart-container">
-                    <p><em>(Esta visualización será una tabla o una representación gráfica conceptual de la matriz, detallando las calificaciones y el audit.)</em></p>
-                    <!-- Aquí se podría generar una tabla HTML para representar la matriz -->
+                    
                     <table>
                         <thead>
                             <tr>
@@ -1690,7 +1684,7 @@
                         <tr>
                             <td>Identidad</td>
                             <td>Global y diversa, forjada en comunidades digitales de nicho que ofrecen privacidad, exclusividad y un fuerte sentido de pertenencia. Buscan conexiones significativas que trasciendan lo online y lo offline (62% valora integración digital-IRL). Identidad fluida, abrazan la "weirdness".</td>
-                            <td>Su identidad está fuertemente moldeada por la identidad parental Millennial, que proyecta valores y estéticas en ellos. Sus comunidades iniciales son las redes parentales. Inferencia: Más influenciados por los roles de género progresistas y la diversidad que sus padres les inculcan.</td>
+                            <td>Su identidad está fuertemente moldeada por la identidad parental Millennial, que proyecta valores y estéticas en ellos. Sus comunidades iniciais son las redes parentales. Inferencia: Más influenciados por los roles de género progresistas y la diversidad que sus padres les inculcan.</td>
                             <td>Auto-construcción y Exploración vs. Herencia Parental y Curación</td>
                         </tr>
                         <tr>
@@ -2237,16 +2231,20 @@
 
         // Funciones para renderizar gráficos Vega-Lite
         function renderVegaLiteChart(elementId, spec) {
-            vegaEmbed(elementId, spec, { actions: false }).catch(console.error);
+            if (document.querySelector(elementId)) { 
+                 vegaEmbed(elementId, spec, { actions: false}).catch(console.error);
+            } else {
+                console.warn("Elemento no encontrado para gráfico:", elementId);
+            }
         }
 
-        // Especificaciones de los gráficos (se cargarán desde JSON o se definirán aquí)
-        // Ejemplo para 2.1. Consumer Journey
+        // Especificaciones de los gráficos
+        // 2.1. Consumer Journey
         const consumerJourneySpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Consumer Journey: Inspire → Inquire → Community → Loyalty (Gen Z vs Gen Alpha)",
             "width": "container",
-            "height": 300,
+            "height": 550, 
             "data": {
                 "values": [
                     {"Etapa": "Inspire", "Generacion": "Gen Z", "Porcentaje": 62, "Detalle": "Inspirados por contenido online.", "Orden": 1},
@@ -2281,19 +2279,25 @@
                 "column": {"field": "Etapa", "type": "ordinal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}, "sort": ["Inspire", "Inquire", "Community", "Loyalty"]}
             },
             "spec": {
+                 "width": 150, 
+                 "height": 500, 
                 "layer": [
                     {
-                        "mark": {"type": "bar", "opacity": 0.7, "stroke": "black", "strokeWidth": 0.5},
+                        "mark": {"type": "bar", "stroke": "black", "strokeWidth": 0.5, "width": {"band": 0.6}},
                         "encoding": {
                             "x": {"field": "Generacion", "type": "nominal", "axis": null},
-                            "y": {"aggregate": "count", "type": "quantitative", "title": "Número de Insights", "axis": {"grid": false}},
+                            "y": {"aggregate": "count", "type": "quantitative", "title": "Número de Insights", "axis": {"grid": false, "labelAngle": -45}},
                             "color": {"field": "Generacion", "type": "nominal", "legend": {"title": "Generación"}},
                             "tooltip": [
                                 {"field": "Etapa", "type": "nominal", "title": "Etapa"},
                                 {"field": "Generacion", "type": "nominal", "title": "Generación"},
                                 {"field": "Porcentaje", "type": "quantitative", "title": "Porcentaje (si aplica)", "format": ".0f"},
                                 {"field": "Detalle", "type": "nominal", "title": "Insight Clave"}
-                            ]
+                            ],
+                            "opacity": {
+                                "condition": {"param": "stage_slider", "empty": false, "value": 0.8},
+                                "value": 0.3
+                            }
                         }
                     },
                     {
@@ -2310,7 +2314,7 @@
             },
             "resolve": {"scale": {"y": "independent"}},
             "configure_view": {"stroke": null},
-            "config": {"axis": {"grid": false}}
+            "config": {"axis": {"grid": false}, "text": {"fontSize": 10}}
         };
         renderVegaLiteChart('#chart-consumer-journey', consumerJourneySpec);
 
@@ -2318,7 +2322,7 @@
         const demographicPieSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Distribución Generacional (Gen Z)",
-            "height": 250,
+            "height": 375, 
             "width": "container",
             "data": {
                 "values": [
@@ -2332,10 +2336,13 @@
             },
             "facet": {"column": {"field": "Region", "type": "nominal", "title": null}},
             "spec": {
-                "mark": {"type": "arc", "innerRadius": 50},
+                "width": 300, 
+                "height": 300, 
+                "mark": {"type": "arc", "innerRadius": 75, "tooltip": true},
                 "encoding": {
                     "theta": {"field": "Porcentaje", "type": "quantitative", "stack": "normalize"},
                     "color": {"field": "Generacion", "type": "nominal", "legend": {"title": "Generación"}},
+                    "opacity": {"value": 0.8},
                     "tooltip": [
                         {"field": "Region", "type": "nominal"},
                         {"field": "Generacion", "type": "nominal"},
@@ -2346,59 +2353,57 @@
             "config": {"view": {"stroke": null}}
         };
         renderVegaLiteChart('#chart-demographic-pie', demographicPieSpec);
-        renderVegaLiteChart('#chart-demographic-pie-2', demographicPieSpec); // Renderiza el mismo gráfico en 2.10
+        
 
-        // 2.3. Trust Comparison
+        // 2.3. Trust Comparison - Basado en Python #1 (Simplificado)
         const trustComparisonSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": "Niveles de Confianza: Gen Z vs Gen Alpha vs Instituciones",
-            "width": "container",
-            "height": 400,
+            "title": "Confianza en Instituciones y Fuentes de Validación",
+            "width": 650, 
+            "height": 450, // Ajustado para más espacio si es necesario
             "data": {
                 "values": [
-                    {"Fuente": "Empresas Americanas (Confianza)", "Generacion": "Gen Z", "Valor": 20, "Tipo": "Confianza/Desconfianza", "Inferencia": ""},
-                    {"Fuente": "Empresas Americanas (Desconfianza)", "Generacion": "Gen Z", "Valor": 42, "Tipo": "Confianza/Desconfianza", "Inferencia": ""},
-                    {"Fuente": "Policía (Caída 2020)", "Generacion": "Gen Z", "Valor": -24, "Tipo": "Cambio en Confianza", "Inferencia": ""},
-                    {"Fuente": "Gobierno EE.UU. (Caída 2020)", "Generacion": "Gen Z", "Valor": -17, "Tipo": "Cambio en Confianza", "Inferencia": ""},
-                    {"Fuente": "Sistema Judicial (Caída 2020)", "Generacion": "Gen Z", "Valor": -14, "Tipo": "Cambio en Confianza", "Inferencia": ""},
-                    {"Fuente": "Publicidad Tradicional", "Generacion": "Gen Z", "Valor": 16, "Tipo": "Nivel de Confianza", "Inferencia": ""},
-                    {"Fuente": "Recomendación Amigos/Familia", "Generacion": "Gen Z", "Valor": 61, "Tipo": "Nivel de Confianza", "Inferencia": "Estimado basado en '3x más que anuncios'"},
-                    {"Fuente": "Expertos de la Industria", "Generacion": "Gen Z", "Valor": 60, "Tipo": "Nivel de Confianza", "Inferencia": ""},
-                    {"Fuente": "Afirmaciones de Marca", "Generacion": "Gen Z", "Valor": 40, "Tipo": "Nivel de Confianza", "Inferencia": ""},
-                    {"Fuente": "Afirmaciones de Marca (Millennials)", "Generacion": "Millennials", "Valor": 58, "Tipo": "Nivel de Confianza", "Inferencia": ""},
-                    {"Fuente": "Marcas Alineadas a Valores", "Generacion": "Gen Alpha", "Valor": 80, "Tipo": "Nivel de Confianza", "Inferencia": "Inferencia: Alta"},
-                    {"Fuente": "Comunidades Parentales", "Generacion": "Gen Alpha", "Valor": 70, "Tipo": "Nivel de Confianza", "Inferencia": "Inferencia: Alta"},
-                    {"Fuente": "Publicidad Tradicional", "Generacion": "Gen Alpha", "Valor": 10, "Tipo": "Nivel de Confianza", "Inferencia": "Inferencia: Baja"},
-                    {"Fuente": "Expertos con Ética", "Generacion": "Gen Alpha", "Valor": 75, "Tipo": "Nivel de Confianza", "Inferencia": "Inferencia: Alta"}
+                    {"Fuente": "Empresas estadounidenses", "Generacion": "Gen Z", "NivelConfianza": 20, "Tipo": "Confianza/Desconfianza"},
+                    {"Fuente": "Empresas estadounidenses", "Generacion": "Gen Alpha", "NivelConfianza": 50, "Tipo": "Confianza/Desconfianza"},
+                    {"Fuente": "Policía (caída 2020)", "Generacion": "Gen Z", "NivelConfianza": -24, "Tipo": "Cambio en Confianza"},
+                    {"Fuente": "Gobierno EE.UU. (caída 2020)", "Generacion": "Gen Z", "NivelConfianza": -17, "Tipo": "Cambio en Confianza"},
+                    {"Fuente": "Sistema judicial (caída 2020)", "Generacion": "Gen Z", "NivelConfianza": -14, "Tipo": "Cambio en Confianza"},
+                    {"Fuente": "Publicidad tradicional", "Generacion": "Gen Z", "NivelConfianza": 16, "Tipo": "Nivel de Confianza"},
+                    {"Fuente": "Publicidad tradicional", "Generacion": "Gen Alpha", "NivelConfianza": 10, "Tipo": "Nivel de Confianza"},
+                    {"Fuente": "Recomendación amigos/familia", "Generacion": "Gen Z", "NivelConfianza": 48, "Tipo": "Nivel de Confianza"},
+                    {"Fuente": "Recomendación amigos/familia", "Generacion": "Gen Alpha", "NivelConfianza": 70, "Tipo": "Nivel de Confianza"},
+                    {"Fuente": "Expertos de la industria", "Generacion": "Gen Z", "NivelConfianza": 60, "Tipo": "Nivel de Confianza"},
+                    {"Fuente": "Expertos de la industria", "Generacion": "Gen Alpha", "NivelConfianza": 75, "Tipo": "Nivel de Confianza"}, 
+                    {"Fuente": "Marcas alineadas a valores", "Generacion": "Gen Alpha", "NivelConfianza": 80, "Tipo": "Nivel de Confianza"},
+                    {"Fuente": "Comunidades parentales", "Generacion": "Gen Alpha", "NivelConfianza": 85, "Tipo": "Nivel de Confianza"}
                 ]
             },
-            "mark": "bar",
+            "mark": {"type": "bar", "tooltip": true, "opacity": 0.8},
             "encoding": {
-                "x": {"field": "Valor", "type": "quantitative", "title": "Porcentaje de Confianza / Cambio (%)"},
-                "y": {"field": "Fuente", "type": "nominal", "sort": "-x", "title": "Fuente / Institución"},
+                "x": {
+                    "field": "NivelConfianza", "type": "quantitative", 
+                    "title": "Nivel de Confianza (%)", 
+                    "scale": {"domain": [-30, 100]}
+                },
+                "y": {"field": "Fuente", "type": "nominal", "sort": null, "title": "Fuente/Institución", "axis": {"labelLimit": 300}},
                 "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
+                "yOffset": {"field": "Generacion"}, 
                 "tooltip": [
                     {"field": "Fuente", "type": "nominal"},
                     {"field": "Generacion", "type": "nominal"},
-                    {"field": "Valor", "type": "quantitative"},
-                    {"field": "Tipo", "type": "nominal"},
-                    {"field": "Inferencia", "type": "nominal"}
+                    {"field": "NivelConfianza", "type": "quantitative"}
                 ]
             },
-            "facet": {
-                 "row": {"field": "Generacion", "type": "nominal", "header": {"title": "Generación"}}
-            },
-            "resolve": {"scale": {"y": "independent"}},
             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        renderVegaLiteChart('#chart-trust-comparison', trustComparisonSpec);
+        //renderVegaLiteChart('#chart-trust-comparison', trustComparisonSpec); // Comentada para prueba individual
 
         // 2.4. Platform Usage Heatmap
         const platformUsageSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Intensidad de Uso por Plataforma (Inspiración vs Investigación)",
             "width": "container",
-            "height": 350,
+            "height": 525, 
             "data": {
                 "values": [
                     {"Plataforma": "TikTok", "TipoUso": "Inspiración", "Generacion": "Gen Z", "Intensidad": 5, "Detalle": "Principal fuente de entretenimiento, nuevo motor de búsqueda"},
@@ -2412,12 +2417,13 @@
                     {"Plataforma": "Grupos Padres Online", "TipoUso": "Investigación", "Generacion": "Gen Alpha", "Intensidad": 3, "Detalle": "Recomendaciones de pares parentales"}
                 ]
             },
-            "mark": "rect",
+            "mark": {"type": "rect", "tooltip": true},
             "encoding": {
                 "x": {"field": "TipoUso", "type": "nominal", "title": "Tipo de Uso"},
                 "y": {"field": "Plataforma", "type": "nominal", "sort": {"encoding": "color", "order": "descending"}},
                 "color": {"field": "Intensidad", "type": "quantitative", "scale": {"scheme": "viridis"}, "title": "Intensidad (1-5)"},
                 "facet": {"column": {"field": "Generacion", "type": "nominal", "title": "Generación"}},
+                "opacity": {"value": 0.8},
                 "tooltip": [
                     {"field": "Plataforma", "type": "nominal"},
                     {"field": "TipoUso", "type": "nominal"},
@@ -2426,60 +2432,56 @@
                     {"field": "Detalle", "type": "nominal"}
                 ]
             },
-             "resolve": {"scale": {"y": "independent"}},
+             "resolve": {"scale": {"y": "independent", "x":"independent"}},
             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
         renderVegaLiteChart('#chart-platform-heatmap', platformUsageSpec);
 
-        // 2.5. Sports Engagement
+        // 2.5. Sports Engagement - ACTUALIZADO SEGUN PYTHON (#3 del código python, corresponde a 2.5) (Simplificado)
         const sportsEngagementSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": "Motivaciones y Comportamientos Deportivos",
-            "width": "container",
-            "height": 400,
+            "title": "Motivaciones y Comportamientos Deportivos (Gen Z vs Gen Alpha)",
+            "width": 650, 
+            "height": 450, // Ajustado
             "data": {
                 "values": [
-                    {"Comportamiento": "Especialización (1 deporte)", "Generacion": "Gen Z", "Valor": 40, "TipoDato": "Porcentaje", "Detalle": "40% de estudiantes atletas juegan un solo deporte."},
-                    {"Comportamiento": "Especialización (para mejorar)", "Generacion": "Gen Z", "Valor": 37, "TipoDato": "Porcentaje", "Detalle": "37% se especializa para mejorar."},
-                    {"Comportamiento": "Deporte por Becas", "Generacion": "Gen Z", "Valor": 71, "TipoDato": "Porcentaje", "Detalle": "71% juega por becas universitarias."},
-                    {"Comportamiento": "Prefieren deportes no tradicionales", "Generacion": "Gen Z", "Valor": 56, "TipoDato": "Porcentaje", "Detalle": "56% prefiere deportes \"no tradicionales\"."},
-                    {"Comportamiento": "No ven deporte en vivo", "Generacion": "Gen Z", "Valor": 39, "TipoDato": "Porcentaje", "Detalle": "39% no ve deporte en vivo."},
-                    {"Comportamiento": "Prefieren ver fuera estadio", "Generacion": "Gen Z", "Valor": 69, "TipoDato": "Porcentaje", "Detalle": "69% prefiere ver deportes fuera del estadio."},
-                    {"Comportamiento": "Uso de Tecnología/Datos", "Generacion": "Gen Z", "Valor": 80, "TipoDato": "Escala", "Detalle": "Uso extensivo de wearables y análisis de datos."},
-                    {"Comportamiento": "Uso de Apps de Bienestar", "Generacion": "Gen Z", "Valor": 70, "TipoDato": "Escala", "Detalle": "Apps como Headspace para salud mental."},
-                    {"Comportamiento": "Énfasis en Colaboración", "Generacion": "Gen Alpha", "Valor": 70, "TipoDato": "Escala", "Detalle": "Inferencia: Valoran el juego en equipo y la interacción."},
-                    {"Comportamiento": "Énfasis en Bienestar Integral", "Generacion": "Gen Alpha", "Valor": 80, "TipoDato": "Escala", "Detalle": "Inferencia: Padres fomentan un enfoque holístico de la salud."},
-                    {"Comportamiento": "Énfasis en Expresión Personal", "Generacion": "Gen Alpha", "Valor": 60, "TipoDato": "Escala", "Detalle": "Inferencia: El deporte como medio para mostrar su personalidad."},
-                    {"Comportamiento": "Contenido Curado (Educativo)", "Generacion": "Gen Alpha", "Valor": 75, "TipoDato": "Porcentaje", "Detalle": "Inferencia: Consumen contenido deportivo seleccionado por su valor educativo/moral."}
+                    {"Comportamiento": "Especialización (1 deporte)", "Generacion": "Gen Z", "Valor": 40, "TipoDato": "Porcentaje"},
+                    {"Comportamiento": "Especialización (para mejorar)", "Generacion": "Gen Z", "Valor": 37, "TipoDato": "Porcentaje"},
+                    {"Comportamiento": "Deporte por Becas", "Generacion": "Gen Z", "Valor": 71, "TipoDato": "Porcentaje"},
+                    {"Comportamiento": "Prefieren deportes no tradicionales", "Generacion": "Gen Z", "Valor": 56, "TipoDato": "Porcentaje"},
+                    {"Comportamiento": "No ven deporte en vivo", "Generacion": "Gen Z", "Valor": 39, "TipoDato": "Porcentaje"},
+                    {"Comportamiento": "Prefieren ver fuera estadio", "Generacion": "Gen Z", "Valor": 69, "TipoDato": "Porcentaje"},
+                    {"Comportamiento": "Uso de Tecnología/Datos", "Generacion": "Gen Z", "Valor": 80, "TipoDato": "Escala"},
+                    {"Comportamiento": "Uso de Apps de Bienestar", "Generacion": "Gen Z", "Valor": 70, "TipoDato": "Escala"},
+                    {"Comportamiento": "Énfasis en Colaboración", "Generacion": "Gen Alpha", "Valor": 70, "TipoDato": "Escala"},
+                    {"Comportamiento": "Énfasis en Bienestar Integral", "Generacion": "Gen Alpha", "Valor": 80, "TipoDato": "Escala"},
+                    {"Comportamiento": "Énfasis en Expresión Personal", "Generacion": "Gen Alpha", "Valor": 60, "TipoDato": "Escala"},
+                    {"Comportamiento": "Contenido Curado (Educativo)", "Generacion": "Gen Alpha", "Valor": 75, "TipoDato": "Porcentaje"}
                 ]
             },
-            "mark": "bar",
+            "mark": {"type": "bar", "tooltip": true, "opacity": 0.8},
             "encoding": {
                 "x": {"field": "Valor", "type": "quantitative", "title": "Valor / Porcentaje (%)"},
-                "y": {"field": "Comportamiento", "type": "nominal", "sort": "-x", "title": "Comportamiento/Motivación"},
+                "y": {"field": "Comportamiento", "type": "nominal", "sort": null, "title": "Comportamiento/Motivación", "axis": {"labelLimit": 300}},
                 "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
+                "xOffset": {"field": "Generacion"}, // Para agrupar
                 "tooltip": [
                     {"field": "Comportamiento", "type": "nominal"},
                     {"field": "Generacion", "type": "nominal"},
                     {"field": "Valor", "type": "quantitative"},
-                    {"field": "TipoDato", "type": "nominal"},
-                    {"field": "Detalle", "type": "nominal"}
+                    {"field": "TipoDato", "type": "nominal"}
                 ]
             },
-            "facet": {
-                "row": {"field": "Generacion", "type": "nominal", "header": {"title": "Generación"}}
-            },
-            "resolve": {"scale": {"y": "independent"}},
-            "config": {"axis": {"grid": false}, "view": {"stroke": null}}
+             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        renderVegaLiteChart('#chart-sports-engagement', sportsEngagementSpec);
+        //renderVegaLiteChart('#chart-sports-engagement', sportsEngagementSpec); // Comentada para prueba individual
 
         // 2.6. ROI Projections
         const roiProjectionsSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "ROI Projections: Impacto Esperado de Estrategias",
             "width": "container",
-            "height": 350,
+            "height": 525, 
             "data": {
                 "values": [
                     {"Estrategia": "Comunidades de Nicho", "Generacion": "Gen Z", "CostoImplementacion": 3, "ImpactoPotencial": 4, "Detalle": "Construcción de comunidades digitales exclusivas."},
@@ -2495,12 +2497,12 @@
                     {"Estrategia": "Eventos Híbridos", "Generacion": "Ambas", "CostoImplementacion": 4, "ImpactoPotencial": 4, "Detalle": "Eventos que mezclan lo físico y lo digital."}
                 ]
             },
-            "mark": {"type": "circle", "opacity": 0.8, "size": 100},
+            "mark": {"type": "circle", "opacity": 0.8, "size": 150, "tooltip": true},
             "encoding": {
                 "x": {"field": "CostoImplementacion", "type": "quantitative", "title": "Costo de Implementación (Escala 1-5)", "scale": {"domain": [1, 5]}},
                 "y": {"field": "ImpactoPotencial", "type": "quantitative", "title": "Impacto Potencial (Escala 1-5)", "scale": {"domain": [1, 5]}},
                 "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
-                "size": {"field": "ImpactoPotencial", "type": "quantitative", "legend": null},
+                "size": {"field": "ImpactoPotencial", "type": "quantitative", "legend": null, "scale": {"range": [50, 500]}},
                 "tooltip": [
                     {"field": "Estrategia", "type": "nominal"},
                     {"field": "Generacion", "type": "nominal"},
@@ -2513,28 +2515,27 @@
         };
         renderVegaLiteChart('#chart-roi-projections', roiProjectionsSpec);
 
-        // 2.7. Pyramid of Confidence
+        // 2.7. Pyramid of Confidence - ACTUALIZADO SEGUN PYTHON (#2 del código python, corresponde a 2.7) (Simplificado)
+        const trustPyramidData = [
+            {"Fuente": "Experiencias Personales", "Generacion": "Gen Z", "NivelConfianza": 60},
+            {"Fuente": "Personas como Yo", "Generacion": "Gen Z", "NivelConfianza": 61},
+            {"Fuente": "Recomendación Amigos/Familia", "Generacion": "Gen Z", "NivelConfianza": 75},
+            {"Fuente": "Expertos de la Industria", "Generacion": "Gen Z", "NivelConfianza": 60},
+            {"Fuente": "Afirmaciones de Marca", "Generacion": "Gen Z", "NivelConfianza": 40},
+            {"Fuente": "Publicidad Tradicional", "Generacion": "Gen Z", "NivelConfianza": 16},
+            {"Fuente": "Recomendaciones Padres/Comunidades Parentales", "Generacion": "Gen Alpha", "NivelConfianza": 90},
+            {"Fuente": "Expertos con Ética/Valores", "Generacion": "Gen Alpha", "NivelConfianza": 85}
+        ];
         const trustPyramidSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": "Pirámide de Confianza (Fuentes de Validación)",
-            "width": "container",
-            "height": 350,
-            "data": {
-                "values": [
-                    {"Fuente": "Experiencias Personales", "Generacion": "Gen Z", "NivelConfianza": 60},
-                    {"Fuente": "Personas como Yo", "Generacion": "Gen Z", "NivelConfianza": 61},
-                    {"Fuente": "Recomendación Amigos/Familia", "Generacion": "Gen Z", "NivelConfianza": 75},
-                    {"Fuente": "Expertos de la Industria", "Generacion": "Gen Z", "NivelConfianza": 60},
-                    {"Fuente": "Afirmaciones de Marca", "Generacion": "Gen Z", "NivelConfianza": 40},
-                    {"Fuente": "Publicidad Tradicional", "Generacion": "Gen Z", "NivelConfianza": 16},
-                    {"Fuente": "Recomendaciones Padres/Comunidades Parentales", "Generacion": "Gen Alpha", "NivelConfianza": 90},
-                    {"Fuente": "Expertos con Ética/Valores", "Generacion": "Gen Alpha", "NivelConfianza": 85}
-                ]
-            },
-            "mark": "bar",
+            "title": "Pirámide de Confianza (Fuentes de Validación - Gen Z vs Gen Alpha)",
+            "width": 400, 
+            "height": 300, // Ajustado para más espacio si es necesario 
+            "data": { "values": trustPyramidData },
+            "mark": {"type":"bar", "tooltip": true, "opacity": 0.8},
             "encoding": {
                 "x": {"field": "NivelConfianza", "type": "quantitative", "title": "Nivel de Confianza (%)"},
-                "y": {"field": "Fuente", "type": "nominal", "sort": {"encoding": "x", "order": "descending"}, "title": "Fuente de Validación"},
+                "y": {"field": "Fuente", "type": "nominal", "sort": {"field": "NivelConfianza", "op":"sum", "order": "descending"}, "title": "Fuente de Validación", "axis": {"labelLimit": 300}},
                 "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
                 "tooltip": [
                     {"field": "Fuente", "type": "nominal"},
@@ -2542,57 +2543,66 @@
                     {"field": "NivelConfianza", "type": "quantitative"}
                 ]
             },
-            "facet": {
-                "column": {"field": "Generacion", "type": "nominal", "header": {"title": "Generación"}}
+            "facet": { // Se mantiene el facet, es clave para la "pirámide" visual por generación
+                "column": {"field": "Generacion", "type": "nominal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}}
             },
              "resolve": {"scale": {"y": "independent"}},
-            "config": {"axis": {"grid": false}, "view": {"stroke": null}}
+             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec);
+        //renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec); // Comentada para prueba individual
 
-        // 2.8. Ecosystem of Communities
+        // 2.8. Ecosystem of Communities - ACTUALIZADO SEGUN PYTHON (#4 del código python, corresponde a 2.8) (Simplificado)
         const ecosystemCommunitiesSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Ecosistema de Comunidades (Espacios Digitales Preferidos)",
-            "width": "container",
-            "height": 400,
+            "width": 450, 
+            "height": 350, 
             "data": {
                 "values": [
-                    {"Comunidad": "Discord Servers", "Generacion": "Gen Z", "Relevancia": 5, "Detalle": "Alta pertenencia (79%), privacidad/exclusividad (73%), integración digital-IRL (62%)."},
-                    {"Comunidad": "Slack Channels", "Generacion": "Gen Z", "Relevancia": 3, "Detalle": "Para colaboración y nichos profesionales."},
-                    {"Comunidad": "Patreons/Substacks", "Generacion": "Gen Z", "Relevancia": 4, "Detalle": "Apoyo a creadores, contenido exclusivo."},
-                    {"Comunidad": "Grupos Chat Cifrados", "Generacion": "Gen Z", "Relevancia": 4, "Detalle": "Interacciones íntimas y seguras."},
-                    {"Comunidad": "Grupos de Texto", "Generacion": "Gen Z", "Relevancia": 3, "Detalle": "Conexión directa."},
-                    {"Comunidad": "Tumblr Communities", "Generacion": "Gen Z", "Relevancia": 2, "Detalle": "Nicho, estética."},
-                    {"Comunidad": "Podcasts", "Generacion": "Gen Z", "Relevancia": 3, "Detalle": "Contenido de nicho, voces creíbles."},
-                    {"Comunidad": "Comunidades Parentales Online", "Generacion": "Gen Alpha", "Relevancia": 5, "Detalle": "Altamente relevantes para decisiones parentales."},
-                    {"Comunidad": "Plataformas Educativas Interactivas", "Generacion": "Gen Alpha", "Relevancia": 4, "Detalle": "Plataformas de aprendizaje gamificadas."},
-                    {"Comunidad": "Canales YouTube Curados Padres", "Generacion": "Gen Alpha", "Relevancia": 4, "Detalle": "Contenido de video seguro y seleccionado."}
+                    {"Comunidad": "Discord Servers", "Generacion": "Gen Z", "Relevancia": 5},
+                    {"Comunidad": "Slack Channels", "Generacion": "Gen Z", "Relevancia": 3},
+                    {"Comunidad": "Patreons/Substacks", "Generacion": "Gen Z", "Relevancia": 4},
+                    {"Comunidad": "Grupos Chat Cifrados", "Generacion": "Gen Z", "Relevancia": 4},
+                    {"Comunidad": "Grupos de Texto", "Generacion": "Gen Z", "Relevancia": 3},
+                    {"Comunidad": "Tumblr Communities", "Generacion": "Gen Z", "Relevancia": 2},
+                    {"Comunidad": "Podcasts", "Generacion": "Gen Z", "Relevancia": 3},
+                    {"Comunidad": "Comunidades Parentales Online", "Generacion": "Gen Alpha", "Relevancia": 5},
+                    {"Comunidad": "Plataformas Educativas Interactivas", "Generacion": "Gen Alpha", "Relevancia": 4},
+                    {"Comunidad": "Canales YouTube Curados Padres", "Generacion": "Gen Alpha", "Relevancia": 4}
                 ]
             },
-            "mark": {"type": "circle", "opacity": 0.8},
+            "mark": {"type": "circle", "size": 200, "opacity": 0.8, "tooltip": true},
             "encoding": {
-                "x": {"field": "Relevancia", "type": "quantitative", "title": "Nivel de Relevancia (1-5)", "scale": {"domain": [1, 5]}},
-                "y": {"field": "Comunidad", "type": "nominal", "sort": "-x"},
-                "size": {"field": "Relevancia", "type": "quantitative", "title": "Relevancia", "legend": null, "scale": {"range": [50, 500]}},
+                "x": {"field": "Relevancia", "type": "quantitative", "title": "Nivel de Relevancia (1-5)", "scale": {"domain": [1, 5.2]}},
+                "y": {"field": "Comunidad", "type": "nominal", "sort": {"field": "Relevancia", "op":"sum", "order": "descending"}, "title": "Tipo de Comunidad/Plataforma", "axis": {"labelLimit": 300}},
                 "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
+                 "size": {"field": "Relevancia", "type": "quantitative", "title": "Relevancia", "legend": null, "scale": {"range": [100, 800]}}, 
                 "tooltip": [
                     {"field": "Comunidad", "type": "nominal"},
                     {"field": "Generacion", "type": "nominal"},
-                    {"field": "Relevancia", "type": "quantitative"},
-                    {"field": "Detalle", "type": "nominal"}
+                    {"field": "Relevancia", "type": "quantitative"}
                 ]
             },
-            "facet": {
-                "column": {"field": "Generacion", "type": "nominal", "header": {"title": "Generación"}}
+            "facet": { // Se mantiene el facet
+                "column": {"field": "Generacion", "type": "nominal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}}
             },
             "resolve": {"scale": {"y": "independent"}},
             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        renderVegaLiteChart('#chart-ecosystem-communities', ecosystemCommunitiesSpec);
+        //renderVegaLiteChart('#chart-ecosystem-communities', ecosystemCommunitiesSpec); // Comentada para prueba individual
+        
+        // --- INICIO DE PRUEBA INDIVIDUAL --- 
+        renderVegaLiteChart('#chart-trust-comparison', trustComparisonSpec);      // GRÁFICA 2.3 EN PRUEBA
 
-        // 2.9. Mapa de Valores - Será conceptual, sin gráfico dinámico por ahora.
-        // El placeholder div #chart-values-map ya está en el HTML.
+        // Comentadas para la prueba:
+        // renderVegaLiteChart('#chart-sports-engagement', sportsEngagementSpec);    // Gráfica 2.5 
+        // renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec);            // Gráfica 2.7 
+        // renderVegaLiteChart('#chart-ecosystem-communities', ecosystemCommunitiesSpec); // Gráfica 2.8 
+        // --- FIN DE PRUEBA INDIVIDUAL --- 
+
+
+        // Gráfica 2.9 es HTML/CSS, no usa renderVegaLiteChart.
+        renderVegaLiteChart('#chart-demographic-pie-2', demographicPieSpec);      // 2.10 (Repetición de 2.2)
 
     </script>
 </body>
