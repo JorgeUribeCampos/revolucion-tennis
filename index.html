@@ -2595,43 +2595,69 @@
             renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec);
             
 
-            // 2.8. Ecosystem of Communities - ACTUALIZADO SEGUN PYTHON (#4 del código python, corresponde a 2.8) (Simplificado)
+        // 2.8. Ecosystem of Communities - REVISED to single scatter/bubble chart
             const ecosystemCommunitiesSpec = {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                 "title": "Ecosistema de Comunidades (Espacios Digitales Preferidos)",
-                "width": 450, 
-                "height": 350, 
+            "width": "container",
+            "height": 600, 
                 "data": {
-                    "values": [
-                        {"Comunidad": "Discord Servers", "Generacion": "Gen Z", "Relevancia": 5},
-                        {"Comunidad": "Slack Channels", "Generacion": "Gen Z", "Relevancia": 3},
-                        {"Comunidad": "Patreons/Substacks", "Generacion": "Gen Z", "Relevancia": 4},
-                        {"Comunidad": "Grupos Chat Cifrados", "Generacion": "Gen Z", "Relevancia": 4},
-                        {"Comunidad": "Grupos de Texto", "Generacion": "Gen Z", "Relevancia": 3},
-                        {"Comunidad": "Tumblr Communities", "Generacion": "Gen Z", "Relevancia": 2},
-                        {"Comunidad": "Podcasts", "Generacion": "Gen Z", "Relevancia": 3},
-                        {"Comunidad": "Comunidades Parentales Online", "Generacion": "Gen Alpha", "Relevancia": 5},
-                        {"Comunidad": "Plataformas Educativas Interactivas", "Generacion": "Gen Alpha", "Relevancia": 4},
-                        {"Comunidad": "Canales YouTube Curados Padres", "Generacion": "Gen Alpha", "Relevancia": 4}
+                "values": [ 
+                    {"Comunidad": "Discord Servers", "Generacion": "Gen Z", "Relevancia": 5, "Detalle": "Alta pertenencia (79%), privacidad/exclusividad (73%), integración digital-IRL (62%)."},
+                    {"Comunidad": "Slack Channels", "Generacion": "Gen Z", "Relevancia": 3, "Detalle": "Para colaboración y nichos profesionales."},
+                    {"Comunidad": "Patreons/Substacks", "Generacion": "Gen Z", "Relevancia": 4, "Detalle": "Apoyo a creadores, contenido exclusivo."},
+                    {"Comunidad": "Grupos Chat Cifrados", "Generacion": "Gen Z", "Relevancia": 4, "Detalle": "Interacciones íntimas y seguras."},
+                    {"Comunidad": "Grupos de Texto", "Generacion": "Gen Z", "Relevancia": 3, "Detalle": "Conexión directa."},
+                    {"Comunidad": "Tumblr Communities", "Generacion": "Gen Z", "Relevancia": 2, "Detalle": "Nicho, estética."},
+                    {"Comunidad": "Podcasts", "Generacion": "Gen Z", "Relevancia": 3, "Detalle": "Contenido de nicho, voces creíbles."},
+                    {"Comunidad": "Comunidades Parentales Online", "Generacion": "Gen Alpha", "Relevancia": 5, "Detalle": "Altamente relevantes para decisiones parentales."},
+                    {"Comunidad": "Plataformas Educativas Interactivas", "Generacion": "Gen Alpha", "Relevancia": 4, "Detalle": "Plataformas de aprendizaje gamificadas."},
+                    {"Comunidad": "Canales YouTube Curados Padres", "Generacion": "Gen Alpha", "Relevancia": 4, "Detalle": "Contenido de video seguro y seleccionado."}
                     ]
                 },
-                "mark": {"type": "circle", "size": 200, "opacity": 0.8, "tooltip": true},
+            "mark": {"type": "circle", "opacity": 0.8, "tooltip": true}, 
                 "encoding": {
-                    "x": {"field": "Relevancia", "type": "quantitative", "title": "Nivel de Relevancia (1-5)", "scale": {"domain": [1, 5.2]}},
-                    "y": {"field": "Comunidad", "type": "nominal", "sort": {"field": "Relevancia", "op":"sum", "order": "descending"}, "title": "Tipo de Comunidad/Plataforma", "axis": {"labelLimit": 300}},
-                    "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
-                     "size": {"field": "Relevancia", "type": "quantitative", "title": "Relevancia", "legend": null, "scale": {"range": [100, 800]}}, 
+                "y": {
+                    "field": "Comunidad", 
+                    "type": "nominal", 
+                    "sort": {"field": "Relevancia", "op": "sum", "order": "descending"}, 
+                    "title": "Tipo de Comunidad/Plataforma", 
+                    "axis": {"labelLimit": 300}
+                },
+                "x": {
+                    "field": "Relevancia", 
+                    "type": "quantitative", 
+                    "title": "Nivel de Relevancia (1-5)", 
+                    "scale": {"domain": [1, 5.5], "zero": false}
+                },
+                "color": {
+                    "field": "Generacion", 
+                    "type": "nominal", 
+                    "title": "Generación",
+                    "scale": {"domain": ["Gen Z", "Gen Alpha"], "range": ["#FF6B6B", "#4ECDC4"]}
+                },
+                "size": {
+                    "field": "Relevancia", 
+                    "type": "quantitative", 
+                    "title": "Relevancia", 
+                    "scale": {"range": [100, 1500]}
+                },
+                "yOffset": { 
+                    "field": "Generacion",
+                    "type": "nominal"
+                },
                     "tooltip": [
                         {"field": "Comunidad", "type": "nominal"},
                         {"field": "Generacion", "type": "nominal"},
-                        {"field": "Relevancia", "type": "quantitative"}
+                    {"field": "Relevancia", "type": "quantitative"},
+                    {"field": "Detalle", "type": "nominal"}
                     ]
                 },
-                "facet": { 
-                    "column": {"field": "Generacion", "type": "nominal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}}
-                },
-                "resolve": {"scale": {"y": "independent"}},
-                "config": {"axis": {"grid": false}, "view": {"stroke": null}}
+            "config": {
+                "axisY": {"minExtent": 200}, 
+                "view": {"stroke": null},
+                "legend": {"orient": "top"}
+            }
             };
             renderVegaLiteChart('#chart-ecosystem-communities', ecosystemCommunitiesSpec); 
             
