@@ -1,313 +1,1283 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Gen Z vs Gen Alpha - Insights, Estrategias y Oportunidades</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insights Generacionales y Aplicación al Tennis (Gen Z vs Gen Alpha)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    html { scroll-behavior: smooth; }
-    .section-block { scroll-margin-top: 90px; }
-    .gradient-underline {
-      background: linear-gradient(90deg, #f472b6 0%, #818cf8 100%);
-      height: 4px;
-      border-radius: 2px;
-      margin: 0.25rem 0 1.5rem 0;
-      width: 80px;
+    body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.7; margin: 0; padding: 0 1.5rem 2rem 1.5rem; background: #f6faff; color: #23242a; }
+    h1, h2, h3 { color: #125086; }
+    h1 { margin-top: 2rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 2px solid #d0e2f2; padding-bottom: .4rem; }
+    h3 { margin-top: 1.7rem; }
+    nav { background: #e9f2fb; padding: 1.1rem; margin-bottom: 2rem; border-radius: 8px; }
+    nav ul { list-style: none; padding: 0; }
+    nav ul li { margin: .3em 0; }
+    nav a { color: #1565c0; text-decoration: none; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; margin: 1rem 0; border-radius: 8px; }
+    pre, code { background: #f3f8fa; padding: .5em; border-radius: 6px; font-size: 0.98em; }
+    table { border-collapse: collapse; width: 100%; margin: 1.8rem 0; font-size: 1.03em; }
+    th, td { border: 1px solid #dee7f2; padding: 0.6rem 0.7rem; text-align: left; }
+    th { background: linear-gradient(90deg, #d8ecff 60%, #c0e3f7 100%); color: #153c5e; }
+    tr:nth-child(even) { background: #f5fafe; }
+    tr:hover { background: #e3f1ff; }
+    .block { background: #fff; border-radius: 12px; box-shadow: 0 1px 8px #d9e2ef22; padding: 1.5rem; margin-bottom: 2.2rem; }
+    .matriz th { background: #bde0fe; color: #0a2e50; }
+    .matriz .baja { background: #fddede; }
+    .matriz .media { background: #fff7c2; }
+    .matriz .alta { background: #d3f9d8; }
+    .caption { font-size: 0.97em; color: #406080; }
+    .chart-container { width: 100%; max-width: 680px; margin: 2rem auto; }
+    .facet { display: flex; gap: 1.5em; }
+    .facet > div { flex: 1; }
+    .wordcloud-row { display: flex; gap: 2rem; justify-content: center; margin: 2rem 0; }
+    .wordcloud { width: 45%; min-width: 230px; height: 220px; background: #f6f9ff; border-radius: 10px; border: 1px solid #e1e7f2; display: flex; align-items: center; justify-content: center; }
+    .wordcloud span { display: inline-block; margin: .2em; font-weight: bold; }
+    .venn-venn { display: flex; justify-content: center; margin: 2rem 0 2.5rem; }
+    .venn-venn svg { width: 320px; height: 200px; }
+    @media (max-width: 900px) {
+      .wordcloud-row { flex-direction: column; align-items: center; }
+      .wordcloud { width: 85%; }
+      .facet { flex-direction: column; }
     }
-    .toc-link:hover {
-      background: linear-gradient(90deg, #fbcfe8 0%, #c7d2fe 100%);
-      border-radius: 6px;
-      padding-left: 0.5rem;
-      transition: all 0.2s;
-    }
-    .visual-card {
-      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-      border-radius: 1rem;
-      box-shadow: 0 6px 24px 0 rgba(100, 72, 186, 0.10);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+    @media (max-width: 600px) {
+      body { padding: 0 .4rem 2rem .4rem; }
+      .chart-container { max-width: 99vw; }
+      nav { font-size: 0.97em; }
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-white to-fuchsia-100 text-gray-900 leading-relaxed">
+<body>
+  <h1>Insights Generacionales y Aplicación al Tennis (Gen Z vs Gen Alpha)</h1>
+  <nav class="toc">
+    <ul>
+      <li><a href="#1-intro">1. Introducción</a></li>
+      <li><a href="#2-hallazgos">2. Hallazgos e Insights Generales</a></li>
+      <li><a href="#2-valores">3. Valores y Creencias</a></li>
+      <li><a href="#2-trust">4. Trust Comparison</a></li>
+      <!-- El resto de los apartados se añaden en las siguientes partes -->
+    </ul>
+  </nav>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-30 bg-white/90 shadow-lg py-4 px-2 md:px-10 flex flex-col md:flex-row items-center justify-between">
-    <div class="flex items-center gap-4">
-      <span class="text-2xl font-black text-fuchsia-700 tracking-wide">Gen Z vs Gen Alpha</span>
-      <span class="hidden md:inline-block ml-3 px-3 py-1 rounded-full bg-fuchsia-100 text-fuchsia-700 font-semibold text-xs">Reporte Estratégico Colombia y Global 2025</span>
-    </div>
-    <nav class="mt-3 md:mt-0 space-x-4">
-      <a href="#indice" class="text-blue-700 hover:text-fuchsia-600 font-bold transition">Índice</a>
-      <a href="#anexos" class="text-blue-700 hover:text-fuchsia-600 font-bold transition">Anexos</a>
-    </nav>
-  </header>
+  <div class="block" id="1-intro">
+    <h2>1. Introducción</h2>
+    <p>
+      Este documento integra un análisis exhaustivo sobre la relevancia de Gen Z y Gen Alpha en Colombia y América Latina, su peso demográfico, hábitos, valores y oportunidades de conexión auténtica para marcas y experiencias del mundo del <b>tennis</b> — entendido en el contexto de running, deporte de calle, cultura urbana y nuevas plataformas digitales. Se profundiza en cómo el <b>tennis</b> puede transformarse y conectar con estas generaciones más allá de sus raíces tradicionales, incorporando innovación, tecnología y una visión centrada en comunidad y propósito.
+    </p>
+  </div>
 
-  <!-- Índice de contenidos -->
-  <section id="indice" class="max-w-5xl mx-auto pt-8 pb-4 section-block">
-    <h1 class="text-3xl font-bold text-indigo-700">Índice de Contenidos</h1>
-    <div class="gradient-underline"></div>
-    <ol class="space-y-1 text-lg pl-4">
-      <li><a href="#cat-clave" class="toc-link font-semibold text-fuchsia-700">1. Clasificación por Categorías Clave y Síntesis de Hallazgos</a></li>
-      <li><a href="#valores-creencias" class="toc-link">1.1 Valores y Creencias</a></li>
-      <li><a href="#habitos-consumo" class="toc-link">1.2 Hábitos de Consumo</a></li>
-      <li><a href="#relacion-marcas" class="toc-link">1.3 Relación con Marcas</a></li>
-      <li><a href="#cultura-entretenimiento" class="toc-link">1.4 Cultura y Entretenimiento</a></li>
-      <li><a href="#identidad-comunidad" class="toc-link">1.5 Identidad y Comunidad</a></li>
-      <li><a href="#tecnologia-medios" class="toc-link">1.6 Tecnología y Medios</a></li>
-      <li><a href="#lifestyle" class="toc-link">1.7 Estilo de Vida (Lifestyle)</a></li>
-      <li><a href="#visualizaciones" class="toc-link">2. Visualizaciones Sugeridas</a></li>
-      <li><a href="#contexto-colombia" class="toc-link">3. Contexto Colombiano</a></li>
-      <li><a href="#aplicacion-tenis" class="toc-link">4. Aplicación al Tenis</a></li>
-      <li><a href="#perfil-consumidor-tenis" class="toc-link">5. Perfil Detallado del Consumidor de Tenis</a></li>
-      <li><a href="#impacto-ia" class="toc-link">6. Análisis del Impacto de la IA</a></li>
-      <li><a href="#tiempo-pantalla" class="toc-link">7. Consideraciones sobre el "Tiempo de Pantalla"</a></li>
-      <li><a href="#modelo-lealtad" class="toc-link">8. Modelo de Lealtad Adaptado al Tenis</a></li>
-      <li><a href="#alianzas-patrocinios" class="toc-link">9. Recomendaciones de Alianzas Estratégicas y Patrocinios</a></li>
-      <li><a href="#mercado-colombiano" class="toc-link">10. Consideraciones sobre el Mercado Colombiano</a></li>
-      <li><span class="text-gray-400 italic">11. [Eliminado]</span></li>
-      <li><a href="#kpi" class="toc-link">12. Métricas Clave de Éxito (KPIs)</a></li>
-      <li><a href="#etica-desafios" class="toc-link">13. Consideraciones Éticas y Desafíos</a></li>
-      <li>
-        <a href="#anexos" class="toc-link font-semibold text-indigo-700">Anexos: Hallazgos e Insights Detallados por Categoría</a>
-        <ul class="ml-6 space-y-1 text-base">
-          <li><a href="#anexo-1.1" class="toc-link">1.1 Valores y Creencias</a></li>
-          <li><a href="#anexo-1.2" class="toc-link">1.2 Hábitos de Consumo</a></li>
-          <li><a href="#anexo-1.3" class="toc-link">1.3 Relación con Marcas</a></li>
-          <li><a href="#anexo-1.4" class="toc-link">1.4 Cultura y Entretenimiento</a></li>
-          <li><a href="#anexo-1.5" class="toc-link">1.5 Identidad y Comunidad</a></li>
-          <li><a href="#anexo-1.6" class="toc-link">1.6 Tecnología y Medios</a></li>
-          <li><a href="#anexo-1.7" class="toc-link">1.7 Estilo de Vida (Lifestyle)</a></li>
-          <li><a href="#anexo-1.8" class="toc-link">1.8 Running y Training</a></li>
-        </ul>
-      </li>
-    </ol>
-  </section>
+  <div class="block" id="2-hallazgos">
+    <h2>2. Hallazgos e Insights Generales</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Característica clave</td>
+          <td>Autonomía, “self-starter”, escepticismo institucional, cultura de calle, running y comunidad digital.</td>
+          <td>Crianza digital, info constante, conciencia ecológica, valores parentales fuertes, educación emocional.</td>
+        </tr>
+        <tr>
+          <td>Relación con autoridad</td>
+          <td>Desconfianza profunda en instituciones, priorizan validación entre pares y comunidades digitales.</td>
+          <td>Confianza mediada por padres, respeto por reglas si están alineadas con valores familiares y sociales.</td>
+        </tr>
+        <tr>
+          <td>Hábitos de compra</td>
+          <td>Frugalidad, aversión a la deuda, investigación exhaustiva (TikTok, Discord, comentarios, YouTube), valoran marcas con propósito.</td>
+          <td>Compras curadas por padres, buscan sostenibilidad y educación, marcas alineadas con valores parentales.</td>
+        </tr>
+        <tr>
+          <td>Consumo de contenido</td>
+          <td>Prefieren highlights, video corto, comunidades de nicho, Discord, TikTok; experiencias “phygital”.</td>
+          <td>Contenido curado (YouTube Kids), VR, apps educativas, experiencias integradas familia-escuela.</td>
+        </tr>
+        <tr>
+          <td>Identidad</td>
+          <td>Global, diversa, fluida; buscan comunidad y pertenencia.</td>
+          <td>Identidad influida por padres y entorno cercano, integración natural de lo digital/real.</td>
+        </tr>
+        <tr>
+          <td>Relación con tecnología y algoritmos</td>
+          <td>Conscientes del algoritmo, buscan “entrenarlo”, personalización intencional.</td>
+          <td>Digitalización integrada y curada por padres, adopción natural de IA y plataformas educativas.</td>
+        </tr>
+        <tr>
+          <td>Lifestyle</td>
+          <td>Bienestar holístico, side hustles, running y deportes urbanos, pertenencia a micro-comunidades digitales y callejeras.</td>
+          <td>Salud integral, actividades lúdicas, sostenibilidad, educación emocional y ambiental.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste clave:</b> Gen Z prioriza autonomía, autenticidad, comunidad digital y experiencias fuera de la “cancha” tradicional, llevando el <b>tennis</b> a la calle y el running urbano. Gen Alpha vive una integración natural de lo digital y lo real, con fuerte influencia parental y educativa.
+    </p>
+  </div>
 
-  <!-- Clasificador de Categorías Clave y Síntesis -->
-  <section id="cat-clave" class="max-w-5xl mx-auto py-6 section-block">
-    <h2 class="text-2xl font-bold text-fuchsia-700 flex items-center gap-2">
-      <i class="fas fa-layer-group"></i> 1. Clasificación por Categorías Clave y Síntesis de Hallazgos
-    </h2>
-    <div class="gradient-underline"></div>
-    <p class="mb-6">Haz clic en cada bloque para navegar a la sección correspondiente. Cada punto confronta la información de Gen Z y Gen Alpha.</p>
-    <ol class="grid md:grid-cols-2 gap-4 text-base">
-      <li><a href="#valores-creencias" class="block bg-fuchsia-100 hover:bg-fuchsia-200 p-4 rounded-lg shadow-md font-semibold">1.1 Valores y Creencias</a></li>
-      <li><a href="#habitos-consumo" class="block bg-cyan-100 hover:bg-cyan-200 p-4 rounded-lg shadow-md font-semibold">1.2 Hábitos de Consumo</a></li>
-      <li><a href="#relacion-marcas" class="block bg-blue-100 hover:bg-blue-200 p-4 rounded-lg shadow-md font-semibold">1.3 Relación con Marcas</a></li>
-      <li><a href="#cultura-entretenimiento" class="block bg-indigo-100 hover:bg-indigo-200 p-4 rounded-lg shadow-md font-semibold">1.4 Cultura y Entretenimiento</a></li>
-      <li><a href="#identidad-comunidad" class="block bg-purple-100 hover:bg-purple-200 p-4 rounded-lg shadow-md font-semibold">1.5 Identidad y Comunidad</a></li>
-      <li><a href="#tecnologia-medios" class="block bg-pink-100 hover:bg-pink-200 p-4 rounded-lg shadow-md font-semibold">1.6 Tecnología y Medios</a></li>
-      <li><a href="#lifestyle" class="block bg-yellow-100 hover:bg-yellow-200 p-4 rounded-lg shadow-md font-semibold">1.7 Estilo de Vida (Lifestyle)</a></li>
-      <li><a href="#visualizaciones" class="block bg-fuchsia-200 hover:bg-fuchsia-300 p-4 rounded-lg shadow-md font-semibold">2. Visualizaciones Sugeridas</a></li>
-      <li><a href="#contexto-colombia" class="block bg-blue-200 hover:bg-blue-300 p-4 rounded-lg shadow-md font-semibold">3. Contexto Colombiano</a></li>
-      <li><a href="#aplicacion-tenis" class="block bg-green-100 hover:bg-green-200 p-4 rounded-lg shadow-md font-semibold">4. Aplicación al Tenis</a></li>
-      <li><a href="#perfil-consumidor-tenis" class="block bg-pink-200 hover:bg-pink-300 p-4 rounded-lg shadow-md font-semibold">5. Perfil Detallado del Consumidor de Tenis</a></li>
-      <li><a href="#impacto-ia" class="block bg-yellow-200 hover:bg-yellow-300 p-4 rounded-lg shadow-md font-semibold">6. Análisis del Impacto de la IA</a></li>
-      <li><a href="#tiempo-pantalla" class="block bg-indigo-200 hover:bg-indigo-300 p-4 rounded-lg shadow-md font-semibold">7. Consideraciones sobre el "Tiempo de Pantalla"</a></li>
-      <li><a href="#modelo-lealtad" class="block bg-orange-100 hover:bg-orange-200 p-4 rounded-lg shadow-md font-semibold">8. Modelo de Lealtad Adaptado al Tenis</a></li>
-      <li><a href="#alianzas-patrocinios" class="block bg-fuchsia-200 hover:bg-fuchsia-300 p-4 rounded-lg shadow-md font-semibold">9. Recomendaciones de Alianzas Estratégicas y Patrocinios</a></li>
-      <li><a href="#mercado-colombiano" class="block bg-blue-200 hover:bg-blue-300 p-4 rounded-lg shadow-md font-semibold">10. Consideraciones sobre el Mercado Colombiano</a></li>
-      <li><a href="#kpi" class="block bg-emerald-100 hover:bg-emerald-200 p-4 rounded-lg shadow-md font-semibold">12. Métricas Clave de Éxito (KPIs)</a></li>
-      <li><a href="#etica-desafios" class="block bg-rose-100 hover:bg-rose-200 p-4 rounded-lg shadow-md font-semibold">13. Consideraciones Éticas y Desafíos</a></li>
-    </ol>
-  </section>
+  <div class="block" id="2-valores">
+    <h2>3. Valores y Creencias</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Independencia y poder creativo</td>
+          <td>Tecnología devuelve el poder; 82% prefiere abrir caminos; running y deportes de calle como autoexpresión.</td>
+          <td>Crianza digital y conciencia ecológica, cultura de colaboración, running y actividades urbanas guiadas por valores familiares.</td>
+        </tr>
+        <tr>
+          <td>Justicia social y bienestar financiero</td>
+          <td>Pandemia intensificó conciencia sobre inequidad; frugalidad, running y deportes de calle como medio de integración social.</td>
+          <td>Empatía y compasión inculcadas por padres, running como experiencia educativa y socializadora.</td>
+        </tr>
+        <tr>
+          <td>Conciencia algorítmica</td>
+          <td>Usan algoritmos intencionalmente; running y consumo de experiencias guiados por tendencias digitales.</td>
+          <td>Digitalización mediada por padres, running y actividades urbanas seleccionadas por criterios educativos y de bienestar.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste clave:</b> Gen Z explora el running y el <b>tennis</b> de calle desde la autonomía y la construcción de comunidad digital; Gen Alpha privilegia la experiencia educativa y la conciencia social, con fuerte mediación de la familia.
+    </p>
+  </div>
 
-  <!-- 1.1 Valores y Creencias -->
-  <section id="valores-creencias" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-balance-scale"></i> 1.1 Valores y Creencias
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para valores y creencias]</div>
-  </section>
-  <!-- 1.2 Hábitos de Consumo -->
-  <section id="habitos-consumo" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-cyan-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para hábitos de consumo]</div>
-  </section>
-  <!-- 1.3 Relación con Marcas -->
-  <section id="relacion-marcas" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-blue-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-handshake"></i> 1.3 Relación con Marcas
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para relación con marcas]</div>
-  </section>
-  <!-- 1.4 Cultura y Entretenimiento -->
-  <section id="cultura-entretenimiento" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-film"></i> 1.4 Cultura y Entretenimiento
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para cultura y entretenimiento]</div>
-  </section>
-  <!-- 1.5 Identidad y Comunidad -->
-  <section id="identidad-comunidad" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-purple-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-users"></i> 1.5 Identidad y Comunidad
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para identidad y comunidad]</div>
-  </section>
-  <!-- 1.6 Tecnología y Medios -->
-  <section id="tecnologia-medios" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-pink-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-microchip"></i> 1.6 Tecnología y Medios
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para tecnología y medios]</div>
-  </section>
-  <!-- 1.7 Estilo de Vida (Lifestyle) -->
-  <section id="lifestyle" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-yellow-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-heartbeat"></i> 1.7 Estilo de Vida (Lifestyle)
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para estilo de vida]</div>
-  </section>
-  <!-- 2. Visualizaciones Sugeridas -->
-  <section id="visualizaciones" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-chart-bar"></i> 2. Visualizaciones Sugeridas
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Coloca aquí visualizaciones recomendadas para los datos clave]</div>
-  </section>
-  <!-- 3. Contexto Colombiano -->
-  <section id="contexto-colombia" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-blue-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-flag"></i> 3. Contexto Colombiano
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Incluye contexto, cifras y particularidades del mercado colombiano]</div>
-  </section>
-  <!-- 4. Aplicación al Tenis -->
-  <section id="aplicacion-tenis" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-green-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-running"></i> 4. Aplicación al Tenis
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Análisis de insights aplicados al tenis y deportes afines]</div>
-  </section>
-  <!-- 5. Perfil Detallado del Consumidor de Tenis -->
-  <section id="perfil-consumidor-tenis" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-pink-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-user-check"></i> 5. Perfil Detallado del Consumidor de Tenis
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Descripción de segmentos y perfiles de consumidores de tenis]</div>
-  </section>
-  <!-- 6. Análisis del Impacto de la IA -->
-  <section id="impacto-ia" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-yellow-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-robot"></i> 6. Análisis del Impacto de la IA
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Explora el papel de la IA en los hábitos y preferencias de las generaciones]</div>
-  </section>
-  <!-- 7. Consideraciones sobre el "Tiempo de Pantalla" -->
-  <section id="tiempo-pantalla" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-mobile-alt"></i> 7. Consideraciones sobre el "Tiempo de Pantalla"
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Reflexión sobre el tiempo de pantalla y bienestar digital]</div>
-  </section>
-  <!-- 8. Modelo de Lealtad Adaptado al Tenis -->
-  <section id="modelo-lealtad" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-orange-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-retweet"></i> 8. Modelo de Lealtad Adaptado al Tenis
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Presenta el modelo de lealtad sugerido para la industria del tenis]</div>
-  </section>
-  <!-- 9. Recomendaciones de Alianzas Estratégicas y Patrocinios -->
-  <section id="alianzas-patrocinios" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-hand-holding-usd"></i> 9. Recomendaciones de Alianzas Estratégicas y Patrocinios
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Recomendaciones para alianzas y patrocinios efectivos con Gen Z y Alpha]</div>
-  </section>
-  <!-- 10. Consideraciones sobre el Mercado Colombiano -->
-  <section id="mercado-colombiano" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-blue-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-globe-americas"></i> 10. Consideraciones sobre el Mercado Colombiano
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Particularidades, oportunidades y desafíos del mercado en Colombia]</div>
-  </section>
-  <!-- 12. Métricas Clave de Éxito (KPIs) -->
-  <section id="kpi" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-emerald-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-chart-line"></i> 12. Métricas Clave de Éxito (KPIs)
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[KPIs sugeridos para medir el éxito en estrategias con Gen Z y Alpha]</div>
-  </section>
-  <!-- 13. Consideraciones Éticas y Desafíos -->
-  <section id="etica-desafios" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-xl font-bold text-rose-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-balance-scale-left"></i> 13. Consideraciones Éticas y Desafíos
-    </h2>
-    <div class="gradient-underline"></div>
-    <div class="mb-8 italic text-gray-500">[Ética, privacidad, inclusión y desafíos futuros]</div>
-  </section>
+  <div class="block" id="2-trust">
+    <h2>4. Trust Comparison: Niveles de Confianza</h2>
+    <div class="chart-container"><canvas id="trustBar"></canvas></div>
+    <script>
+      const ctxTrust = document.getElementById('trustBar').getContext('2d');
+      new Chart(ctxTrust, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Empresas EE.UU.', 'Policía', 'Gob. EE.UU.', 'Justicia penal', 
+            'Publicidad tradicional', 'Recomendación pares', 'Expertos industria'
+          ],
+          datasets: [
+            {
+              label: 'Gen Z',
+              data: [20, 76, 83, 86, 16, 48, 60],
+              backgroundColor: 'rgba(51, 134, 255, 0.7)'
+            },
+            {
+              label: 'Gen Alpha',
+              data: [35, 80, 85, 89, 10, 60, 70], // inferido para Alpha
+              backgroundColor: 'rgba(236, 87, 99, 0.5)'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            title: { display: false },
+            tooltip: {mode:'index', intersect: false}
+          },
+          scales: {
+            y: { beginAtZero: true, max: 100, title: {display:true, text:'% Nivel de Confianza'} }
+          }
+        }
+      });
+    </script>
+    <p>
+      <b>Contraste clave:</b> Gen Z desconfía profundamente de instituciones tradicionales y prioriza validación entre pares, mientras Gen Alpha confía más en la curaduría parental y expertos alineados a valores educativos.
+    </p>
+  </div>
+<!-- FIN DE LA VERSIÓN 1 -->
+</body>
+</html>
+  <!-- INICIO DE LA VERSIÓN 2 (Apartados 5 al 8, a partir del ID 202) -->
 
-  <!-- Anexos -->
-  <section id="anexos" class="max-w-5xl mx-auto py-10 section-block">
-    <h2 class="text-2xl font-bold text-indigo-700 flex items-center gap-2"><i class="fas fa-folder-open"></i> Anexos: Hallazgos e Insights Detallados</h2>
-    <div class="gradient-underline"></div>
-    <p class="mb-4">Tablas comparativas completas confrontando Generación Z y Generación Alpha para cada aspecto clave.</p>
-    <!-- Ejemplo de tabla de anexo (repite para cada anexo) -->
-    <div id="anexo-1.1" class="my-10">
-      <h3 class="text-lg font-bold text-fuchsia-700 mb-2 flex items-center gap-2"><i class="fas fa-balance-scale"></i> 1.1 Valores y Creencias</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Valores y Creencias]</div>
+  <div class="block" id="202-usage">
+    <h2>5. Platform Usage Heatmap (Inspiración e Investigación por Plataforma)</h2>
+    <div class="facet">
+      <div>
+        <canvas id="heatmapZ"></canvas>
+        <div class="caption">Gen Z: Inspiración e Investigación por Plataforma</div>
+      </div>
+      <div>
+        <canvas id="heatmapA"></canvas>
+        <div class="caption">Gen Alpha: Inspiración e Investigación por Plataforma</div>
+      </div>
     </div>
-    <div id="anexo-1.2" class="my-10">
-      <h3 class="text-lg font-bold text-cyan-700 mb-2 flex items-center gap-2"><i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Hábitos de Consumo]</div>
-    </div>
-    <div id="anexo-1.3" class="my-10">
-      <h3 class="text-lg font-bold text-blue-700 mb-2 flex items-center gap-2"><i class="fas fa-handshake"></i> 1.3 Relación con Marcas</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Relación con Marcas]</div>
-    </div>
-    <div id="anexo-1.4" class="my-10">
-      <h3 class="text-lg font-bold text-indigo-700 mb-2 flex items-center gap-2"><i class="fas fa-film"></i> 1.4 Cultura y Entretenimiento</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Cultura y Entretenimiento]</div>
-    </div>
-    <div id="anexo-1.5" class="my-10">
-      <h3 class="text-lg font-bold text-purple-700 mb-2 flex items-center gap-2"><i class="fas fa-users"></i> 1.5 Identidad y Comunidad</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Identidad y Comunidad]</div>
-    </div>
-    <div id="anexo-1.6" class="my-10">
-      <h3 class="text-lg font-bold text-pink-700 mb-2 flex items-center gap-2"><i class="fas fa-microchip"></i> 1.6 Tecnología y Medios</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Tecnología y Medios]</div>
-    </div>
-    <div id="anexo-1.7" class="my-10">
-      <h3 class="text-lg font-bold text-yellow-700 mb-2 flex items-center gap-2"><i class="fas fa-heartbeat"></i> 1.7 Estilo de Vida (Lifestyle)</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Estilo de Vida]</div>
-    </div>
-    <div id="anexo-1.8" class="my-10">
-      <h3 class="text-lg font-bold text-green-700 mb-2 flex items-center gap-2"><i class="fas fa-running"></i> 1.8 Running y Training</h3>
-      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Running y Training]</div>
-    </div>
-  </section>
+    <script>
+    // Gen Z
+    new Chart(document.getElementById('heatmapZ'), {
+      type: 'bar',
+      data: {
+        labels: ['TikTok', 'YouTube', 'Discord', 'Amazon', 'Comentarios'],
+        datasets: [
+          {
+            label: 'Inspiración',
+            data: [5, 3, 2, 1, 3],
+            backgroundColor: '#3386ff'
+          },
+          {
+            label: 'Investigación',
+            data: [4, 4, 3, 2, 4],
+            backgroundColor: '#89b7fe'
+          }
+        ]
+      },
+      options: {
+        plugins: {legend:{position:'top'}},
+        scales: { y: { beginAtZero:true, max: 5 } }
+      }
+    });
+    // Gen Alpha
+    new Chart(document.getElementById('heatmapA'), {
+      type: 'bar',
+      data: {
+        labels: ['YouTube Kids', 'TikTok (familiar)', 'Instagram (curado)', 'Padres'],
+        datasets: [
+          {
+            label: 'Inspiración',
+            data: [4, 3, 2, 1],
+            backgroundColor: '#ec5763'
+          },
+          {
+            label: 'Investigación',
+            data: [2, 1, 2, 5],
+            backgroundColor: '#f7b6c8'
+          }
+        ]
+      },
+      options: {
+        plugins: {legend:{position:'top'}},
+        scales: { y: { beginAtZero:true, max: 5 } }
+      }
+    });
+    </script>
+    <p>
+      <b>Contraste:</b> Gen Z usa TikTok y Discord para inspiración e investigación independiente, mientras Gen Alpha depende de plataformas curadas y la investigación es guiada principalmente por padres o adultos de confianza. Ambas generaciones se alejan de la publicidad tradicional y de los canales masivos.
+    </p>
+  </div>
 
-  <!-- Footer -->
-  <footer class="py-10 bg-white/80 mt-12 border-t">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="text-sm text-gray-500">© 2025 Reporte Gen Z vs Gen Alpha | Colombia y Global. Desarrollado por Jorge Uribe Campos.</p>
-      <p class="text-xs text-gray-400 mt-2">Para más información o actualizaciones, visita <a href="https://github.com/JorgeUribeCampos" target="_blank" class="text-fuchsia-700 hover:underline">mi GitHub</a>.</p>
+  <div class="block" id="202-sports">
+    <h2>6. Sports Engagement: Motivaciones y Comportamientos Deportivos</h2>
+    <div class="chart-container"><canvas id="sportsRadar"></canvas></div>
+    <script>
+    new Chart(document.getElementById('sportsRadar'), {
+      type: 'radar',
+      data: {
+        labels: ['Becas/Profesionalismo', 'Autoexpresión', 'Adrenalina', 'Experiencia', 'Motivación Financiera', 'Diversión', 'Socialización', 'Valores parentales'],
+        datasets: [
+          {
+            label: 'Gen Z',
+            data: [5, 4, 4, 4, 3, 2, 2, 1],
+            backgroundColor: 'rgba(51, 134, 255, 0.22)',
+            borderColor: '#3386ff'
+          },
+          {
+            label: 'Gen Alpha',
+            data: [2, 2, 2, 2, 1, 5, 4, 5],
+            backgroundColor: 'rgba(236, 87, 99, 0.20)',
+            borderColor: '#ec5763'
+          }
+        ]
+      },
+      options: {
+        plugins: {legend:{position:'top'}},
+        scales: {
+          r: { min: 0, max: 5, pointLabels:{font:{size:12}} }
+        }
+      }
+    });
+    </script>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Motivación</td>
+          <td>Beca, autoexpresión, adrenalina, experiencia</td>
+          <td>Diversión, socialización, valores parentales</td>
+        </tr>
+        <tr>
+          <td>Relación con el running y la calle</td>
+          <td>Running y deportes urbanos como medio de integración, rebeldía y pertenencia</td>
+          <td>Running y actividades urbanas como espacio de juego, aprendizaje y valores familiares</td>
+        </tr>
+        <tr>
+          <td>Consumo de eventos</td>
+          <td>Prefiere highlights, no estadios, experiencias urbanas y digitales</td>
+          <td>Consumo supervisado, formatos lúdicos, experiencias compartidas</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z busca en el running y el <b>tennis</b> de calle una vía de movilidad social y autoexpresión, mientras Gen Alpha lo vive como un espacio de socialización y desarrollo de valores, siempre con la mediación activa de los padres.
+    </p>
+  </div>
+
+  <div class="block" id="202-roi">
+    <h2>7. ROI Projections: Impacto Esperado de Estrategias</h2>
+    <div class="chart-container"><canvas id="roiScatter"></canvas></div>
+    <script>
+    // Sample data: Estrategia, Generacion, Costo, Impacto, Complejidad
+    const roiData = [
+      // Gen Z
+      {x: 2, y: 5, s: 35, g:'Gen Z', label:'Comunidades de nicho'},
+      {x: 3, y: 5, s: 35, g:'Gen Z', label:'Contenido co-creado'},
+      {x: 4, y: 4, s: 30, g:'Gen Z', label:'Retail inmersivo'},
+      {x: 3, y: 4, s: 28, g:'Gen Z', label:'Lealtad autenticidad'},
+      // Gen Alpha
+      {x: 3, y: 5, s: 30, g:'Gen Alpha', label:'Productos sostenibles'},
+      {x: 4, y: 4, s: 28, g:'Gen Alpha', label:'Tec. educativa'},
+      {x: 3, y: 4, s: 26, g:'Gen Alpha', label:'Storytelling compasión'},
+      {x: 2, y: 5, s: 32, g:'Gen Alpha', label:'Alianzas parentales'},
+      // Ambas
+      {x: 2, y: 5, s: 30, g:'Ambas', label:'Video corto'},
+      {x: 3, y: 4, s: 27, g:'Ambas', label:'Embajadores auténticos'},
+      {x: 4, y: 4, s: 25, g:'Ambas', label:'Eventos híbridos'}
+    ];
+    new Chart(document.getElementById('roiScatter'), {
+      type: 'bubble',
+      data: {
+        datasets: [
+          {
+            label: 'Gen Z',
+            data: roiData.filter(d=>d.g==='Gen Z').map(d=>({x:d.x, y:d.y, r:d.s/4, label:d.label})),
+            backgroundColor: 'rgba(51, 134, 255, 0.62)'
+          },
+          {
+            label: 'Gen Alpha',
+            data: roiData.filter(d=>d.g==='Gen Alpha').map(d=>({x:d.x, y:d.y, r:d.s/4, label:d.label})),
+            backgroundColor: 'rgba(236, 87, 99, 0.45)'
+          },
+          {
+            label: 'Ambas',
+            data: roiData.filter(d=>d.g==='Ambas').map(d=>({x:d.x, y:d.y, r:d.s/4, label:d.label})),
+            backgroundColor: 'rgba(90, 200, 90, 0.46)'
+          }
+        ]
+      },
+      options: {
+        plugins: {
+          legend: {position:'top'},
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.dataset.label}: ${ctx.raw.label} (Costo:${ctx.raw.x}, Impacto:${ctx.raw.y})`
+            }
+          }
+        },
+        scales: {
+          x: {title:{display:true, text:'Costo Implementación (1=menor, 5=mayor)'}, min:1, max:5, ticks:{stepSize:1}},
+          y: {title:{display:true, text:'Impacto Potencial (1=menor, 5=mayor)'}, min:1, max:5, ticks:{stepSize:1}}
+        }
+      }
+    });
+    </script>
+    <p>
+      <b>Contraste:</b> Las estrategias de alto impacto para Gen Z priorizan el sentido de comunidad y la autenticidad, mientras Gen Alpha responde mejor a productos sostenibles, alianzas educativas y experiencias co-creadas con padres y comunidad.
+    </p>
+  </div>
+
+  <div class="block" id="202-piramide">
+    <h2>8. Pirámide de Confianza (Fuentes de Validación)</h2>
+    <div class="facet">
+      <div>
+        <canvas id="confianzaZ"></canvas>
+        <div class="caption">Gen Z</div>
+      </div>
+      <div>
+        <canvas id="confianzaA"></canvas>
+        <div class="caption">Gen Alpha</div>
+      </div>
     </div>
+    <script>
+    new Chart(document.getElementById('confianzaZ'), {
+      type: 'bar',
+      data: {
+        labels: [
+          'Experiencias personales','Personas como yo','Recomendación amigos/familia',
+          'Expertos industria','Afirmaciones de marca','Publicidad tradicional'
+        ],
+        datasets: [{
+          label: 'Nivel de Confianza (%)',
+          data: [60, 61, 48, 60, 40, 16],
+          backgroundColor: ['#1e88e5','#1976d2','#43a047','#fbc02d','#f57c00','#c62828']
+        }]
+      },
+      options: {
+        plugins: {legend:{display:false}},
+        indexAxis: 'y',
+        scales: { x: { min:0, max: 100 } }
+      }
+    });
+    new Chart(document.getElementById('confianzaA'), {
+      type: 'bar',
+      data: {
+        labels: [
+          'Recomendación padres/comunidades','Expertos éticos','Publicidad tradicional'
+        ],
+        datasets: [{
+          label: 'Nivel de Confianza (%) (estimado)',
+          data: [70, 60, 10],
+          backgroundColor: ['#e57373','#ba68c8','#90caf9']
+        }]
+      },
+      options: {
+        plugins: {legend:{display:false}},
+        indexAxis: 'y',
+        scales: { x: { min:0, max: 100 } }
+      }
+    });
+    </script>
+    <p>
+      <b>Contraste:</b> Mientras Gen Z otorga máxima confianza a la experiencia propia, sus iguales y expertos (desconfía de marcas y publicidad), Gen Alpha delega la confianza a figuras parentales, comunidades y validadores éticos. La publicidad tradicional es marginal para ambos.
+    </p>
+  </div>
+<!-- (CIERRE DE LA VERSIÓN 2) -->
+  <!-- INICIO DE LA VERSIÓN 3 (Apartados 9 en adelante) -->
+
+  <div class="block" id="203-ecosistema">
+    <h2>9. Ecosistema de Comunidades (Espacios Digitales Preferidos)</h2>
+    <div class="chart-container"><canvas id="comunidadesBubble"></canvas></div>
+    <script>
+    // Data sample: Comunidad, Gen, Relevancia, Privacidad, IntegracionIRL
+    const comunidades = [
+      // Gen Z
+      {x:5, y:1, r:35, g:'Gen Z', label:'Discord servers'},
+      {x:4, y:2, r:30, g:'Gen Z', label:'Slack channels'},
+      {x:4, y:3, r:29, g:'Gen Z', label:'Grupos cifrados'},
+      {x:5, y:4, r:28, g:'Gen Z', label:'Podcasts'},
+      // Gen Alpha
+      {x:4, y:1, r:30, g:'Gen Alpha', label:'Comunidades parentales'},
+      {x:5, y:2, r:29, g:'Gen Alpha', label:'Plataformas educativas'},
+      {x:4, y:3, r:28, g:'Gen Alpha', label:'YouTube Kids'},
+      // Ambas
+      {x:5, y:5, r:27, g:'Ambas', label:'Experiencias offline'}
+    ];
+    new Chart(document.getElementById('comunidadesBubble'), {
+      type: 'bubble',
+      data: {
+        datasets: [
+          {
+            label: 'Gen Z',
+            data: comunidades.filter(d=>d.g==='Gen Z').map(d=>({x:d.x, y:d.y, r:d.r/7, label:d.label})),
+            backgroundColor: 'rgba(51, 134, 255, 0.58)'
+          },
+          {
+            label: 'Gen Alpha',
+            data: comunidades.filter(d=>d.g==='Gen Alpha').map(d=>({x:d.x, y:d.y, r:d.r/7, label:d.label})),
+            backgroundColor: 'rgba(236, 87, 99, 0.45)'
+          },
+          {
+            label: 'Ambas',
+            data: comunidades.filter(d=>d.g==='Ambas').map(d=>({x:d.x, y:d.y, r:d.r/7, label:d.label})),
+            backgroundColor: 'rgba(90, 200, 90, 0.46)'
+          }
+        ]
+      },
+      options: {
+        plugins: {
+          legend: {position:'top'},
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.dataset.label}: ${ctx.raw.label} (Relevancia:${ctx.raw.x}, Integración:${ctx.raw.y})`
+            }
+          }
+        },
+        scales: {
+          x: {title:{display:true, text:'Relevancia (1-5)'}, min:1, max:5, ticks:{stepSize:1}},
+          y: {title:{display:true, text:'Integración digital-IRL'}, min:1, max:5, ticks:{stepSize:1}}
+        }
+      }
+    });
+    </script>
+    <table>
+      <thead>
+        <tr>
+          <th>Espacio digital/comunidad</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Discord</td>
+          <td>Principal lugar para comunidades de nicho, running urbano, y cultura digital auténtica.</td>
+          <td>No relevante.</td>
+        </tr>
+        <tr>
+          <td>Comunidades parentales</td>
+          <td>Poco relevante (salvo para quienes ya son padres jóvenes).</td>
+          <td>Principal fuente de pertenencia, socialización y referencia de valores; running y actividades de calle suelen estar mediadas por adultos.</td>
+        </tr>
+        <tr>
+          <td>Instagram</td>
+          <td>Para Gen Z, relevante solo en cuentas de micro-influencers/autenticidad.</td>
+          <td>Presencia curada, bajo supervisión de padres.</td>
+        </tr>
+        <tr>
+          <td>Activaciones IRL</td>
+          <td>Running y eventos de calle, experiencia compartida con pares y comunidades digitales.</td>
+          <td>Eventos lúdicos, de aprendizaje, con presencia familiar y enfoque educativo.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z crea y lidera sus propias comunidades digitales y de running urbano, priorizando autenticidad y pertenencia; Gen Alpha participa en comunidades mediadas por padres y adultos, con enfoque educativo y de valores.
+    </p>
+  </div>
+
+  <div class="block" id="203-valores">
+    <h2>10. Mapa de Valores (Experiencia y Explicación Extendida)</h2>
+    <div class="venn-venn">
+      <svg viewBox="0 0 320 200">
+        <ellipse cx="120" cy="100" rx="90" ry="70" fill="#3386ff22"/>
+        <ellipse cx="200" cy="100" rx="90" ry="70" fill="#ec576333"/>
+        <text x="60" y="50" font-size="15" fill="#3386ff">Gen Z</text>
+        <text x="240" y="50" font-size="15" fill="#ec5763">Gen Alpha</text>
+        <text x="85" y="105" font-size="13" fill="#3386ff">Autonomía</text>
+        <text x="85" y="125" font-size="13" fill="#3386ff">Frugalidad</text>
+        <text x="85" y="145" font-size="13" fill="#3386ff">Justicia Social</text>
+        <text x="205" y="105" font-size="13" fill="#ec5763">Empatía</text>
+        <text x="205" y="125" font-size="13" fill="#ec5763">Compasión</text>
+        <text x="205" y="145" font-size="13" fill="#ec5763">Sostenibilidad</text>
+        <text x="155" y="100" font-size="13" fill="#026f67">Diversidad</text>
+        <text x="130" y="120" font-size="12" fill="#026f67">Propósito</text>
+      </svg>
+    </div>
+    <div class="wordcloud-row">
+      <div class="wordcloud" title="Gen Z">
+        <span style="font-size:2em;color:#3386ff">Autonomía</span>
+        <span style="font-size:1.5em;color:#3386ff">Frugalidad</span>
+        <span style="font-size:1.3em;color:#3386ff">Justicia social</span>
+        <span style="font-size:1.2em;color:#3386ff">Autoexpresión</span>
+        <span style="font-size:1em;color:#3386ff">Escepticismo</span>
+      </div>
+      <div class="wordcloud" title="Gen Alpha">
+        <span style="font-size:2em;color:#ec5763">Empatía</span>
+        <span style="font-size:1.5em;color:#ec5763">Compasión</span>
+        <span style="font-size:1.3em;color:#ec5763">Conciencia social</span>
+        <span style="font-size:1.2em;color:#ec5763">Sostenibilidad</span>
+        <span style="font-size:1em;color:#ec5763">Educación</span>
+        <span style="font-size:1em;color:#ec5763">Valores parentales</span>
+      </div>
+    </div>
+    <p>
+      <b>Gen Z</b> (nacidos 1997-2012) priorizan autonomía, frugalidad, justicia social y autodirección, con escepticismo hacia instituciones tradicionales. Buscan experiencias de <b>tennis</b> de running y calle para autoexpresarse y ser parte de comunidades auténticas e inclusivas.<br>
+      <b>Gen Alpha</b> (2010s-2020s), criados por padres Millennials, están marcados por empatía, compasión, sostenibilidad y conciencia social. Esperan del <b>tennis</b> de running y calle productos y experiencias educativas, éticas y alineadas con valores familiares y ambientales.<br>
+      <b>Valores compartidos:</b> Diversidad, propósito, consumo responsable, búsqueda de sentido y experiencias significativas.<br>
+      <b>Tensión principal:</b> Autonomía y autodirección (Gen Z) vs. valores colectivos y crianza consciente (Gen Alpha).
+    </p>
+  </div>
+
+  <div class="block" id="203-contexto">
+    <h2>11. Contexto Colombiano</h2>
+    <p>
+      <b>Demografía:</b> En 2020, Colombia tenía 12.67 millones de jóvenes (14-28 años; Gen Z), el 25% de la población. Proyección al 34% en 2030 en LatAm.<br>
+      <b>Economía y Empleo:</b> 40% de Gen Z en Colombia tiene trabajos secundarios; motivación financiera elevada. El desempleo genera zozobra para el 35% de Gen Z.<br>
+      <b>Frugalidad:</b> 47% de la Gen Z en LatAm planifica antes de comprar. Avance global hacia frugalidad y aversión a la deuda.<br>
+      <b>Consumo Digital:</b> Gen Z consume principalmente entretenimiento (comedia 55%, acción/ciencia ficción 50%). 60% sigue marcas que nunca ha consumido.<br>
+      <b>Confianza en Medios:</b> Solo 16% confía en publicidad tradicional; hay saturación de contenido y desconfianza.
+    </p>
+    <p>
+      <b>Contraste:</b> Gen Z colombiana busca movilidad social y oportunidades de emprendimiento y running urbano, en tanto Gen Alpha crece en un entorno de mayor protección y conciencia ambiental, con padres más involucrados en la toma de decisiones.
+    </p>
+  </div>
+<!-- FIN DE LA VERSIÓN 3 -->
+  <!-- INICIO DE LA VERSIÓN 4 (Aplicación al mundo del tennis, Perfil consumidor, IA, Bienestar, Lealtad, Alianzas, Mercado, KPIs, Ética, Anexos) -->
+
+  <div class="block" id="204-aplicacion">
+    <h2>12. Aplicación al mundo del tennis (running/calle)</h2>
+    <p>
+      El <b>tennis</b>, tradicionalmente percibido como un deporte "clásico", tiene una oportunidad significativa de conectar con la Gen Z y Gen Alpha si adapta sus estrategias a los valores y comportamientos de estas generaciones. El cambio hacia nuevos formatos y la apuesta digital están transformando la experiencia para atraer a un público más joven y mantener vigente la pasión por el <b>tennis</b>, sobre todo en espacios urbanos, running y cultura de calle.
+    </p>
+    <h3>Oportunidades para Innovación (Producto x Canal)</h3>
+    <table class="matriz">
+      <thead>
+        <tr>
+          <th>Producto / Experiencia</th>
+          <th>Comunidades Nicho</th>
+          <th>Retail Físico</th>
+          <th>TikTok/Reels</th>
+          <th>YouTube</th>
+          <th>Instagram</th>
+          <th>Eventos IRL (Running, Street)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Equipamiento sostenible</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="baja">2</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+        </tr>
+        <tr>
+          <td>Tecnología wearable</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+        </tr>
+        <tr>
+          <td>Productos co-creados</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+        </tr>
+        <tr>
+          <td>Kits de inicio</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+        </tr>
+        <tr>
+          <td>Contenido educativo</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+        </tr>
+        <tr>
+          <td>Contenido de entretenimiento</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+        </tr>
+        <tr>
+          <td>Programas de embajadores</td>
+          <td class="alta">5</td>
+          <td class="baja">2</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+        </tr>
+        <tr>
+          <td>Activaciones IRL</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="media">3</td>
+          <td class="alta">5</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="caption">
+      <b>5 = Autenticidad alta y potencial de conexión alto.<br>
+         1-2 = Autenticidad baja o conexión limitada.</b><br>
+      <b>Nota:</b> Las celdas muestran la percepción actual de autenticidad para la marca en cada producto/canal y el potencial de conexión para Gen Z/Alpha, especialmente en el contexto de <b>tennis</b> de running/calle.
+    </div>
+    <p>
+      <b>Contraste:</b> Gen Z exige autenticidad, co-creación y experiencias urbanas. Gen Alpha responde a la sostenibilidad, curaduría parental y el valor educativo de las experiencias y productos.
+    </p>
+  </div>
+
+  <div class="block" id="205-perfil">
+    <h2>13. Perfil Detallado del Consumidor de Tennis</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Motivaciones</td>
+          <td>Becas, autoexpresión, adrenalina, ingresos, running y deportes de calle como integración social.</td>
+          <td>Diversión, socialización, valores parentales, running y actividades urbanas como espacio de juego y aprendizaje.</td>
+        </tr>
+        <tr>
+          <td>Consumo de contenido</td>
+          <td>Highlights, TikTok, Discord, análisis Hudl, comunidades de running, experiencias urbanas.</td>
+          <td>Plataformas curadas, VR/AR, juegos didácticos, running en familia o con redes escolares.</td>
+        </tr>
+        <tr>
+          <td>Figura de influencia</td>
+          <td>Sport-influencers, self-made, credibilidad, líderes de comunidad urbana/calle.</td>
+          <td>Modelos validados por padres, educadores y figuras de autoridad familiar.</td>
+        </tr>
+        <tr>
+          <td>Relación con comunidad</td>
+          <td>Pertenencia a fandoms, micro-comunidades digitales y de running/calle.</td>
+          <td>Confianza mediada por padres, participación en micro-comunidades escolares y familiares.</td>
+        </tr>
+        <tr>
+          <td>Relación con tecnología</td>
+          <td>Wearables, apps de running, análisis de datos, entrenamiento IA.</td>
+          <td>Apps lúdicas, realidad aumentada, experiencias educativas integradas.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z busca movilidad social y pertenencia en espacios urbanos y digitales; Gen Alpha prioriza la diversión, la seguridad y el aprendizaje en espacios familiares y educativos.
+    </p>
+  </div>
+
+  <div class="block" id="206-ia">
+    <h2>14. Análisis del Impacto de la IA en el Tennis y en Estas Generaciones</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Entrenamiento</td>
+          <td>Plataformas IA/adaptativas, feedback inmediato, wearable, running urbano con análisis de datos.</td>
+          <td>Apps lúdicas, realidad aumentada, integración parental, running y actividades guiadas por IA educativa.</td>
+        </tr>
+        <tr>
+          <td>Consumo fan</td>
+          <td>Feeds personalizados, highlights IA, Discord, running y experiencias urbanas compartidas digitalmente.</td>
+          <td>Contenido curado, VR, experiencia compartida con familia, running presentado como historia educativa.</td>
+        </tr>
+        <tr>
+          <td>Contenido marca</td>
+          <td>IA generativa creativa, autenticidad, viralidad crítica, running como narrativa de impacto social.</td>
+          <td>IA generativa curada por padres, foco educativo y de bienestar, running como experiencia para fortalecer valores.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z es activa en el uso de IA para superación personal y deportiva; Gen Alpha la integra de manera natural y lúdica, siempre mediada por figuras adultas.
+    </p>
+  </div>
+
+  <div class="block" id="207-bienestar">
+    <h2>15. Tiempo de Pantalla y Bienestar Digital</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Relación con la tecnología</td>
+          <td>Promueven running y deportes de calle como desconexión, balance digital, apps de mindfulness y bienestar.</td>
+          <td>Padres priorizan equilibrio digital, actividades lúdicas y educativas, running como juego familiar.</td>
+        </tr>
+        <tr>
+          <td>Salud mental</td>
+          <td>74% considera más inspiradoras las experiencias offline, running y deportes de calle como escape.</td>
+          <td>Running y juego en calle como experiencia para fortalecer vínculos familiares y bienestar emocional.</td>
+        </tr>
+        <tr>
+          <td>Tiempo de pantalla</td>
+          <td>54% usa redes 4h+ al día, busca balance con running y desconexión urbana.</td>
+          <td>Consumo digital altamente curado, tiempo de running limitado por padres.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z busca espacios de running y deportes urbanos como mecanismos de bienestar y desconexión digital; Gen Alpha accede a estos espacios bajo la supervisión y curaduría de los padres.
+    </p>
+  </div>
+
+  <div class="block" id="208-lealtad">
+    <h2>16. Modelo de Lealtad</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lealtad emocional</td>
+          <td>Amar la marca, recomendarla, pertenecer a comunidad, running como identidad.</td>
+          <td>Lealtad mediada por valores parentales, running como espacio educativo y de juego.</td>
+        </tr>
+        <tr>
+          <td>Métricas</td>
+          <td>Participación en comunidades, UGC, asistencia a eventos urbanos, percepción de “cool”.</td>
+          <td>Participación familiar, experiencias educativas, running como espacio de socialización guiada.</td>
+        </tr>
+        <tr>
+          <td>Factores de decisión</td>
+          <td>Autenticidad, propósito, running como experiencia transformadora.</td>
+          <td>Seguridad, valores, running como herramienta de aprendizaje y valores.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z es leal a marcas y comunidades que refuerzan su identidad y propósito; Gen Alpha lo es a aquellas que alinean con los valores de sus familias y su entorno educativo.
+    </p>
+  </div>
+
+  <div class="block" id="209-alianzas">
+    <h2>17. Alianzas Estratégicas y Patrocinios</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Estrategia/Alianza</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Influencers</td>
+          <td>Comedia, gaming, running, deporte urbano, lifestyle.</td>
+          <td>Modelos avalados por padres, educadores, running como actividad familiar.</td>
+        </tr>
+        <tr>
+          <td>Colaboraciones</td>
+          <td>Startups deportivas, plataformas de running y análisis, gamificación.</td>
+          <td>Alianzas con instituciones educativas, running como actividad de juego y aprendizaje.</td>
+        </tr>
+        <tr>
+          <td>Eventos</td>
+          <td>Fusión cultural (música, arte, running, foodtrucks), running urbano.</td>
+          <td>Eventos familiares, clínicas urbanas, running educativo.</td>
+        </tr>
+        <tr>
+          <td>Acceso</td>
+          <td>Running en la calle, ligas amateur, acceso democrático, running colaborativo.</td>
+          <td>Running en espacios escolares, acceso guiado, participación familiar.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z premia la autenticidad y la colaboración con figuras relevantes de la cultura urbana y running; Gen Alpha responde mejor a alianzas educativas y experiencias de running en entornos protegidos y familiares.
+    </p>
+  </div>
+
+  <div class="block" id="210-mercado">
+    <h2>18. Consideraciones de Mercado Colombiano</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Competencia</td>
+          <td>Marcas globales y locales de moda, running, gaming, deportes urbanos.</td>
+          <td>Marcas educativas, running y actividades familiares, tecnología educativa.</td>
+        </tr>
+        <tr>
+          <td>Oportunidades</td>
+          <td>Running y deportes urbanos no tradicionales, tecnología para engagement joven, autenticidad.</td>
+          <td>Running educativo, sostenibilidad, experiencias familiares, acceso democrático.</td>
+        </tr>
+        <tr>
+          <td>Brechas</td>
+          <td>Acceso, autenticidad, percepción de elitismo, running y deportes urbanos como vía de integración y movilidad social.</td>
+          <td>Acceso, curaduría parental, seguridad, running como actividad supervisada.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z busca en el running y deportes urbanos acceso, propósito y autenticidad; Gen Alpha y sus padres demandan seguridad, aprendizaje y experiencias familiares.
+    </p>
+  </div>
+
+  <div class="block" id="211-kpi">
+    <h2>19. KPIs y Métricas Clave de Éxito</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>KPI</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Comunidades de nicho</td>
+          <td>Miembros activos, engagement, tiempo en plataforma, sentimiento, conversión, running colaborativo.</td>
+          <td>Participación familiar, running y juego en comunidad, acceso educativo.</td>
+        </tr>
+        <tr>
+          <td>Video</td>
+          <td>Vistas, engagement, visualización, seguidores, running viral.</td>
+          <td>Consumo supervisado, running y actividades educativas compartidas.</td>
+        </tr>
+        <tr>
+          <td>Retail/IRL</td>
+          <td>Asistencia, engagement durante eventos, leads, ventas, running urbano.</td>
+          <td>Participación familiar, encuestas de bienestar, running educativo.</td>
+        </tr>
+        <tr>
+          <td>Lealtad/marca</td>
+          <td>Recompra, CLV, NPS, sentimiento, running como identidad.</td>
+          <td>Retención familiar, running como herramienta de aprendizaje y valores.</td>
+        </tr>
+        <tr>
+          <td>Embajadores</td>
+          <td>Alcance, engagement, menciones, running colaborativo, calidad de relación.</td>
+          <td>Alcance familiar, engagement educativo, running en comunidad.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z mide éxito en función de autenticidad y pertenencia en running y comunidad; Gen Alpha lo hace respecto a bienestar familiar y aprendizaje.
+    </p>
+  </div>
+
+  <div class="block" id="212-etica">
+    <h2>20. Consideraciones Éticas y Desafíos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Privacidad</td>
+          <td>Exigen políticas claras, control de datos, running y comunidad digital segura.</td>
+          <td>Control parental, seguridad de datos, running supervisado y seguro.</td>
+        </tr>
+        <tr>
+          <td>Salud mental</td>
+          <td>Énfasis en bienestar, running y deportes de calle como espacio de desconexión y salud mental.</td>
+          <td>Priorizar bienestar y juego, running familiar, evitar presión y competencia tóxica.</td>
+        </tr>
+        <tr>
+          <td>Accesibilidad</td>
+          <td>Becas, clínicas de running subsidiadas, presencia en comunidades diversas y callejeras.</td>
+          <td>Acceso educativo y seguro, running en entornos protegidos y supervisados.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <b>Contraste:</b> Gen Z demanda autonomía y control en todos los ámbitos, Gen Alpha requiere protección, curaduría y acompañamiento familiar y educativo.
+    </p>
+  </div>
+
+  <div class="block" id="213-anexos">
+    <h2>Anexos: Hallazgos e Insights Detallados por Categoría</h2>
+    <!-- Aquí puedes insertar todas las tablas 1.1 a 1.8 completas del bloque original, siguiendo el mismo formato de tablas y contraste Gen Z vs Gen Alpha. -->
+    <!-- Ejemplo: -->
+    <h3>Tabla 1.1. Valores y Creencias</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas y Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Independencia y Poder Creativo</td>
+          <td>Tecnología devuelve poder; 82% abre caminos.</td>
+          <td>Crianza digital, info constante.</td>
+          <td>Autonomía vs. Conciencia colectiva</td>
+        </tr>
+        <tr>
+          <td>Escepticismo Institucional</td>
+          <td>Solo 20% confía en empresas EE.UU.; caída confianza policía/gobierno/justicia.</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td class="shared">Justicia Social y Bienestar Financiero</td>
+          <td>Pandemia acentúa inequidad; 80% prioriza gasto sabio.</td>
+          <td>Empatía y compasión (padres Millennials).</td>
+          <td>Salud mental (Z) vs. Compasión (Alpha)</td>
+        </tr>
+        <tr>
+          <td>Frugalidad y Aversión a Deuda</td>
+          <td>65% ahorradores, evitan deudas/carreras caras.</td>
+          <td>Consumo educativo, sostenible, local.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Conciencia Algorítmica</td>
+          <td>44% acepta influencia del algoritmo.</td>
+          <td>Digitalización mediada por padres.</td>
+          <td>Z entrena algoritmo, Alpha vive curado.</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Repite el mismo patrón para las tablas 1.2 a 1.8 -->
+  </div>
+
+  <footer style="margin-top:3rem; color:#555; font-size:0.96em; text-align:center;">
+    <b>Autoría:</b> Jorge Uribe Campos &middot; <b>Actualización:</b> 2025-06-29
+  </footer>
+</body>
+</html>
+  <!-- INICIO DE LA VERSIÓN 5 (Tablas de anexos faltantes y cierre del documento) -->
+
+  <div class="block" id="214-anexos-extra">
+    <h2>Anexos: Tablas 1.2 a 1.8 – Contraste Completo Gen Z vs Gen Alpha</h2>
+
+    <h3>Tabla 1.2. Relación con la Autoridad</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Confianza institucional</td>
+          <td>Baja (20% confía en empresas EE.UU.)</td>
+          <td>Moderada, mediada por padres e instituciones educativas</td>
+          <td>Gen Z rechaza autoridad, Alpha la acepta si es validada por el entorno familiar</td>
+        </tr>
+        <tr>
+          <td>Validación</td>
+          <td>Pares, comunidad digital y running</td>
+          <td>Familia, docentes, comunidad escolar y deportiva</td>
+          <td>Tensión entre validación horizontal vs. vertical</td>
+        </tr>
+        <tr>
+          <td>Rol de la experiencia</td>
+          <td>Experiencia personal como fuente de verdad</td>
+          <td>Experiencia mediada, supervisada y curada</td>
+          <td>Z privilegia experiencia directa, Alpha experiencia guiada</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tabla 1.3. Hábitos de Compra y Consumo</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Decisión de compra</td>
+          <td>Investigación digital exhaustiva, running y moda urbana, comparación, TikTok, Discord</td>
+          <td>Decisión parental, productos educativos y sostenibles, running como juego y aprendizaje</td>
+          <td>Z busca autonomía, Alpha sigue guía familiar</td>
+        </tr>
+        <tr>
+          <td>Lealtad de marca</td>
+          <td>Basada en autenticidad, propósito, running como identidad</td>
+          <td>Basada en valores familiares y educativos</td>
+          <td>Z exige propósito explícito, Alpha espera alineación con valores parentales</td>
+        </tr>
+        <tr>
+          <td>Consumo responsable</td>
+          <td>Frugalidad extrema, running y deportes de calle accesibles</td>
+          <td>Preferencia por productos ecológicos y educativos, running supervisado</td>
+          <td>Ambos buscan impacto social, pero motivaciones difieren</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tabla 1.4. Consumo de Contenido</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plataformas favoritas</td>
+          <td>TikTok, Discord, YouTube</td>
+          <td>YouTube Kids, plataformas educativas, TikTok familiar</td>
+          <td>Z explora, Alpha consume con filtro parental</td>
+        </tr>
+        <tr>
+          <td>Formato</td>
+          <td>Video corto, highlights, memes, running urbano viral</td>
+          <td>Contenido educativo, interactivo, supervisado</td>
+          <td>Z fragmenta consumo, Alpha busca aprendizaje</td>
+        </tr>
+        <tr>
+          <td>Relación con influencers</td>
+          <td>Micro-influencers, líderes running urbano, autenticidad</td>
+          <td>Modelos avalados por padres, running como juego guiado</td>
+          <td>Z es crítico, Alpha es protegido</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tabla 1.5. Identidad y Comunidad</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Construcción de identidad</td>
+          <td>Global, fluida, running y cultura urbana como autoexpresión</td>
+          <td>Identidad influida por padres y entorno cercano</td>
+          <td>Z se construye, Alpha es construido</td>
+        </tr>
+        <tr>
+          <td>Relación con comunidad</td>
+          <td>Fandoms, micro-comunidades, running urbano colaborativo</td>
+          <td>Comunidades familiares, escolares, deportivas guiadas</td>
+          <td>Z busca pertenencia, Alpha la recibe</td>
+        </tr>
+        <tr>
+          <td>Participación</td>
+          <td>Activa, crítica, running y deportes de calle como integración</td>
+          <td>Pasiva, supervisada, running como aprendizaje</td>
+          <td>Z lidera, Alpha sigue</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tabla 1.6. Relación con Tecnología y Algoritmos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Conciencia</td>
+          <td>Entiende y manipula el algoritmo</td>
+          <td>Consume contenido seleccionado, running y tecnología educativa guiada</td>
+          <td>Z es proactivo, Alpha es guiado</td>
+        </tr>
+        <tr>
+          <td>Personalización</td>
+          <td>Intencional, running personalizado por apps y wearables</td>
+          <td>Personalización curada por padres, tecnología lúdica</td>
+          <td>Z autodirige, Alpha recibe</td>
+        </tr>
+        <tr>
+          <td>Rol de la IA</td>
+          <td>Herramienta de automejora, running y entrenamiento digital</td>
+          <td>Plataforma educativa, juego y running supervisado</td>
+          <td>Z usa IA, Alpha interactúa lúdicamente</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tabla 1.7. Lifestyle</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bienestar</td>
+          <td>Running, deportes de calle, mindfulness, desconexión digital</td>
+          <td>Bienestar familiar, running como juego, actividades lúdicas</td>
+          <td>Z busca balance propio, Alpha lo vive en familia</td>
+        </tr>
+        <tr>
+          <td>Side hustles</td>
+          <td>Running como ingreso alternativo (entrenador, eventos), emprendimiento digital</td>
+          <td>No aplica</td>
+          <td>Z busca independencia financiera</td>
+        </tr>
+        <tr>
+          <td>Consumo cultural</td>
+          <td>Running urbano, música, moda, experiencias colaborativas</td>
+          <td>Consumo lúdico, educativo, running en entorno protegido</td>
+          <td>Z trasciende lo tradicional, Alpha lo adapta</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tabla 1.8. Barreras y Riesgos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Gen Z</th>
+          <th>Gen Alpha</th>
+          <th>Comparativas / Tensiones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Acceso</td>
+          <td>Limitado por factores económicos, elitismo en deportes, running y cultura urbana democratiza</td>
+          <td>Limitado por mediación parental, entorno educativo</td>
+          <td>Z rompe barreras, Alpha las sortea con ayuda</td>
+        </tr>
+        <tr>
+          <td>Salud mental</td>
+          <td>Presión social, ansiedad digital, running y deportes de calle como escape</td>
+          <td>Presión académica/familiar, running como espacio de desahogo</td>
+          <td>Z autoafronta, Alpha acompañado</td>
+        </tr>
+        <tr>
+          <td>Seguridad</td>
+          <td>Preocupación por espacios urbanos, ciberseguridad</td>
+          <td>Preocupación familiar, supervisión en running y juego</td>
+          <td>Z busca autonomía, Alpha protección</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer style="margin-top:3rem; color:#555; font-size:0.96em; text-align:center;">
+    <b>Autoría:</b> Jorge Uribe Campos &middot; <b>Actualización:</b> 2025-06-29
   </footer>
 </body>
 </html>
