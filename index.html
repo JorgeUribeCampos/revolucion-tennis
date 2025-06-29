@@ -26,20 +26,40 @@
     .toc a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.2s; }
     .toc a:hover, .toc a.active { color: #fbc02d; text-decoration: underline; }
     .block { background: #fff; border-radius: 12px; box-shadow: 0 1px 8px #d9e2ef22; padding: 1.5rem; margin-bottom: 2.2rem; }
-    table { border-collapse: collapse; width: 100%; margin: 1.8rem 0; font-size: 1.03em; }
-    th, td { border: 1px solid #dee7f2; padding: 0.6rem 0.7rem; text-align: left; }
-    th { background: linear-gradient(90deg, #d8ecff 60%, #c0e3f7 100%); color: #153c5e; }
-    tr:nth-child(even) { background: #f5fafe; }
-    tr:hover { background: #e3f1ff; }
     h2 { margin-top: 0; }
     h3 { margin-bottom: 0.6em; }
+
+    /* TABLA: diseño y color */
+    table { border-collapse: collapse; width: 100%; margin: 1.8rem 0; font-size: 1.03em; }
+    th, td { border: 1px solid #dee7f2; padding: 0.6rem 0.7rem; text-align: left; }
+    th {
+      background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 1.07em;
+      border-bottom: 2px solid #0d47a1;
+    }
+    tr:nth-child(even) { background: #e3f2fd; }
+    tr:nth-child(odd) { background: #f5fafe; }
+    tr:hover { background: #bbdefb; }
+    td { vertical-align: top; }
+    caption {
+      caption-side: bottom;
+      padding: .4em 0 .7em 0;
+      font-size: .97em;
+      color: #666;
+    }
+    /* Responsive */
     @media (max-width: 900px) {
       .toc { position: static; width: 100vw; height: auto; border-right: 0; border-bottom: 2px solid #1976d2; }
       main { margin-left: 0; padding: 1rem .6rem 2rem .6rem; }
+      table { font-size: .99em; }
     }
     @media (max-width: 600px) {
       .toc { padding: .7rem .2rem; }
       .toc h1 { font-size: 1em; }
+      table, th, td { font-size: .98em; }
     }
     .chart-container { display: flex; flex-direction: row; gap: 2em; flex-wrap: wrap; align-items: flex-start; }
     .caption { font-size: 0.98em; color: #888; margin-top: 0.3em; }
@@ -47,7 +67,7 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Smooth scroll y highlight de sección activa
+      // Smooth scroll funcional y highlight de sección activa
       const tocLinks = document.querySelectorAll('.toc a');
       function activateLink() {
         tocLinks.forEach(link => link.classList.remove('active'));
@@ -107,27 +127,6 @@
     </ul>
   </nav>
   <main>
-        <!-- 1. INTRODUCCIÓN -->
-    <div class="block" id="1-intro">
-      <h2>1. Introducción</h2>
-      <table>
-        <thead>
-          <tr>
-            <th colspan="3">Introducción Extendida</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="3">
-              Este informe constituye un análisis exhaustivo y comparativo entre la Generación Z (nacidos 1997-2012) y la Generación Alpha (nacidos a partir de 2010), con foco en Colombia y América Latina. Ambas generaciones son motores de transformación cultural, social y económica. Se examinan en detalle sus valores, hábitos, expectativas y formas de interacción, especialmente en el contexto del universo “tennis”: deportes urbanos, running, moda urbana y plataformas digitales.<br><br>
-              El documento integra hallazgos cualitativos y cuantitativos, explora modelos de abordaje estratégico y brinda recomendaciones prácticas para conectar genuinamente con estos segmentos. Se incluyen mapas de valores, pirámides de confianza, ecosistemas digitales y un anexo con tablas completas, para la toma de decisiones informada en marcas, productos, plataformas y experiencias.<br><br>
-              El análisis busca develar tensiones, puntos de encuentro y tendencias, enfatizando la co-creación de experiencias, ética, comunidad, diversidad, propósito y sostenibilidad como ejes de innovación y conexión.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
     <!-- 2. HALLAZGOS E INSIGHTS GENERALES -->
     <div class="block" id="2-hallazgos">
       <h2>2. Hallazgos e Insights Generales</h2>
