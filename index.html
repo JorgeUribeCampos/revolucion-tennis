@@ -2551,26 +2551,46 @@
             ];
             const trustPyramidSpec = {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                "title": "Pirámide de Confianza (Fuentes de Validación - Gen Z vs Gen Alpha)",
-                "width": 400, 
-                "height": 300, 
-                "data": { "values": trustPyramidData },
-                "mark": {"type":"bar", "tooltip": true, "opacity": 0.8},
-                "encoding": {
-                    "x": {"field": "NivelConfianza", "type": "quantitative", "title": "Nivel de Confianza (%)"},
-                    "y": {"field": "Fuente", "type": "nominal", "sort": {"field": "NivelConfianza", "op":"sum", "order": "descending"}, "title": "Fuente de Validación", "axis": {"labelLimit": 300}},
-                    "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
-                    "tooltip": [
-                        {"field": "Fuente", "type": "nominal"},
-                        {"field": "Generacion", "type": "nominal"},
-                        {"field": "NivelConfianza", "type": "quantitative"}
-                    ]
+            "title": "Pirámide de Confianza (Fuentes de Validación)", 
+            "width": "container", 
+            "height": 600,        
+            "data": { "values": trustPyramidData },
+            "mark": {"type": "bar", "tooltip": true, "opacity": 0.85},
+            "encoding": {
+                "y": {
+                    "field": "Fuente", 
+                    "type": "nominal", 
+                    "sort": {"encoding": "x", "order": "descending"}, 
+                    "title": "Fuente de Validación", 
+                    "axis": {"labelLimit": 300}
                 },
-                "facet": { 
-                    "column": {"field": "Generacion", "type": "nominal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}}
+                "x": {
+                    "field": "NivelConfianza", 
+                    "type": "quantitative", 
+                    "title": "Nivel de Confianza (%)",
+                    "axis": {"grid": true} 
                 },
-                 "resolve": {"scale": {"y": "independent"}},
-                 "config": {"axis": {"grid": false}, "view": {"stroke": null}}
+                "color": {
+                    "field": "Generacion", 
+                    "type": "nominal", 
+                    "title": "Generación",
+                    "scale": {"domain": ["Gen Z", "Gen Alpha"], "range": ["#FF6B6B", "#4ECDC4"]}
+                },
+                "yOffset": { 
+                    "field": "Generacion", 
+                    "type": "nominal"
+                },
+                "tooltip": [
+                    {"field": "Fuente", "type": "nominal"},
+                    {"field": "Generacion", "type": "nominal"},
+                    {"field": "NivelConfianza", "type": "quantitative"}
+                ]
+            },
+            "config": {
+                "axisY": {"minExtent": 150}, 
+                "view": {"stroke": null},
+                "legend": {"orient": "top"}
+            }
             };
             renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec);
             
