@@ -4,18 +4,13 @@
   <meta charset="UTF-8">
   <title>Gen Z vs Gen Alpha - Insights, Estrategias y Oportunidades</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Tailwind CSS CDN for fast prototyping -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .section-block {
-      scroll-margin-top: 86px;
-    }
-    /* Gradient underline for headings */
+    html { scroll-behavior: smooth; }
+    .section-block { scroll-margin-top: 90px; }
     .gradient-underline {
       background: linear-gradient(90deg, #f472b6 0%, #818cf8 100%);
       height: 4px;
@@ -23,19 +18,12 @@
       margin: 0.25rem 0 1.5rem 0;
       width: 80px;
     }
-    .toc-highlight {
-      background: linear-gradient(90deg, #c7d2fe 0%, #fbcfe8 100%);
-      border-radius: 6px;
-      padding-left: 0.5rem;
-    }
-    /* Animated hover for TOC */
     .toc-link:hover {
       background: linear-gradient(90deg, #fbcfe8 0%, #c7d2fe 100%);
       border-radius: 6px;
       padding-left: 0.5rem;
       transition: all 0.2s;
     }
-    /* Card style for visual blocks */
     .visual-card {
       background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
       border-radius: 1rem;
@@ -43,12 +31,10 @@
       padding: 1.5rem;
       margin-bottom: 2rem;
     }
-    .gradient-bg {
-      background: linear-gradient(120deg, #c7d2fe 0%, #fbcfe8 100%);
-    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-fuchsia-100 text-gray-900 leading-relaxed">
+
   <!-- Header -->
   <header class="sticky top-0 z-30 bg-white/90 shadow-lg py-4 px-2 md:px-10 flex flex-col md:flex-row items-center justify-between">
     <div class="flex items-center gap-4">
@@ -66,44 +52,26 @@
     <h1 class="text-3xl font-bold text-indigo-700">Índice de Contenidos</h1>
     <div class="gradient-underline"></div>
     <ol class="space-y-1 text-lg pl-4">
-      <li>
-        <a href="#cat-clave" class="toc-link font-semibold text-fuchsia-700">1. Clasificación por Categorías Clave y Síntesis de Hallazgos</a>
-        <ul class="ml-6 space-y-1 text-base">
-          <li><a href="#valores-creencias" class="toc-link">1.1 Valores y Creencias</a></li>
-          <li><a href="#habitos-consumo" class="toc-link">1.2 Hábitos de Consumo</a></li>
-          <li><a href="#relacion-marcas" class="toc-link">1.3 Relación con Marcas</a></li>
-          <li><a href="#cultura-entretenimiento" class="toc-link">1.4 Cultura y Entretenimiento</a></li>
-          <li><a href="#identidad-comunidad" class="toc-link">1.5 Identidad y Comunidad</a></li>
-          <li><a href="#tecnologia-medios" class="toc-link">1.6 Tecnología y Medios</a></li>
-          <li><a href="#lifestyle" class="toc-link">1.7 Estilo de Vida (Lifestyle)</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#visualizaciones" class="toc-link font-semibold text-fuchsia-700">2. Visualizaciones Sugeridas</a>
-        <ul class="ml-6 space-y-1 text-base">
-          <li><a href="#consumer-journey" class="toc-link">2.1 Consumer Journey: Gen Z vs Gen Alpha</a></li>
-          <li><a href="#demographic-pie" class="toc-link">2.2 Demographic Pie Chart: Colombia vs Global</a></li>
-          <li><a href="#trust-comparison" class="toc-link">2.3 Trust Comparison: Niveles de Confianza</a></li>
-          <li><a href="#platform-usage" class="toc-link">2.4 Platform Usage Heatmap</a></li>
-          <li><a href="#sports-engagement" class="toc-link">2.5 Sports Engagement</a></li>
-          <li><a href="#roi-projections" class="toc-link">2.6 ROI Projections</a></li>
-          <li><a href="#piramide-confianza" class="toc-link">2.7 Pirámide de Confianza</a></li>
-          <li><a href="#ecosistema-comunidades" class="toc-link">2.8 Ecosistema de Comunidades</a></li>
-          <li><a href="#mapa-valores" class="toc-link">2.9 Mapa de Valores</a></li>
-          <li><a href="#demographic-pie2" class="toc-link">2.10 Demographic Pie Chart (detalle)</a></li>
-        </ul>
-      </li>
-      <li><a href="#contexto-colombia" class="toc-link font-semibold text-fuchsia-700">3. Contexto Colombiano</a></li>
-      <li><a href="#aplicacion-tenis" class="toc-link font-semibold text-fuchsia-700">4. Aplicación al Tenis</a></li>
-      <li><a href="#perfil-consumidor-tenis" class="toc-link font-semibold text-fuchsia-700">5. Perfil Detallado del Consumidor de Tenis</a></li>
-      <li><a href="#impacto-ia" class="toc-link font-semibold text-fuchsia-700">6. Análisis del Impacto de la IA</a></li>
-      <li><a href="#tiempo-pantalla" class="toc-link font-semibold text-fuchsia-700">7. Consideraciones sobre el "Tiempo de Pantalla"</a></li>
-      <li><a href="#modelo-lealtad" class="toc-link font-semibold text-fuchsia-700">8. Modelo de Lealtad Adaptado al Tenis</a></li>
-      <li><a href="#alianzas-patrocinios" class="toc-link font-semibold text-fuchsia-700">9. Recomendaciones de Alianzas Estratégicas y Patrocinios</a></li>
-      <li><a href="#mercado-colombiano" class="toc-link font-semibold text-fuchsia-700">10. Consideraciones sobre el Mercado Colombiano</a></li>
+      <li><a href="#cat-clave" class="toc-link font-semibold text-fuchsia-700">1. Clasificación por Categorías Clave y Síntesis de Hallazgos</a></li>
+      <li><a href="#valores-creencias" class="toc-link">1.1 Valores y Creencias</a></li>
+      <li><a href="#habitos-consumo" class="toc-link">1.2 Hábitos de Consumo</a></li>
+      <li><a href="#relacion-marcas" class="toc-link">1.3 Relación con Marcas</a></li>
+      <li><a href="#cultura-entretenimiento" class="toc-link">1.4 Cultura y Entretenimiento</a></li>
+      <li><a href="#identidad-comunidad" class="toc-link">1.5 Identidad y Comunidad</a></li>
+      <li><a href="#tecnologia-medios" class="toc-link">1.6 Tecnología y Medios</a></li>
+      <li><a href="#lifestyle" class="toc-link">1.7 Estilo de Vida (Lifestyle)</a></li>
+      <li><a href="#visualizaciones" class="toc-link">2. Visualizaciones Sugeridas</a></li>
+      <li><a href="#contexto-colombia" class="toc-link">3. Contexto Colombiano</a></li>
+      <li><a href="#aplicacion-tenis" class="toc-link">4. Aplicación al Tenis</a></li>
+      <li><a href="#perfil-consumidor-tenis" class="toc-link">5. Perfil Detallado del Consumidor de Tenis</a></li>
+      <li><a href="#impacto-ia" class="toc-link">6. Análisis del Impacto de la IA</a></li>
+      <li><a href="#tiempo-pantalla" class="toc-link">7. Consideraciones sobre el "Tiempo de Pantalla"</a></li>
+      <li><a href="#modelo-lealtad" class="toc-link">8. Modelo de Lealtad Adaptado al Tenis</a></li>
+      <li><a href="#alianzas-patrocinios" class="toc-link">9. Recomendaciones de Alianzas Estratégicas y Patrocinios</a></li>
+      <li><a href="#mercado-colombiano" class="toc-link">10. Consideraciones sobre el Mercado Colombiano</a></li>
       <li><span class="text-gray-400 italic">11. [Eliminado]</span></li>
-      <li><a href="#kpi" class="toc-link font-semibold text-fuchsia-700">12. Métricas Clave de Éxito (KPIs)</a></li>
-      <li><a href="#etica-desafios" class="toc-link font-semibold text-fuchsia-700">13. Consideraciones Éticas y Desafíos</a></li>
+      <li><a href="#kpi" class="toc-link">12. Métricas Clave de Éxito (KPIs)</a></li>
+      <li><a href="#etica-desafios" class="toc-link">13. Consideraciones Éticas y Desafíos</a></li>
       <li>
         <a href="#anexos" class="toc-link font-semibold text-indigo-700">Anexos: Hallazgos e Insights Detallados por Categoría</a>
         <ul class="ml-6 space-y-1 text-base">
@@ -120,161 +88,218 @@
     </ol>
   </section>
 
-  <!-- Sección 1: Clasificación por Categorías Clave -->
+  <!-- Clasificador de Categorías Clave y Síntesis -->
   <section id="cat-clave" class="max-w-5xl mx-auto py-6 section-block">
     <h2 class="text-2xl font-bold text-fuchsia-700 flex items-center gap-2">
       <i class="fas fa-layer-group"></i> 1. Clasificación por Categorías Clave y Síntesis de Hallazgos
     </h2>
     <div class="gradient-underline"></div>
-    <p class="mb-6">La siguiente estructura presenta la información confrontada entre Generación Z y Generación Alpha, comparando valores, comportamientos y tensiones clave en cada aspecto.</p>
-    
-    <!-- Subsecciones 1.1 a 1.7 con links rápidos -->
-    <div class="flex flex-wrap gap-2 mb-6">
-      <a href="#valores-creencias" class="bg-fuchsia-200 hover:bg-fuchsia-300 text-fuchsia-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.1 Valores y Creencias</a>
-      <a href="#habitos-consumo" class="bg-cyan-200 hover:bg-cyan-300 text-cyan-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.2 Hábitos de Consumo</a>
-      <a href="#relacion-marcas" class="bg-blue-200 hover:bg-blue-300 text-blue-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.3 Relación con Marcas</a>
-      <a href="#cultura-entretenimiento" class="bg-indigo-200 hover:bg-indigo-300 text-indigo-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.4 Cultura y Entretenimiento</a>
-      <a href="#identidad-comunidad" class="bg-purple-200 hover:bg-purple-300 text-purple-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.5 Identidad y Comunidad</a>
-      <a href="#tecnologia-medios" class="bg-pink-200 hover:bg-pink-300 text-pink-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.6 Tecnología y Medios</a>
-      <a href="#lifestyle" class="bg-yellow-200 hover:bg-yellow-300 text-yellow-900 px-4 py-2 rounded-lg font-semibold shadow-md">1.7 Estilo de Vida</a>
-    </div>
+    <p class="mb-6">Haz clic en cada bloque para navegar a la sección correspondiente. Cada punto confronta la información de Gen Z y Gen Alpha.</p>
+    <ol class="grid md:grid-cols-2 gap-4 text-base">
+      <li><a href="#valores-creencias" class="block bg-fuchsia-100 hover:bg-fuchsia-200 p-4 rounded-lg shadow-md font-semibold">1.1 Valores y Creencias</a></li>
+      <li><a href="#habitos-consumo" class="block bg-cyan-100 hover:bg-cyan-200 p-4 rounded-lg shadow-md font-semibold">1.2 Hábitos de Consumo</a></li>
+      <li><a href="#relacion-marcas" class="block bg-blue-100 hover:bg-blue-200 p-4 rounded-lg shadow-md font-semibold">1.3 Relación con Marcas</a></li>
+      <li><a href="#cultura-entretenimiento" class="block bg-indigo-100 hover:bg-indigo-200 p-4 rounded-lg shadow-md font-semibold">1.4 Cultura y Entretenimiento</a></li>
+      <li><a href="#identidad-comunidad" class="block bg-purple-100 hover:bg-purple-200 p-4 rounded-lg shadow-md font-semibold">1.5 Identidad y Comunidad</a></li>
+      <li><a href="#tecnologia-medios" class="block bg-pink-100 hover:bg-pink-200 p-4 rounded-lg shadow-md font-semibold">1.6 Tecnología y Medios</a></li>
+      <li><a href="#lifestyle" class="block bg-yellow-100 hover:bg-yellow-200 p-4 rounded-lg shadow-md font-semibold">1.7 Estilo de Vida (Lifestyle)</a></li>
+      <li><a href="#visualizaciones" class="block bg-fuchsia-200 hover:bg-fuchsia-300 p-4 rounded-lg shadow-md font-semibold">2. Visualizaciones Sugeridas</a></li>
+      <li><a href="#contexto-colombia" class="block bg-blue-200 hover:bg-blue-300 p-4 rounded-lg shadow-md font-semibold">3. Contexto Colombiano</a></li>
+      <li><a href="#aplicacion-tenis" class="block bg-green-100 hover:bg-green-200 p-4 rounded-lg shadow-md font-semibold">4. Aplicación al Tenis</a></li>
+      <li><a href="#perfil-consumidor-tenis" class="block bg-pink-200 hover:bg-pink-300 p-4 rounded-lg shadow-md font-semibold">5. Perfil Detallado del Consumidor de Tenis</a></li>
+      <li><a href="#impacto-ia" class="block bg-yellow-200 hover:bg-yellow-300 p-4 rounded-lg shadow-md font-semibold">6. Análisis del Impacto de la IA</a></li>
+      <li><a href="#tiempo-pantalla" class="block bg-indigo-200 hover:bg-indigo-300 p-4 rounded-lg shadow-md font-semibold">7. Consideraciones sobre el "Tiempo de Pantalla"</a></li>
+      <li><a href="#modelo-lealtad" class="block bg-orange-100 hover:bg-orange-200 p-4 rounded-lg shadow-md font-semibold">8. Modelo de Lealtad Adaptado al Tenis</a></li>
+      <li><a href="#alianzas-patrocinios" class="block bg-fuchsia-200 hover:bg-fuchsia-300 p-4 rounded-lg shadow-md font-semibold">9. Recomendaciones de Alianzas Estratégicas y Patrocinios</a></li>
+      <li><a href="#mercado-colombiano" class="block bg-blue-200 hover:bg-blue-300 p-4 rounded-lg shadow-md font-semibold">10. Consideraciones sobre el Mercado Colombiano</a></li>
+      <li><a href="#kpi" class="block bg-emerald-100 hover:bg-emerald-200 p-4 rounded-lg shadow-md font-semibold">12. Métricas Clave de Éxito (KPIs)</a></li>
+      <li><a href="#etica-desafios" class="block bg-rose-100 hover:bg-rose-200 p-4 rounded-lg shadow-md font-semibold">13. Consideraciones Éticas y Desafíos</a></li>
+    </ol>
   </section>
 
   <!-- 1.1 Valores y Creencias -->
-  <section id="valores-creencias" class="max-w-5xl mx-auto py-6 section-block">
-    <h3 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
+  <section id="valores-creencias" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
       <i class="fas fa-balance-scale"></i> 1.1 Valores y Creencias
-    </h3>
-    <div class="gradient-underline"></div>
-    <!-- Tabla colorida de valores y creencias -->
-    <!-- ... Incluir aquí la tabla colorida como en ejemplos anteriores ... -->
-    <!-- Ver sección de anexos para la tabla completa -->
-    <div class="text-right mt-2">
-      <a href="#anexo-1.1" class="text-indigo-600 font-semibold hover:underline"><i class="fas fa-table"></i> Ver tabla completa en Anexos</a>
-    </div>
-  </section>
-
-  <!-- 1.2 Hábitos de Consumo -->
-  <section id="habitos-consumo" class="max-w-5xl mx-auto py-6 section-block">
-    <h3 class="text-xl font-bold text-cyan-700 mb-2 flex items-center gap-2">
-      <i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo
-    </h3>
-    <div class="gradient-underline"></div>
-    <!-- Tabla colorida de hábitos de consumo, como la última aprobada -->
-    <div class="overflow-x-auto my-8 rounded-2xl shadow-2xl border-4 border-purple-300 bg-gradient-to-br from-blue-200 via-fuchsia-100 to-cyan-200">
-      <table class="min-w-full bg-transparent">
-        <caption class="text-xl font-extrabold py-4 text-white bg-gradient-to-r from-fuchsia-500 to-indigo-600 rounded-t-2xl shadow-inner">
-          <span class="inline-flex items-center gap-2">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/><circle cx="12" cy="12" r="5" fill="#f472b6"/></svg>
-            Tabla 1.2. Hábitos de Consumo
-          </span>
-        </caption>
-        <thead>
-          <tr>
-            <th class="py-4 px-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-left text-white font-bold text-lg border-b-4 border-fuchsia-400 rounded-tl-2xl">Aspecto</th>
-            <th class="py-4 px-4 bg-gradient-to-r from-fuchsia-400 to-pink-600 text-left text-white font-bold text-lg border-b-4 border-cyan-400">Gen Z<br><span class="text-xs font-normal text-gray-100">(1997-2012)</span></th>
-            <th class="py-4 px-4 bg-gradient-to-r from-cyan-400 to-teal-500 text-left text-white font-bold text-lg border-b-4 border-fuchsia-400">Gen Alpha<br><span class="text-xs font-normal text-gray-100">(2010s-2020s)</span></th>
-            <th class="py-4 px-4 bg-gradient-to-r from-purple-400 to-indigo-600 text-left text-white font-bold text-lg border-b-4 border-cyan-400 rounded-tr-2xl">Comparativas & Tensiones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="bg-gradient-to-r from-cyan-50 to-fuchsia-50 hover:from-fuchsia-100 hover:to-cyan-100 transition">
-            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
-              <span class="text-fuchsia-500"><i class="fas fa-piggy-bank"></i></span> Frugalidad y Gasto Consciente
-            </td>
-            <td class="py-4 px-4 align-top">💸 70% alteró hábitos post-pandemia, 80% prefiere gastar sabiamente, 77% ahorra cada vez que recibe dinero.</td>
-            <td class="py-4 px-4 align-top">👶🏻 Aprenden el valor del ahorro y el consumo consciente desde pequeños, guiados por sus padres.</td>
-            <td class="py-4 px-4 align-top">Ambas generaciones muestran frugalidad, pero Gen Alpha lo vive incluso antes gracias a la crianza.</td>
-          </tr>
-          <tr class="bg-gradient-to-r from-blue-50 to-cyan-100 hover:from-fuchsia-100 hover:to-blue-100 transition">
-            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
-              <span class="text-cyan-600"><i class="fas fa-store"></i></span> Retail Físico con Experiencias
-            </td>
-            <td class="py-4 px-4 align-top">🏪 78% cree que las tiendas físicas siempre tendrán un propósito. Buscan experiencias inspiradoras y entretenidas.</td>
-            <td class="py-4 px-4 align-top">👨‍👩‍👧‍👦 Prefieren retail físico alineado a valores y sostenibilidad, por influencia de sus padres.</td>
-            <td class="py-4 px-4 align-top">Z busca entretenimiento y "selfies"; Alpha, coherencia ética y ambiental.</td>
-          </tr>
-          <tr class="bg-gradient-to-r from-fuchsia-50 to-cyan-50 hover:from-cyan-100 hover:to-fuchsia-100 transition">
-            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
-              <span class="text-blue-600"><i class="fas fa-search"></i></span> Investigación y Desconfianza de Marca
-            </td>
-            <td class="py-4 px-4 align-top">🔍 Proceso de compra no lineal, solo 40% confía en afirmaciones de marcas; usan TikTok para investigar.</td>
-            <td class="py-4 px-4 align-top">📲 Padres y comunidades parentales influyen en la decisión de compra, buscan productos educativos y sostenibles.</td>
-            <td class="py-4 px-4 align-top">Z confía en pares/redes; Alpha, en criterios parentales y comunidad.</td>
-          </tr>
-          <tr class="bg-gradient-to-r from-cyan-50 to-fuchsia-100 hover:from-fuchsia-100 hover:to-cyan-50 transition">
-            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
-              <span class="text-yellow-500"><i class="fas fa-bolt"></i></span> Inmediatez y Conveniencia
-            </td>
-            <td class="py-4 px-4 align-top">⚡ 75% de adolescentes quiere productos convenientes y de acceso inmediato.</td>
-            <td class="py-4 px-4 align-top">⏳ Dependen de la iniciativa y tiempos de decisión de sus padres.</td>
-            <td class="py-4 px-4 align-top">Z demanda inmediatez; Alpha aún depende de la gestión parental.</td>
-          </tr>
-          <tr class="bg-gradient-to-r from-blue-50 to-fuchsia-50 hover:from-cyan-100 hover:to-fuchsia-100 transition">
-            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
-              <span class="text-green-500"><i class="fas fa-leaf"></i></span> Consumo Ético y Sostenible
-            </td>
-            <td class="py-4 px-4 align-top">🌱 Tendencia creciente pero menos marcada que en Alpha.</td>
-            <td class="py-4 px-4 align-top">🌍 Ya buscan marcas educativas (66%), sostenibles (43%) y locales (26%).</td>
-            <td class="py-4 px-4 align-top">Alpha muestra tendencia ética más marcada desde edades tempranas.</td>
-          </tr>
-          <tr class="bg-gradient-to-r from-fuchsia-50 to-blue-50 hover:from-blue-100 hover:to-fuchsia-100 transition">
-            <td class="py-4 px-4 font-semibold align-top flex items-center gap-2">
-              <span class="text-indigo-500"><i class="fas fa-heart"></i></span> Experiencias Alineadas a Valores
-            </td>
-            <td class="py-4 px-4 align-top">—</td>
-            <td class="py-4 px-4 align-top">💖 Padres proyectan valores en experiencias de consumo.</td>
-            <td class="py-4 px-4 align-top">Alpha vive experiencias "curadas" por padres, Z las busca por sí mismo.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="text-right mt-2">
-      <a href="#anexo-1.2" class="text-indigo-600 font-semibold hover:underline"><i class="fas fa-table"></i> Ver tabla completa en Anexos</a>
-    </div>
-  </section>
-
-  <!-- ... Repite este patrón para los demás apartados ... -->
-
-  <!-- Bloque Visualizaciones Sugeridas -->
-  <section id="visualizaciones" class="max-w-5xl mx-auto py-8 section-block">
-    <h2 class="text-2xl font-bold text-indigo-700 flex items-center gap-2">
-      <i class="fas fa-chart-pie"></i> 2. Visualizaciones Sugeridas
     </h2>
     <div class="gradient-underline"></div>
-    <p class="mb-4">A continuación se plantean visualizaciones recomendadas para comparar datos clave entre Gen Z y Gen Alpha. <span class="font-semibold text-fuchsia-700">Puedes implementar las gráficas con Altair, Matplotlib, D3.js o Chart.js.</span></p>
-    <div class="visual-card shadow-xl">
-      <h3 id="consumer-journey" class="text-lg font-bold text-fuchsia-700 mb-2 flex items-center gap-2"><i class="fas fa-route"></i> 2.1 Consumer Journey: Gen Z vs Gen Alpha</h3>
-      <p><strong>Tipo:</strong> Diagrama de flujo animado/interactivo, línea de tiempo.<br>
-      <strong>Propósito:</strong> Ilustrar diferencias en motivaciones, etapas y fuentes de inspiración/investigación.</p>
-      <ul class="list-disc ml-8 mt-2 text-sm">
-        <li><span class="font-bold text-blue-700">Gen Z:</span> 62% se inspira online, 71% abierto a nuevas marcas, 70% decide rápido, investigación profunda en TikTok.</li>
-        <li><span class="font-bold text-cyan-700">Gen Alpha:</span> Influencia parental y contenido educativo; consumo compartido, recomendaciones parentales.</li>
-      </ul>
-      <p class="mt-2 text-xs text-gray-600">Sugerencia: Usa sliders o "play" para animar el paso por etapas.</p>
-    </div>
-    <!-- ... Continua con visualizaciones 2.2 a 2.10, siguiendo este formato ... -->
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para valores y creencias]</div>
   </section>
-
-  <!-- ... Agrega aquí secciones para cada punto del índice, usando bloques, tablas y tarjetas ... -->
+  <!-- 1.2 Hábitos de Consumo -->
+  <section id="habitos-consumo" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-cyan-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para hábitos de consumo]</div>
+  </section>
+  <!-- 1.3 Relación con Marcas -->
+  <section id="relacion-marcas" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-blue-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-handshake"></i> 1.3 Relación con Marcas
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para relación con marcas]</div>
+  </section>
+  <!-- 1.4 Cultura y Entretenimiento -->
+  <section id="cultura-entretenimiento" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-film"></i> 1.4 Cultura y Entretenimiento
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para cultura y entretenimiento]</div>
+  </section>
+  <!-- 1.5 Identidad y Comunidad -->
+  <section id="identidad-comunidad" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-purple-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-users"></i> 1.5 Identidad y Comunidad
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para identidad y comunidad]</div>
+  </section>
+  <!-- 1.6 Tecnología y Medios -->
+  <section id="tecnologia-medios" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-pink-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-microchip"></i> 1.6 Tecnología y Medios
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para tecnología y medios]</div>
+  </section>
+  <!-- 1.7 Estilo de Vida (Lifestyle) -->
+  <section id="lifestyle" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-yellow-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-heartbeat"></i> 1.7 Estilo de Vida (Lifestyle)
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Agrega aquí el contenido, tabla o visualización de comparación Gen Z vs Gen Alpha para estilo de vida]</div>
+  </section>
+  <!-- 2. Visualizaciones Sugeridas -->
+  <section id="visualizaciones" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-chart-bar"></i> 2. Visualizaciones Sugeridas
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Coloca aquí visualizaciones recomendadas para los datos clave]</div>
+  </section>
+  <!-- 3. Contexto Colombiano -->
+  <section id="contexto-colombia" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-blue-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-flag"></i> 3. Contexto Colombiano
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Incluye contexto, cifras y particularidades del mercado colombiano]</div>
+  </section>
+  <!-- 4. Aplicación al Tenis -->
+  <section id="aplicacion-tenis" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-green-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-running"></i> 4. Aplicación al Tenis
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Análisis de insights aplicados al tenis y deportes afines]</div>
+  </section>
+  <!-- 5. Perfil Detallado del Consumidor de Tenis -->
+  <section id="perfil-consumidor-tenis" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-pink-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-user-check"></i> 5. Perfil Detallado del Consumidor de Tenis
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Descripción de segmentos y perfiles de consumidores de tenis]</div>
+  </section>
+  <!-- 6. Análisis del Impacto de la IA -->
+  <section id="impacto-ia" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-yellow-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-robot"></i> 6. Análisis del Impacto de la IA
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Explora el papel de la IA en los hábitos y preferencias de las generaciones]</div>
+  </section>
+  <!-- 7. Consideraciones sobre el "Tiempo de Pantalla" -->
+  <section id="tiempo-pantalla" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-indigo-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-mobile-alt"></i> 7. Consideraciones sobre el "Tiempo de Pantalla"
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Reflexión sobre el tiempo de pantalla y bienestar digital]</div>
+  </section>
+  <!-- 8. Modelo de Lealtad Adaptado al Tenis -->
+  <section id="modelo-lealtad" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-orange-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-retweet"></i> 8. Modelo de Lealtad Adaptado al Tenis
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Presenta el modelo de lealtad sugerido para la industria del tenis]</div>
+  </section>
+  <!-- 9. Recomendaciones de Alianzas Estratégicas y Patrocinios -->
+  <section id="alianzas-patrocinios" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-fuchsia-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-hand-holding-usd"></i> 9. Recomendaciones de Alianzas Estratégicas y Patrocinios
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Recomendaciones para alianzas y patrocinios efectivos con Gen Z y Alpha]</div>
+  </section>
+  <!-- 10. Consideraciones sobre el Mercado Colombiano -->
+  <section id="mercado-colombiano" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-blue-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-globe-americas"></i> 10. Consideraciones sobre el Mercado Colombiano
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Particularidades, oportunidades y desafíos del mercado en Colombia]</div>
+  </section>
+  <!-- 12. Métricas Clave de Éxito (KPIs) -->
+  <section id="kpi" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-emerald-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-chart-line"></i> 12. Métricas Clave de Éxito (KPIs)
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[KPIs sugeridos para medir el éxito en estrategias con Gen Z y Alpha]</div>
+  </section>
+  <!-- 13. Consideraciones Éticas y Desafíos -->
+  <section id="etica-desafios" class="max-w-5xl mx-auto py-8 section-block">
+    <h2 class="text-xl font-bold text-rose-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-balance-scale-left"></i> 13. Consideraciones Éticas y Desafíos
+    </h2>
+    <div class="gradient-underline"></div>
+    <div class="mb-8 italic text-gray-500">[Ética, privacidad, inclusión y desafíos futuros]</div>
+  </section>
 
   <!-- Anexos -->
   <section id="anexos" class="max-w-5xl mx-auto py-10 section-block">
     <h2 class="text-2xl font-bold text-indigo-700 flex items-center gap-2"><i class="fas fa-folder-open"></i> Anexos: Hallazgos e Insights Detallados</h2>
     <div class="gradient-underline"></div>
     <p class="mb-4">Tablas comparativas completas confrontando Generación Z y Generación Alpha para cada aspecto clave.</p>
-    <!-- Incluye aquí todas las tablas coloridas de los Anexos 1.1 a 1.8, usando el formato colorido aprobado -->
+    <!-- Ejemplo de tabla de anexo (repite para cada anexo) -->
     <div id="anexo-1.1" class="my-10">
       <h3 class="text-lg font-bold text-fuchsia-700 mb-2 flex items-center gap-2"><i class="fas fa-balance-scale"></i> 1.1 Valores y Creencias</h3>
-      <!-- Tabla colorida aquí (ver ejemplos anteriores) -->
-      <!-- ... -->
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Valores y Creencias]</div>
     </div>
     <div id="anexo-1.2" class="my-10">
       <h3 class="text-lg font-bold text-cyan-700 mb-2 flex items-center gap-2"><i class="fas fa-shopping-cart"></i> 1.2 Hábitos de Consumo</h3>
-      <!-- Tabla colorida aquí (ver ejemplo arriba) -->
-      <!-- ... -->
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Hábitos de Consumo]</div>
     </div>
-    <!-- Repite para 1.3 a 1.8 -->
+    <div id="anexo-1.3" class="my-10">
+      <h3 class="text-lg font-bold text-blue-700 mb-2 flex items-center gap-2"><i class="fas fa-handshake"></i> 1.3 Relación con Marcas</h3>
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Relación con Marcas]</div>
+    </div>
+    <div id="anexo-1.4" class="my-10">
+      <h3 class="text-lg font-bold text-indigo-700 mb-2 flex items-center gap-2"><i class="fas fa-film"></i> 1.4 Cultura y Entretenimiento</h3>
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Cultura y Entretenimiento]</div>
+    </div>
+    <div id="anexo-1.5" class="my-10">
+      <h3 class="text-lg font-bold text-purple-700 mb-2 flex items-center gap-2"><i class="fas fa-users"></i> 1.5 Identidad y Comunidad</h3>
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Identidad y Comunidad]</div>
+    </div>
+    <div id="anexo-1.6" class="my-10">
+      <h3 class="text-lg font-bold text-pink-700 mb-2 flex items-center gap-2"><i class="fas fa-microchip"></i> 1.6 Tecnología y Medios</h3>
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Tecnología y Medios]</div>
+    </div>
+    <div id="anexo-1.7" class="my-10">
+      <h3 class="text-lg font-bold text-yellow-700 mb-2 flex items-center gap-2"><i class="fas fa-heartbeat"></i> 1.7 Estilo de Vida (Lifestyle)</h3>
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Estilo de Vida]</div>
+    </div>
+    <div id="anexo-1.8" class="my-10">
+      <h3 class="text-lg font-bold text-green-700 mb-2 flex items-center gap-2"><i class="fas fa-running"></i> 1.8 Running y Training</h3>
+      <div class="italic text-gray-500 mb-6">[Aquí va la tabla colorida o comparativa de Running y Training]</div>
+    </div>
   </section>
 
   <!-- Footer -->
