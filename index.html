@@ -2354,13 +2354,12 @@
         };
         renderVegaLiteChart('#chart-demographic-pie', demographicPieSpec);
         
-
         // 2.3. Trust Comparison - Basado en Python #1 (Simplificado)
         const trustComparisonSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Confianza en Instituciones y Fuentes de Validación",
             "width": 650, 
-            "height": 450, // Ajustado para más espacio si es necesario
+            "height": 450, 
             "data": {
                 "values": [
                     {"Fuente": "Empresas estadounidenses", "Generacion": "Gen Z", "NivelConfianza": 20, "Tipo": "Confianza/Desconfianza"},
@@ -2396,7 +2395,7 @@
             },
             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        //renderVegaLiteChart('#chart-trust-comparison', trustComparisonSpec); // Comentada para prueba individual
+        
 
         // 2.4. Platform Usage Heatmap
         const platformUsageSpec = {
@@ -2437,44 +2436,66 @@
         };
         renderVegaLiteChart('#chart-platform-heatmap', platformUsageSpec);
 
-        // 2.5. Sports Engagement - ACTUALIZADO SEGUN PYTHON (#3 del código python, corresponde a 2.5) (Simplificado)
+        // 2.5. Sports Engagement - REVISED for grouped bar chart
         const sportsEngagementSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Motivaciones y Comportamientos Deportivos (Gen Z vs Gen Alpha)",
-            "width": 650, 
-            "height": 450, // Ajustado
+            "width": "container", // Responsive width
+            "height": 600,      // Adjusted height
             "data": {
                 "values": [
-                    {"Comportamiento": "Especialización (1 deporte)", "Generacion": "Gen Z", "Valor": 40, "TipoDato": "Porcentaje"},
-                    {"Comportamiento": "Especialización (para mejorar)", "Generacion": "Gen Z", "Valor": 37, "TipoDato": "Porcentaje"},
-                    {"Comportamiento": "Deporte por Becas", "Generacion": "Gen Z", "Valor": 71, "TipoDato": "Porcentaje"},
-                    {"Comportamiento": "Prefieren deportes no tradicionales", "Generacion": "Gen Z", "Valor": 56, "TipoDato": "Porcentaje"},
-                    {"Comportamiento": "No ven deporte en vivo", "Generacion": "Gen Z", "Valor": 39, "TipoDato": "Porcentaje"},
-                    {"Comportamiento": "Prefieren ver fuera estadio", "Generacion": "Gen Z", "Valor": 69, "TipoDato": "Porcentaje"},
-                    {"Comportamiento": "Uso de Tecnología/Datos", "Generacion": "Gen Z", "Valor": 80, "TipoDato": "Escala"},
-                    {"Comportamiento": "Uso de Apps de Bienestar", "Generacion": "Gen Z", "Valor": 70, "TipoDato": "Escala"},
-                    {"Comportamiento": "Énfasis en Colaboración", "Generacion": "Gen Alpha", "Valor": 70, "TipoDato": "Escala"},
-                    {"Comportamiento": "Énfasis en Bienestar Integral", "Generacion": "Gen Alpha", "Valor": 80, "TipoDato": "Escala"},
-                    {"Comportamiento": "Énfasis en Expresión Personal", "Generacion": "Gen Alpha", "Valor": 60, "TipoDato": "Escala"},
-                    {"Comportamiento": "Contenido Curado (Educativo)", "Generacion": "Gen Alpha", "Valor": 75, "TipoDato": "Porcentaje"}
+                    {"Comportamiento": "Especialización (1 deporte)", "Generacion": "Gen Z", "Valor": 40, "TipoDato": "Porcentaje", "Detalle": "40% de estudiantes atletas juegan un solo deporte."},
+                    {"Comportamiento": "Especialización (para mejorar)", "Generacion": "Gen Z", "Valor": 37, "TipoDato": "Porcentaje", "Detalle": "37% se especializa para mejorar."},
+                    {"Comportamiento": "Deporte por Becas", "Generacion": "Gen Z", "Valor": 71, "TipoDato": "Porcentaje", "Detalle": "71% juega por becas universitarias."},
+                    {"Comportamiento": "Prefieren deportes no tradicionales", "Generacion": "Gen Z", "Valor": 56, "TipoDato": "Porcentaje", "Detalle": "El 56% de jóvenes cree que los deportes \"no tradicionales\" son más importantes."},
+                    {"Comportamiento": "No ven deporte en vivo", "Generacion": "Gen Z", "Valor": 39, "TipoDato": "Porcentaje", "Detalle": "39% no ve deporte en vivo."},
+                    {"Comportamiento": "Prefieren ver fuera estadio", "Generacion": "Gen Z", "Valor": 69, "TipoDato": "Porcentaje", "Detalle": "El 69% de los aficionados prefiere ver deportes fuera del estadio."},
+                    {"Comportamiento": "Uso de Tecnología/Datos", "Generacion": "Gen Z", "Valor": 80, "TipoDato": "Escala", "Detalle": "Uso extensivo de wearables y análisis de datos."},
+                    {"Comportamiento": "Uso de Apps de Bienestar", "Generacion": "Gen Z", "Valor": 70, "TipoDato": "Escala", "Detalle": "Apps como Headspace para salud mental."},
+                    {"Comportamiento": "Énfasis en Colaboración", "Generacion": "Gen Alpha", "Valor": 70, "TipoDato": "Escala", "Detalle": "Inferencia: Valoran el juego en equipo y la interacción."},
+                    {"Comportamiento": "Énfasis en Bienestar Integral", "Generacion": "Gen Alpha", "Valor": 80, "TipoDato": "Escala", "Detalle": "Inferencia: Padres fomentan un enfoque holístico de la salud."},
+                    {"Comportamiento": "Énfasis en Expresión Personal", "Generacion": "Gen Alpha", "Valor": 60, "TipoDato": "Escala", "Detalle": "Inferencia: El deporte como medio para mostrar su personalidad."},
+                    {"Comportamiento": "Contenido Curado (Educativo)", "Generacion": "Gen Alpha", "Valor": 75, "TipoDato": "Porcentaje", "Detalle": "Inferencia: Consumen contenido deportivo seleccionado por su valor educativo/moral."}
                 ]
             },
-            "mark": {"type": "bar", "tooltip": true, "opacity": 0.8},
+            "mark": {"type": "bar", "tooltip": true, "opacity": 0.85},
             "encoding": {
-                "x": {"field": "Valor", "type": "quantitative", "title": "Valor / Porcentaje (%)"},
-                "y": {"field": "Comportamiento", "type": "nominal", "sort": null, "title": "Comportamiento/Motivación", "axis": {"labelLimit": 300}},
-                "color": {"field": "Generacion", "type": "nominal", "title": "Generación"},
-                "xOffset": {"field": "Generacion"}, // Para agrupar
+                "x": {
+                    "field": "Comportamiento", 
+                    "type": "nominal", 
+                    "axis": {"title": "Comportamiento/Motivación", "labelAngle": -40, "labelLimit": 200, "titlePadding": 10},
+                    "sort": null 
+                },
+                "y": {
+                    "field": "Valor", 
+                    "type": "quantitative", 
+                    "axis": {"title": "Valor / Porcentaje (%)"}
+                },
+                "xOffset": { 
+                    "field": "Generacion", 
+                    "type": "nominal"
+                },
+                "color": {
+                    "field": "Generacion", 
+                    "type": "nominal", 
+                    "title": "Generación",
+                    "scale": {"domain": ["Gen Z", "Gen Alpha"], "range": ["#FF6B6B", "#4ECDC4"]} 
+                },
                 "tooltip": [
-                    {"field": "Comportamiento", "type": "nominal"},
-                    {"field": "Generacion", "type": "nominal"},
-                    {"field": "Valor", "type": "quantitative"},
-                    {"field": "TipoDato", "type": "nominal"}
+                    {"field": "Comportamiento", "type": "nominal", "title": "Comportamiento"},
+                    {"field": "Generacion", "type": "nominal", "title": "Generación"},
+                    {"field": "Valor", "type": "quantitative", "title": "Valor"},
+                    {"field": "TipoDato", "type": "nominal", "title": "Tipo de Dato"},
+                    {"field": "Detalle", "type": "nominal", "title": "Detalle"}
                 ]
             },
-             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
+            "config": {
+                "axis": {"grid": false}, 
+                "view": {"stroke": null},
+                "legend": {"orient": "top"}
+            }
         };
-        //renderVegaLiteChart('#chart-sports-engagement', sportsEngagementSpec); // Comentada para prueba individual
+        
 
         // 2.6. ROI Projections
         const roiProjectionsSpec = {
@@ -2530,7 +2551,7 @@
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": "Pirámide de Confianza (Fuentes de Validación - Gen Z vs Gen Alpha)",
             "width": 400, 
-            "height": 300, // Ajustado para más espacio si es necesario 
+            "height": 300, 
             "data": { "values": trustPyramidData },
             "mark": {"type":"bar", "tooltip": true, "opacity": 0.8},
             "encoding": {
@@ -2543,13 +2564,13 @@
                     {"field": "NivelConfianza", "type": "quantitative"}
                 ]
             },
-            "facet": { // Se mantiene el facet, es clave para la "pirámide" visual por generación
+            "facet": { 
                 "column": {"field": "Generacion", "type": "nominal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}}
             },
              "resolve": {"scale": {"y": "independent"}},
              "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        //renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec); // Comentada para prueba individual
+        
 
         // 2.8. Ecosystem of Communities - ACTUALIZADO SEGUN PYTHON (#4 del código python, corresponde a 2.8) (Simplificado)
         const ecosystemCommunitiesSpec = {
@@ -2583,19 +2604,16 @@
                     {"field": "Relevancia", "type": "quantitative"}
                 ]
             },
-            "facet": { // Se mantiene el facet
+            "facet": { 
                 "column": {"field": "Generacion", "type": "nominal", "header": {"titleOrient": "bottom", "labelOrient": "bottom"}}
             },
             "resolve": {"scale": {"y": "independent"}},
             "config": {"axis": {"grid": false}, "view": {"stroke": null}}
         };
-        //renderVegaLiteChart('#chart-ecosystem-communities', ecosystemCommunitiesSpec); // Comentada para prueba individual
         
         // --- INICIO DE PRUEBA INDIVIDUAL --- 
-        renderVegaLiteChart('#chart-trust-comparison', trustComparisonSpec);      // GRÁFICA 2.3 EN PRUEBA
-
-        // Comentadas para la prueba:
-        // renderVegaLiteChart('#chart-sports-engagement', sportsEngagementSpec);    // Gráfica 2.5 
+        // renderVegaLiteChart('#chart-trust-comparison', trustComparisonSpec);      // GRÁFICA 2.3 
+        renderVegaLiteChart('#chart-sports-engagement', sportsEngagementSpec);    // GRÁFICA 2.5 EN PRUEBA
         // renderVegaLiteChart('#chart-trust-pyramid', trustPyramidSpec);            // Gráfica 2.7 
         // renderVegaLiteChart('#chart-ecosystem-communities', ecosystemCommunitiesSpec); // Gráfica 2.8 
         // --- FIN DE PRUEBA INDIVIDUAL --- 
